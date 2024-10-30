@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { hash } from "bcrypt";
 import * as z from "zod";
 import { useGetUsersQuery } from "@/redux/state/api";
 
@@ -14,12 +13,10 @@ const userSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  const { data, isLoading, isError } = useGetUsersQuery();
+  const { data } = useGetUsersQuery();
   console.log("From /api/users", data);
   try {
-    const body = await req.json();
-    console.log(body);
-    const { email, username, password } = userSchema.parse(body);
+    await req.json();
 
     // check if email already exists
     // const existingUserByEmail = await db.user.findUnique({

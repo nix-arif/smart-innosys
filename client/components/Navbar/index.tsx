@@ -3,9 +3,9 @@
 import { useAppDispatch, useAppSelector } from "@/redux/redux";
 import { setIsDarkMode, setIsSidebarCollapsed } from "@/redux/state";
 import { Bell, Menu, Moon, Settings, Sun, UserCircle2Icon } from "lucide-react";
-import Image from "next/image";
+
 import Link from "next/link";
-import Logo from "@/images/LogoEarthWhiteWithName.png";
+// import Logo from "@/images/LogoEarthWhiteWithName.png";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();

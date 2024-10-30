@@ -1,13 +1,11 @@
 "use client";
 
 import { useGetDashboardMetricsQuery } from "@/redux/state/api";
-import { ShoppingBag } from "lucide-react";
-import Image from "next/image";
 
 const CardTopCustomer = () => {
-  const { data, isLoading, isError } = useGetDashboardMetricsQuery();
-  const smartInnosysInvoice = data?.smartInnosysInvoice || [];
-  const affirmaInvoice = data?.affirmaInvoice || [];
+  const { data, isLoading } = useGetDashboardMetricsQuery();
+  // const smartInnosysInvoice = data?.smartInnosysInvoice || [];
+  // const affirmaInvoice = data?.affirmaInvoice || [];
 
   return (
     <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl pb-16">

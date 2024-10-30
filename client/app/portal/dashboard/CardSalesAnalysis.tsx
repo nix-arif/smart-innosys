@@ -22,11 +22,11 @@ import {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-interface ICustomToolip {
-  active: any;
-  payload: any;
-  label: any;
-}
+// interface ICustomToolip {
+//   active: any;
+//   payload: any;
+//   label: any;
+// }
 
 const month = [
   "Jan",
@@ -128,10 +128,10 @@ const CardSalesAnalysis = () => {
   const monthlyDataArray: MonthlyData[] = timeArray.map((item) => {
     const timeKey = item.time; // This should match the format used in grouping
     const date = new Date(timeKey); // Assuming timeKey is in a valid date format
-    const formattedTime = `${month[date.getMonth()]}${date
-      .getFullYear()
-      .toString()
-      .slice(2, 4)}`; // Format as 'Oct23'
+    // const formattedTime = `${month[date.getMonth()]}${date
+    //   .getFullYear()
+    //   .toString()
+    //   .slice(2, 4)}`; // Format as 'Oct23'
 
     return {
       ...item, // Use the formatted time here

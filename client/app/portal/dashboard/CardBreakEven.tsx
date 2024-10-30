@@ -33,11 +33,11 @@ const month = [
   "Dec",
 ];
 
-interface ICustomToolip {
-  active: any;
-  payload: any;
-  label: any;
-}
+// interface ICustomToolip {
+//   active: any;
+//   payload: any;
+//   label: any;
+// }
 
 const CustomTooltip = ({
   active,
@@ -67,10 +67,10 @@ const CustomTooltip = ({
 };
 
 const CardBreakEven = () => {
-  const { data, isLoading, isError } = useGetDashboardMetricsQuery();
+  const { data, isLoading } = useGetDashboardMetricsQuery();
 
-  let monthlyDataArray = [];
-  let ytdDataArray: { time: string; ytd: string; contributionBOD: string }[] =
+  const monthlyDataArray = [];
+  const ytdDataArray: { time: string; ytd: string; contributionBOD: string }[] =
     [];
   const ledger = data?.smartInnosysLedger;
 
@@ -81,7 +81,7 @@ const CardBreakEven = () => {
       let tempSum1 = new Decimal(0);
       let tempSum2 = new Decimal(0);
 
-      group[property].forEach((item, index, array) => {
+      group[property].forEach((item) => {
         tempSum1 = tempSum1.plus(new Decimal(item.amount));
         if (
           item.receiveFrom === "amli" ||
@@ -111,7 +111,7 @@ const CardBreakEven = () => {
   let tempSum1 = new Decimal(0);
   let tempSum2 = new Decimal(0);
 
-  monthlyDataArray.forEach((item, index) => {
+  monthlyDataArray.forEach((item) => {
     tempSum1 = tempSum1.plus(item.ytd);
     tempSum2 = tempSum2.plus(item.contributionBOD);
     ytdDataArray.push({
@@ -121,7 +121,7 @@ const CardBreakEven = () => {
     });
   });
 
-  const ytdDataArrayNumber = ytdDataArray.map((item, index) => {
+  const ytdDataArrayNumber = ytdDataArray.map((item) => {
     return {
       ...item,
       ytd: Number(item.ytd),
