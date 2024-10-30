@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import * as z from "zod";
-import { useGetUsersQuery } from "@/redux/state/api";
+// import * as z from "zod";
+// import { useGetUsersQuery } from "@/redux/state/api";
 
 // Desine schema for input validation
 // const userSchema = z.object({
