@@ -28,20 +28,20 @@ import {
 //   label: any;
 // }
 
-const month = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+// const month = [
+//   "Jan",
+//   "Feb",
+//   "Mar",
+//   "Apr",
+//   "May",
+//   "Jun",
+//   "Jul",
+//   "Aug",
+//   "Sep",
+//   "Oct",
+//   "Nov",
+//   "Dec",
+// ];
 
 interface Invoice {
   invoiceDate: string;
@@ -127,7 +127,7 @@ const CardSalesAnalysis = () => {
 
   const monthlyDataArray: MonthlyData[] = timeArray.map((item) => {
     const timeKey = item.time; // This should match the format used in grouping
-    const date = new Date(timeKey); // Assuming timeKey is in a valid date format
+    // const date = new Date(timeKey); // Assuming timeKey is in a valid date format
     // const formattedTime = `${month[date.getMonth()]}${date
     //   .getFullYear()
     //   .toString()

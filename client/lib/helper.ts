@@ -25,9 +25,9 @@ export const createTimeArray = (start: string, end: string) => {
     true
   );
 
-  let startYear = startDate.getFullYear(),
-    endYear = endDate.getFullYear(),
-    startMonth = startDate.getMonth() + 1;
+  const startYear = startDate.getFullYear();
+  // endYear = endDate.getFullYear(),
+  let startMonth = startDate.getMonth() + 1;
 
   let i = 0;
   let monthCounterToDeduct = 0;

@@ -3,7 +3,7 @@
 import { useGetDashboardMetricsQuery } from "@/redux/state/api";
 
 const CardTopCustomer = () => {
-  const { data, isLoading } = useGetDashboardMetricsQuery();
+  const { isLoading } = useGetDashboardMetricsQuery();
   // const smartInnosysInvoice = data?.smartInnosysInvoice || [];
   // const affirmaInvoice = data?.affirmaInvoice || [];
 
