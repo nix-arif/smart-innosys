@@ -1,0 +1,186 @@
+[
+    {
+        "ledgerId": 1,
+        "title": "board of directors",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "monthly bod contribution"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "one-off"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "bonus proxy"
+            }
+        ]
+    },
+    {
+        "ledgerId": 2,
+        "title": "staff",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "salary"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "claim"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "advance"
+            },
+            {
+                "metaId": 4,
+                "metaTitle": "case allowance"
+            }
+        ]
+    },
+    {
+        "ledgerId": 3,
+        "title": "professional",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "company registration fee"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "mda"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "gdpmd"
+            },
+            {
+                "metaId": 4,
+                "metaTitle": "est"
+            },
+            {
+                "metaId": 5,
+                "metaTitle": "consultation"
+            },
+            {
+                "metaId": 6,
+                "metaTitle": "secretary fee"
+            },
+            {
+                "metaId": 7,
+                "metaTitle": "transport"
+            }
+        ]
+    },
+    {
+        "ledgerId": 4,
+        "title": "assets & inventory",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "office supplies"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "assets"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "inventory"
+            },
+            {
+                "metaId": 4,
+                "metaTitle": "utility"
+            }
+        ]
+    },
+    {
+        "ledgerId": 5,
+        "title": "bank charges",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "service charge"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "verification charge"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "fixed deposit"
+            }
+        ]
+    },
+    {
+        "ledgerId": 6,
+        "title": "statuotary",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "epf"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "socso"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "e-pcb"
+            }
+        ]
+    },
+    {
+        "ledgerId": 7,
+        "title": "tax",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "stamp duty"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "income tax"
+            }
+        ]
+    },
+    {
+        "ledgerId": 8,
+        "title": "rental",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "office"
+            }
+        ]
+    },
+    {
+        "ledgerId": 9,
+        "title": "sales income",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "direct selling"
+            },
+            {
+                "metaId": 2,
+                "metaTitle": "agent"
+            },
+            {
+                "metaId": 3,
+                "metaTitle": "project"
+            }
+        ]
+    },
+    {
+        "ledgerId": 10,
+        "title": "corporate social responsility",
+        "meta": [
+            {
+                "metaId": 1,
+                "metaTitle": "sumbangan"
+            }
+        ]
+    }
+]

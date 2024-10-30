@@ -1,0 +1,149 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId    Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String
+  password  String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  customerId          Int                   @id
+  title               String
+  fullname            String
+  smartInnosysInvoice SmartInnosysInvoice[]
+  affirmaInoice       AffirmaInvoice[]
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  // organization CustomersOnOrganizations[]
+}
+
+model Organization {
+  organizationId      Int                   @id
+  organizationName    String
+  addressLine1        String
+  addressLine2        String?
+  addressLine3        String?
+  city                String
+  state               String
+  poscode             String
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  // organization     CustomersOnOrganizations[]
+  smartInnosysInvoice SmartInnosysInvoice[]
+  affirmaInvoice      AffirmaInvoice[]
+}
+
+// model Product {
+//   productId   Int                  @id @default(autoincrement())
+//   productCode String
+//   description String
+//   oum         String
+//   unitPrice   Float
+//   createdAt   DateTime             @default(now())
+//   updatedAt   DateTime             @updatedAt
+// invoices    InvoicesOnProducts[]
+// }
+
+model SmartInnosysInvoice {
+  smartInnosysInvoiceId       Int          @id
+  smartInnosysInvoiceNo       String
+  smartInnosysDeliveryOrderNo String
+  invoiceDate                 DateTime     @default(now())
+  procedureDate               DateTime     @default(now())
+  qty                         Int
+  totalPrice                  Float
+  customerId                  Int
+  customer                    Customer     @relation(fields: [customerId], references: [customerId], onDelete: Cascade)
+  organizationId              Int
+  organization                Organization @relation(fields: [organizationId], references: [organizationId], onDelete: Cascade)
+  mrnNo                       String?
+  caseType                    String
+  salesPerson                 String
+  poNo                        String?
+  poDate                      DateTime?
+  invoiceAfterPODate          DateTime?
+  paymentStatus               Boolean?
+  paymentDate                 DateTime?
+  createdAt                   DateTime     @default(now())
+  updatedAt                   DateTime     @updatedAt
+
+  // products        InvoicesOnProducts[]
+}
+
+model AffirmaInvoice {
+  affirmaInvoiceId       Int          @id
+  affirmaInvoiceNo       String
+  affirmaDeliveryOrderNo String
+  invoiceDate            DateTime     @default(now())
+  procedureDate          DateTime     @default(now())
+  qty                    Int
+  totalPrice             Float
+  customerId             Int
+  customer               Customer     @relation(fields: [customerId], references: [customerId], onDelete: Cascade)
+  organizationId         Int
+  organization           Organization @relation(fields: [organizationId], references: [organizationId], onDelete: Cascade)
+  mrnNo                  String?
+  caseType               String
+  salesPerson            String
+  poNo                   String?
+  poDate                 DateTime?
+  invoiceAfterPODate     DateTime?
+  paymentStatus          Boolean?
+  paymentDate            DateTime?
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+
+  // products        InvoicesOnProducts[]
+}
+
+model SmartInnosysLedger {
+  smartInnosysLedgerId Int       @id
+  title                String
+  amount               Float
+  date                 DateTime
+  receiveFrom          String?
+  paidTo               String?
+  docNo                String?
+  docDate              DateTime?
+  remark               String?
+  ledgerId             Float
+}
+
+// model CustomersOnOrganizations {
+//   customer       Customer     @relation(fields: [customerId], references: [customerId])
+//   customerId     Int
+//   organization   Organization @relation(fields: [organizationId], references: [organizationId])
+//   organizationId Int
+//   assignedAt     DateTime     @default(now())
+//   assignedBy     String
+
+//   @@id([customerId, organizationId])
+// }
+
+// model InvoicesOnProducts {
+//   product    Product  @relation(fields: [productId], references: [productId])
+//   productId  Int
+//   invoice    Invoice  @relation(fields: [invoiceId], references: [invoiceId])
+//   invoiceId  Int
+//   assignedAt DateTime @default(now())
+//   assignedBy String
+
+//   @@id([productId, invoiceId])
+// }

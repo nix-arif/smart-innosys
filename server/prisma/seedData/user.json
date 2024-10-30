@@ -1,0 +1,9 @@
+[
+    {
+        "userId": 1,
+        "email": "nix.arif@gmail.com",
+        "username": "nixarif",
+        "password": "123456",
+        "role": "admin"
+    }
+]

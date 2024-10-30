@@ -1,0 +1,202 @@
+[
+    {
+        "organizationId": 1,
+        "organizationName": "Gleneagles Hospital Medini Johor",
+        "addressLine1": "No. 2, Jalan Medini Utara 4",
+        "addressLine2": "Medini Iskandar, Iskandar Puteri",
+        "addressLine3": null,
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "poscode": "79250"
+    },
+    {
+        "organizationId": 2,
+        "organizationName": "Prince Court Medical Centre Sdn Bhd",
+        "addressLine1": "39, Jalan Kia Peng",
+        "addressLine2": null,
+        "addressLine3": null,
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "poscode": "50450"
+    },
+    {
+        "organizationId": 3,
+        "organizationName": "Ara Damansara Medical Centre",
+        "addressLine1": "Lot 2, Jalan Lapangan Terbang Subang",
+        "addressLine2": "Seksyen U2",
+        "addressLine3": null,
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "poscode": "40150"
+    },
+    {
+        "organizationId": 4,
+        "organizationName": "KPJ Kajang Specialist Hospital",
+        "addressLine1": "Jalan Cheras",
+        "addressLine2": null,
+        "addressLine3": null,
+        "city": "Kajang",
+        "state": "Selangor",
+        "poscode": "43000"
+    },
+    {
+        "organizationId": 5,
+        "organizationName": "Pusat Pakar Tawakal Sdn Bhd",
+        "addressLine1": "No. 1, Jalan Pahang",
+        "addressLine2": null,
+        "addressLine3": null,
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "poscode": "53000"
+    },
+    {
+        "organizationId": 6,
+        "organizationName": "KPJ Selangor Specialist Hospital",
+        "addressLine1": "Lot 1, Jalan Singa 20/1",
+        "addressLine2": "Seksyen 20",
+        "addressLine3": null,
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "poscode": "40300"
+    },
+    {
+        "organizationId": 7,
+        "organizationName": "KPJ Ampang Puteri Specialist Hospital",
+        "addressLine1": "1, Jalan Memanda 9",
+        "addressLine2": "Taman Dato Ahmad Razali",
+        "addressLine3": null,
+        "city": "Ampang",
+        "state": "Selangor",
+        "poscode": "68000"
+    },
+    {
+        "organizationId": 8,
+        "organizationName": "Columbia Asia Hospital - Cheras",
+        "addressLine1": "Persiaran Suakasih",
+        "addressLine2": "Tun Hussein Onn",
+        "addressLine3": null,
+        "city": "Cheras",
+        "state": "Selangor",
+        "poscode": "43200"
+    },
+    {
+        "organizationId": 9,
+        "organizationName": "Pantai Hospital Kuala Lumpur",
+        "addressLine1": "8, Jalan Bukit Pantai",
+        "addressLine2": null,
+        "addressLine3": null,
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "poscode": "59100"
+    },
+    {
+        "organizationId": 10,
+        "organizationName": "Columbia Asia Hospital - Petaling Jaya",
+        "addressLine1": "Lot 69, Jalan 13/6",
+        "addressLine2": "Seksyen 13",
+        "addressLine3": null,
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "poscode": "46200"
+    },
+    {
+        "organizationId": 11,
+        "organizationName": "Hospital Sultan Ismail",
+        "addressLine1": "Taman Mount Austin",
+        "addressLine2": null,
+        "addressLine3": null,
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "poscode": "81100"
+    },
+    {
+        "organizationId": 12,
+        "organizationName": "KPJ Klang Specialist Hospital",
+        "addressLine1": "102, Persiaran Rajawali/KU 1",
+        "addressLine2": "Bandar Baru Klang",
+        "addressLine3": null,
+        "city": "Klang",
+        "state": "Selangor",
+        "poscode": "41150"
+    },
+    {
+        "organizationId": 13,
+        "organizationName": "Sunway Medical Centre Velocity",
+        "addressLine1": "Pusat Perubatan Sunway Velocity",
+        "addressLine2": "Lingkaran Velocity",
+        "addressLine3": "Sunway Velocity",
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "poscode": "55100"
+    },
+    {
+        "organizationId": 14,
+        "organizationName": "Pantai Hospital Batu Pahat",
+        "addressLine1": "(Branch of Pantai Medical Centre Sdn Bhd)",
+        "addressLine2": "9s, Jalan Bintang 1",
+        "addressLine3": "Taman Koperasi Bahagia",
+        "city": "Batu Pahat",
+        "state": "Johor",
+        "poscode": "83000"
+    },
+    {
+        "organizationId": 15,
+        "organizationName": "Columbia Asia Hospital - Bukit Jalil",
+        "addressLine1": "No. 9, Jalan Jalil Perkasa 7",
+        "addressLine2": "Bukit Jalil",
+        "addressLine3": null,
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "poscode": "57000"
+    },
+    {
+        "organizationId": 16,
+        "organizationName": "KPJ Pasir Gudang Specialist Hospital",
+        "addressLine1": "Persiaran Dahlia 2",
+        "addressLine2": "Taman Bukit Dahlia",
+        "addressLine3": null,
+        "city": "Pasir Gudang",
+        "state": "Johor",
+        "poscode": "81700"
+    },
+    {
+        "organizationId": 17,
+        "organizationName": "KPJ Rawang Specialist Hospital",
+        "addressLine1": "Jalan Rawang",
+        "addressLine2": "Bandar Baru",
+        "addressLine3": null,
+        "city": "Rawang",
+        "state": "Selangor",
+        "poscode": "48000"
+    },
+    {
+        "organizationId": 18,
+        "organizationName": "KPJ Pahang Specialist Hospital",
+        "addressLine1": "Jalan Tanjung Lumpur",
+        "addressLine2": null,
+        "addressLine3": null,
+        "city": "Kuantan",
+        "state": "Pahang",
+        "poscode": "26060"
+    },
+    {
+        "organizationId": 19,
+        "organizationName": "KPJ Damansara Specialist Hospital 2",
+        "addressLine1": "1, Jalan Bukit Lanjan 3",
+        "addressLine2": "Bukit Lanjan",
+        "addressLine3": null,
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "poscode": "60000"
+    },
+    {
+        "organizationId": 20,
+        "organizationName": "KPJ Johor Specialist Hospital",
+        "addressLine1": "39B, Jalan Abdul Samad",
+        "addressLine2": "Kolam Ayer",
+        "addressLine3": null,
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "poscode": "80100"
+    }
+]
