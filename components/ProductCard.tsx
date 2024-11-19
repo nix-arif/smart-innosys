@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { BorderBeam } from "@/components/ui/border-beam";
 import Image from "next/image";
 

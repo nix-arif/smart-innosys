@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import OrbitingCircles from "@/components/ui/orbiting-circles";
 
 export function OrbitingCirclesDemo() {
