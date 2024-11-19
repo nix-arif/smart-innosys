@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
-import Globe from "@/components/ui/globe";
+// import Globe from "@/components/ui/globe";
 import { OrbitingCirclesDemo } from "./Orbiting";
 
-type Props = {};
-
-const Hero = (props: Props) => {
+const Hero = () => {
   return <OrbitingCirclesDemo />;
 };
 

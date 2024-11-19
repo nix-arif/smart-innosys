@@ -2,9 +2,7 @@
 import React from "react";
 import { BorderBeamDemo } from "./ProductCard";
 
-type Props = {};
-
-const Product = (props: Props) => {
+const Product = () => {
   return (
     <div>
       <h1 className="text-2xl font-semibold">Products & Services</h1>
