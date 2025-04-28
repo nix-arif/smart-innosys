@@ -5,7 +5,7 @@ import {
   SigninFormSchema,
   SignupFormSchema,
 } from "@/lib/definitions";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 // import prisma from "@/lib/prisma";
 import { createSession } from "@/lib/session";
 import { compare, genSalt, hash } from "bcrypt-ts";
