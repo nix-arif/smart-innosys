@@ -31,6 +31,7 @@ export async function signup(state: FormState, formData: FormData) {
   const { username, email, password } = validatedFields.data;
   const salt = await genSalt(10);
   const hashedPassword = await hash(password, salt);
+  let success = false;
 
   // 3. Insert the user into the database
   try {
@@ -46,11 +47,16 @@ export async function signup(state: FormState, formData: FormData) {
       return { message: "An error occurred while creating your account." };
     }
 
+    success = true;
+
     // 4. Create user session
     await createSession(user.id);
-    redirect("/dashboard");
   } catch (error) {
     return { message: "Internal server error." };
+  } finally {
+    if (success) {
+      redirect("/dashboard");
+    }
   }
 }
 
