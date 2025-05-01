@@ -121,7 +121,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/arif/Desktop/learn/programming/company/smart-innosys/src/generated/prisma",
+      "value": "/Users/nix-arif/Downloads/nextjs/smart-innosys/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -139,12 +139,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/arif/Desktop/learn/programming/company/smart-innosys/prisma/schema.prisma",
+    "sourceFilePath": "/Users/nix-arif/Downloads/nextjs/smart-innosys/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.6.0",
