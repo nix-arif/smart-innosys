@@ -3,7 +3,7 @@ import CreateDeliveryOrder from "./CreateDeliveryOrder";
 
 const DeliveryOrderPage = () => {
   return (
-    <div>
+    <div className="p-5">
       <CreateDeliveryOrder />
     </div>
   );

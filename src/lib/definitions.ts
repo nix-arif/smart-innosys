@@ -24,7 +24,26 @@ export const SigninFormSchema = z.object({
     .min(4, { message: "Must be at least 4 characters long." }),
 });
 
-export type FormState =
+export const DeliveryOrderFormSchema = z.object({
+  deliveryOrderNo: z.string().min(2, { message: "Required field" }),
+  agent: z.string().min(2, { message: "Required field" }),
+  salesRep: z.string().min(2, { message: "Required field" }),
+  applicationSpec: z.string().min(2, { message: "Required field" }),
+  date: z.string().min(2, { message: "Required field" }),
+  customerTitle: z.string().min(2, { message: "Required field" }),
+  customerName: z.string().min(2, { message: "Required field" }),
+  organizationDept: z.string().min(2, { message: "Required field" }),
+  organizationName: z.string().min(2, { message: "Required field" }),
+  organizationAddressLine1: z.string().min(2, { message: "Required field" }),
+  organizationAddressLine2: z.string().min(2, { message: "Required field" }),
+  organizationAddressLine3: z.string().min(2, { message: "Required field" }),
+  organizationPosscode: z.string().min(2, { message: "Required field" }),
+  organizationCity: z.string().min(2, { message: "Required field" }),
+  organizationState: z.string().min(2, { message: "Required field" }),
+  organizationCountry: z.string().min(2, { message: "Required field" }),
+});
+
+export type AuthFormState =
   | {
       errors?: {
         username?: string[];
@@ -41,5 +60,28 @@ export type SessionPayload =
       userId: string;
       role: string;
       expiresAt: Date;
+    }
+  | undefined;
+
+export type DeliveryOrderFormState =
+  | {
+      errors?: {
+        deliveryOrderNo?: string;
+        company?: string;
+        salesRep?: string;
+        applicationSpec?: string;
+        date?: string;
+        customerTitle?: string;
+        customerName?: string;
+        organizationDept?: string;
+        organizationName?: string;
+        organizationAddressLine1?: string;
+        organizationAddressLine2?: string;
+        organizationAddressLine3?: string;
+        organizationPosscode?: string;
+        organizationCity?: string;
+        organizationState?: string;
+        organizationCountry?: string;
+      };
     }
   | undefined;

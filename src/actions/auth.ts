@@ -1,7 +1,7 @@
 "use server";
 
 import {
-  FormState,
+  AuthFormState,
   SigninFormSchema,
   SignupFormSchema,
 } from "@/lib/definitions";
@@ -11,7 +11,7 @@ import { createSession } from "@/lib/session";
 import { compare, genSalt, hash } from "bcrypt-ts";
 import { redirect } from "next/navigation";
 
-export async function signup(state: FormState, formData: FormData) {
+export async function signup(state: AuthFormState, formData: FormData) {
   // 1. Validate form fields
   const validatedFields = SignupFormSchema.safeParse({
     username: formData.get("username"),
@@ -60,7 +60,7 @@ export async function signup(state: FormState, formData: FormData) {
   }
 }
 
-export async function signin(state: FormState, formData: FormData) {
+export async function signin(state: AuthFormState, formData: FormData) {
   // 1. Validate form fields
   const validatedFields = SigninFormSchema.safeParse({
     email: formData.get("email"),
