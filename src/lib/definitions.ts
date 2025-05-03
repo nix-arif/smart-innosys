@@ -43,6 +43,11 @@ export const DeliveryOrderFormSchema = z.object({
   organizationCountry: z.string().min(2, { message: "Required field" }),
 });
 
+export const CustomerShema = z.object({
+  title: z.string().min(2, { message: "Required field" }),
+  fullname: z.string().min(2, { message: "Required field" }),
+});
+
 export type AuthFormState =
   | {
       errors?: {
@@ -66,22 +71,32 @@ export type SessionPayload =
 export type DeliveryOrderFormState =
   | {
       errors?: {
-        deliveryOrderNo?: string;
-        company?: string;
-        salesRep?: string;
-        applicationSpec?: string;
-        date?: string;
-        customerTitle?: string;
-        customerName?: string;
-        organizationDept?: string;
-        organizationName?: string;
-        organizationAddressLine1?: string;
-        organizationAddressLine2?: string;
-        organizationAddressLine3?: string;
-        organizationPosscode?: string;
-        organizationCity?: string;
-        organizationState?: string;
-        organizationCountry?: string;
+        deliveryOrderNo?: string[];
+        company?: string[];
+        salesRep?: string[];
+        applicationSpec?: string[];
+        date?: string[];
+        customerTitle?: string[];
+        customerName?: string[];
+        organizationDept?: string[];
+        organizationName?: string[];
+        organizationAddressLine1?: string[];
+        organizationAddressLine2?: string[];
+        organizationAddressLine3?: string[];
+        organizationPosscode?: string[];
+        organizationCity?: string[];
+        organizationState?: string[];
+        organizationCountry?: string[];
       };
+    }
+  | undefined;
+
+export type CustomerFormState =
+  | {
+      errors?: {
+        title?: string[];
+        fullname?: string[];
+      };
+      message?: string;
     }
   | undefined;

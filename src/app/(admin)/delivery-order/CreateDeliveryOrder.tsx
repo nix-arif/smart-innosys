@@ -134,31 +134,94 @@ const CreateDeliveryOrder = () => {
   };
 
   return (
-    <form className="w-full grid gap-2" action={action}>
-      {data.map((item, index) => (
-        <div className="grid grid-cols-12" key={index}>
-          <label htmlFor={item.name} className="col-span-6">
-            {item.label}
-          </label>
-          <input
-            id={item.name}
-            name={item.name}
-            type={item.type}
-            className="border border-slate-200 px-2 col-span-6 rounded-sm"
-            value={item.value}
-            onChange={handleChange}
-          />
-          {state?.errors?.[item.name as keyof typeof state.errors] && (
-            <p className="text-red-500 text-sm">
-              {state.errors[item.name as keyof typeof state.errors]}
-            </p>
-          )}
-        </div>
-      ))}
-      <Button type="submit" className="w-full mt-5" disabled={pending}>
-        Create Delivery Order
-      </Button>
-    </form>
+    <>
+      <div className="font-semibold">CREATE DELIVERY ORDER</div>
+      <form className="w-full grid grid-cols-12 gap-0.5" action={action}>
+        {data.map((item, index) => (
+          <div className="col-span-6 grid grid-cols-2" key={index}>
+            <label htmlFor={item.name} className="col-span-1">
+              {item.label}
+            </label>
+            <input
+              id={item.name}
+              name={item.name}
+              type={item.type}
+              className="border border-slate-200 px-2 col-span-1 rounded-sm text-right"
+              value={item.value}
+              onChange={handleChange}
+            />
+            {state?.errors?.[item.name as keyof typeof state.errors] && (
+              <p className="text-red-500">
+                {state.errors[item.name as keyof typeof state.errors]}
+              </p>
+            )}
+          </div>
+        ))}
+        <table className="col-span-12">
+          <thead>
+            <tr>
+              <th className="text-left">NO</th>
+              <th className="text-left">SKU</th>
+              <th className="text-left">PRODUCT CODE</th>
+              <th className="text-left">DESCRIPTION</th>
+              <th className="text-left">QTY</th>
+              <th className="text-left">OUM</th>
+              <th className="text-left">PRICE/UNIT</th>
+              <th className="text-left">SUBTOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>123</td>
+              <td>03.50.14</td>
+              <td>Scissors</td>
+              <td>1</td>
+              <td>pc</td>
+              <td>1000</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>123</td>
+              <td>03.50.14</td>
+              <td>Scissors</td>
+              <td>1</td>
+              <td>pc</td>
+              <td>1000</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>123</td>
+              <td>03.50.14</td>
+              <td>Scissors</td>
+              <td>1</td>
+              <td>pc</td>
+              <td>1000</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>123</td>
+              <td>03.50.14</td>
+              <td>Scissors</td>
+              <td>1</td>
+              <td>pc</td>
+              <td>1000</td>
+              <td>1000</td>
+            </tr>
+          </tbody>
+        </table>
+        <Button
+          type="submit"
+          className="w-full mt-5 col-span-12"
+          disabled={pending}
+        >
+          Create Delivery Order
+        </Button>
+      </form>
+    </>
   );
 };
 

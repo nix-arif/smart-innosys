@@ -4,9 +4,12 @@ import React from "react";
 
 const DashboardPage = () => {
   return (
-    <div>
+    <div className="grid gap-2">
+      <Link href="/customer">
+        <Button className="cursor-pointer">CREATE NEW CUSTOMER ACCOUNT</Button>
+      </Link>
       <Link href="/delivery-order">
-        <Button className="cursor-pointer">DELIVERY ORDER</Button>
+        <Button className="cursor-pointer">CREATE DELIVERY ORDER</Button>
       </Link>
     </div>
   );
