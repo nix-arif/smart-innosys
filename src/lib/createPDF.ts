@@ -4,7 +4,7 @@ import PDFDocument from "pdfkit";
 import path from "path";
 
 export async function createPDF(): Promise<Buffer> {
-  const fontPath = path.resolve(process.cwd(), "src/assets/fonts/G_ari_bd.TTF");
+  const fontPath = path.join(__dirname, "fonts", "G_ari_bd.TTF");
   const doc = new PDFDocument({ font: fontPath });
 
   const chunks: Uint8Array[] = [];
