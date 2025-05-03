@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { createPDF } from "@/lib/createPDF";
 import React, { ChangeEvent, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
+import axios from "axios";
 
 const CreateCustomer = () => {
   const [state, action, pending] = useActionState(createCustomer, undefined);
@@ -32,6 +33,12 @@ const CreateCustomer = () => {
     document.body.appendChild(link);
     link.click();
     link.remove();
+    // try {
+    //   const res = await axios.post("http://localhost:3000/api/pdf");
+    //   // console.log(res.data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   useEffect(() => {

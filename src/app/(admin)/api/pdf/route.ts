@@ -3,7 +3,7 @@ import path from "path";
 import { NextResponse } from "next/server";
 
 export async function POST() {
-  const fontPath = path.resolve(process.cwd(), "public/fonts/G_ari_bd.TTF");
+  const fontPath = path.resolve(process.cwd(), "public/fonts/ArialCE.ttf");
   const doc = new PDFDocument({ font: fontPath });
   doc.font(fontPath);
 
