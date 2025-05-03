@@ -2,11 +2,13 @@
 
 import PDFDocument from "pdfkit";
 import path from "path";
+import localFont from "next/font/local";
 
 export async function createPDF(): Promise<Buffer> {
-  const fontPath = path.join("public", "fonts", "G_ari_bd.TTF");
-  console.log(fontPath);
-  const doc = new PDFDocument({ font: fontPath });
+  // const fontPath = path.join("public", "fonts", "G_ari_bd.TTF");
+
+  // console.log(fontPath);
+  const doc = new PDFDocument();
 
   const chunks: Uint8Array[] = [];
 
