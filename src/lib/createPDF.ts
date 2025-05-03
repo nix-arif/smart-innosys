@@ -5,10 +5,10 @@ import path from "path";
 import localFont from "next/font/local";
 
 export async function createPDF(): Promise<Buffer> {
-  // const fontPath = path.join("public", "fonts", "G_ari_bd.TTF");
+  const fontPath = path.join("public", "fonts", "ArialCE.ttf");
 
   // console.log(fontPath);
-  const doc = new PDFDocument();
+  const doc = new PDFDocument({ font: fontPath });
 
   const chunks: Uint8Array[] = [];
 
