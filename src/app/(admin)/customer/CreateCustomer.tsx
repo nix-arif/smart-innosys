@@ -2,12 +2,9 @@
 
 import { createCustomer } from "@/actions/customer";
 import { Button } from "@/components/ui/button";
-import { createPDF } from "@/lib/createPDF";
 import React, { ChangeEvent, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
-import axios from "axios";
-import { MyDocument } from "@/lib/generatePDF2";
-import Stream from "stream";
+import { MyDocument } from "@/lib/generatePDF";
 import { pdf } from "@react-pdf/renderer";
 
 const CreateCustomer = () => {
@@ -28,20 +25,6 @@ const CreateCustomer = () => {
   };
 
   const handleDownload = async () => {
-    // const buffer = await generatePDF2(); // This will be a `Buffer` if serialized correctly
-    // // const blob = new Blob([buffer]);
-    // const link = document.createElement("a");
-    // // link.href = URL.createObjectURL(blob);
-    // link.download = "document.pdf";
-    // document.body.appendChild(link);
-    // link.click();
-    // link.remove();
-    // try {
-    //   const res = await axios.post("https://www.nixarif.dev/api/gen-pdf");
-    //   console.log(res.data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
     const blob = await pdf(<MyDocument />).toBlob();
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);

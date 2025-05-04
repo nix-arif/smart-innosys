@@ -8,7 +8,6 @@ import {
   renderToStream,
   pdf,
 } from "@react-pdf/renderer";
-import { NextResponse } from "next/server";
 
 // Create styles
 const styles = StyleSheet.create({
