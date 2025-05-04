@@ -44,3 +44,9 @@ export async function createCustomer(
 //     errors?: any;
 //     pdfData?: Buffer<ArrayBufferLike>;
 //   }>
+
+export const getCustomers = async () => {
+  const customer = await prisma.customer.findMany({});
+
+  return customer;
+};

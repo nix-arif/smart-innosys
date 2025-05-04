@@ -25,20 +25,20 @@ const CreateCustomer = () => {
   };
 
   const handleDownload = async () => {
-    const buffer = await createPDF(); // This will be a `Buffer` if serialized correctly
-    const blob = new Blob([buffer], { type: "application/pdf" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "document.pdf";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    // try {
-    //   const res = await axios.post("http://localhost:3000/api/pdf");
-    //   // console.log(res.data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // const buffer = await createPDF(); // This will be a `Buffer` if serialized correctly
+    // const blob = new Blob([buffer], { type: "application/pdf" });
+    // const link = document.createElement("a");
+    // link.href = URL.createObjectURL(blob);
+    // link.download = "document.pdf";
+    // document.body.appendChild(link);
+    // link.click();
+    // link.remove();
+    try {
+      const res = await axios.post("http://localhost:3000/api/gen-pdf");
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
