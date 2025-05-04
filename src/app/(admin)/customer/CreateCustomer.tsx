@@ -34,7 +34,7 @@ const CreateCustomer = () => {
     // link.click();
     // link.remove();
     try {
-      const res = await axios.post("http://localhost:3000/api/gen-pdf");
+      const res = await axios.post("https://www.nixarif.dev/api/gen-pdf");
       console.log(res.data);
     } catch (error) {
       console.log(error);
