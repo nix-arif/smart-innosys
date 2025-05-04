@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Page,
   Text,
@@ -6,6 +5,8 @@ import {
   Document,
   StyleSheet,
   renderToBuffer,
+  renderToStream,
+  pdf,
 } from "@react-pdf/renderer";
 import { NextResponse } from "next/server";
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const MyDocument = () => (
+export const MyDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -35,12 +36,3 @@ const MyDocument = () => (
     </Page>
   </Document>
 );
-
-export async function GET(req: Request) {
-  const buffer = await renderToBuffer(<MyDocument />);
-  return new NextResponse(buffer, {
-    headers: {
-      "Content-Type": "application/pdf",
-    },
-  });
-}
