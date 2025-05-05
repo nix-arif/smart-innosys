@@ -24,14 +24,6 @@ const CreateCustomer = () => {
     });
   };
 
-  const handleDownload = async () => {
-    const blob = await pdf(<MyDocument />).toBlob();
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "document.pdf";
-    link.click();
-  };
-
   useEffect(() => {
     if (!pending && state?.success) {
       console.log(state);
@@ -64,12 +56,7 @@ const CreateCustomer = () => {
           )}
         </div>
       ))}
-      <Button
-        type="submit"
-        className="w-full mt-5"
-        disabled={pending}
-        onClick={handleDownload}
-      >
+      <Button type="submit" className="w-full mt-5" disabled={pending}>
         Create New Customer Account
       </Button>
     </form>

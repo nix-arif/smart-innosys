@@ -2,6 +2,9 @@
 
 import { createDeliveryOrder } from "@/actions/deliveryOrder";
 import { Button } from "@/components/ui/button";
+import { DeliveryOrderFormSchema } from "@/lib/definitions";
+import { MyDocument } from "@/lib/generatePDF";
+import { pdf } from "@react-pdf/renderer";
 import React, { ChangeEvent, useActionState, useState } from "react";
 
 // const initialStateError = {
@@ -133,8 +136,24 @@ const CreateDeliveryOrder = () => {
     });
   };
 
+  const handleDownload = async (
+    e: any,
+    data: {
+      type: string;
+      value: string;
+      name: string;
+      label: string;
+    }[]
+  ) => {
+    const blob = await pdf(<MyDocument />).toBlob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${data[1].value}.pdf`;
+    link.click();
+  };
+
   return (
-    <>
+    <div className="min-w-[800px]">
       <div className="font-semibold">CREATE DELIVERY ORDER</div>
       <form className="w-full grid grid-cols-12 gap-0.5" action={action}>
         {data.map((item, index) => (
@@ -160,56 +179,42 @@ const CreateDeliveryOrder = () => {
         <table className="col-span-12">
           <thead>
             <tr>
-              <th className="text-left">NO</th>
-              <th className="text-left">SKU</th>
-              <th className="text-left">PRODUCT CODE</th>
-              <th className="text-left">DESCRIPTION</th>
-              <th className="text-left">QTY</th>
-              <th className="text-left">OUM</th>
-              <th className="text-left">PRICE/UNIT</th>
-              <th className="text-left">SUBTOTAL</th>
+              <th className="w-[5%]">NO</th>
+              <th className="w-[10%]">SKU</th>
+              <th className="w-[10%]">PRODUCT CODE</th>
+              <th className="w-[50%]">DESCRIPTION</th>
+              <th className="w-[2%]">QTY</th>
+              <th className="w-[3%]">OUM</th>
+              <th className="w-[10%]">PRICE/UNIT</th>
+              <th className="w-[10%]">SUBTOTAL</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1</td>
-              <td>123</td>
-              <td>03.50.14</td>
-              <td>Scissors</td>
-              <td>1</td>
-              <td>pc</td>
-              <td>1000</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>123</td>
-              <td>03.50.14</td>
-              <td>Scissors</td>
-              <td>1</td>
-              <td>pc</td>
-              <td>1000</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>123</td>
-              <td>03.50.14</td>
-              <td>Scissors</td>
-              <td>1</td>
-              <td>pc</td>
-              <td>1000</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>123</td>
-              <td>03.50.14</td>
-              <td>Scissors</td>
-              <td>1</td>
-              <td>pc</td>
-              <td>1000</td>
-              <td>1000</td>
+              <td>
+                <input className="w-[100%] px-2" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
+              <td>
+                <input className="w-[100%]" />
+              </td>
             </tr>
           </tbody>
         </table>
@@ -217,11 +222,12 @@ const CreateDeliveryOrder = () => {
           type="submit"
           className="w-full mt-5 col-span-12"
           disabled={pending}
+          onClick={(e) => handleDownload(e, data)}
         >
           Create Delivery Order
         </Button>
       </form>
-    </>
+    </div>
   );
 };
 

@@ -1,11 +1,14 @@
-import React from "react";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
-type DashboardProps = {
-  children: React.ReactNode;
-};
-
-const DashboardLayout = ({ children }: DashboardProps) => {
-  return <div className="bg-slate-200 h-screen">{children}</div>;
-};
-
-export default DashboardLayout;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
+  );
+}

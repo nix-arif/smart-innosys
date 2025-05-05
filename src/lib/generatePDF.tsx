@@ -4,34 +4,106 @@ import {
   View,
   Document,
   StyleSheet,
-  renderToBuffer,
-  renderToStream,
-  pdf,
+  Image,
 } from "@react-pdf/renderer";
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "row",
-    backgroundColor: "#E4E4E4",
+    backgroundColor: "#FFFFFF",
+    fontSize: 12,
   },
-  section: {
+  letterHead: {
+    justifyContent: "space-between",
+    fontSize: 8,
     margin: 10,
     padding: 10,
-    flexGrow: 1,
+    flexDirection: "row",
+  },
+  letterHeadLeft: {
+    // flexGrow: 1,
+    // flexDirection: "row",
+  },
+  letterHeadRight: {
+    textAlign: "right",
+  },
+  logo: {
+    width: 80,
+  },
+  section: {
+    marginLeft: 20,
+  },
+  table: {
+    // display: "table",
+    width: "100%",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#d3d3d3",
+    marginBottom: 20,
+  },
+  tableRow: {
+    flexDirection: "row",
+  },
+  tableCellHeader: {
+    backgroundColor: "#f0f0f0",
+    fontSize: 10,
+    padding: 5,
+    fontWeight: "bold",
+    borderRightWidth: 1,
+    borderColor: "#d3d3d3",
+    flex: 1,
+  },
+  tableCell: {
+    padding: 5,
+    borderRightWidth: 1,
+    borderColor: "#d3d3d3",
+    flex: 1,
+  },
+  totalRow: {
+    fontWeight: "bold",
+    fontSize: 14,
+  },
+  footer: {
+    marginTop: 30,
+    textAlign: "center",
+    fontSize: 10,
+    color: "#555",
   },
 });
 
 // Create Document Component
-export const MyDocument = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Section #1</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
-      </View>
-    </Page>
-  </Document>
-);
+export const MyDocument: React.FC<{
+  data: { type: string; value: string; name: string; label: string }[];
+}> = (detailDO) => {
+  const { data } = detailDO;
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        {/* Header */}
+        <View style={styles.letterHead}>
+          <View style={styles.letterHeadLeft}>
+            <Image src="/LogoNoWhite.png" style={styles.logo} />
+          </View>
+          <View style={styles.letterHeadRight}>
+            <Text>SMART INNOSYS SDN BHD (1477421-V)</Text>
+            <Text>41-1, Jalan Neutron U16/Q</Text>
+            <Text>Seksyen U16, Denai Alam</Text>
+            <Text>40160 Shah Alam, Selangor, Malaysia</Text>
+            <Text>smartinnosys@gmail.com</Text>
+            <Text>019-612 5883</Text>
+          </View>
+        </View>
+        {/* Delivery Order Detail */}
+        <View>
+          <Text></Text>
+        </View>
+
+        {/* Customer detail */}
+
+        <View style={styles.table}>
+          <View style={styles.tableRow}></View>
+        </View>
+      </Page>
+    </Document>
+  );
+};
