@@ -3,7 +3,8 @@
 import { createDeliveryOrder } from "@/actions/deliveryOrder";
 import { Button } from "@/components/ui/button";
 import { DeliveryOrderFormSchema } from "@/lib/definitions";
-import { MyDocument } from "@/lib/generatePDF";
+import { convertToDeliveryOrder } from "@/lib/deliveryOrderHelper";
+// import { MyDocument } from "@/lib/generatePDF";
 import { pdf } from "@react-pdf/renderer";
 import React, { ChangeEvent, useActionState, useState } from "react";
 
@@ -103,8 +104,8 @@ const CreateDeliveryOrder = () => {
     {
       type: "text",
       value: "80100",
-      name: "organizationPosscode",
-      label: "Organization Posscode",
+      name: "organizationPostcode",
+      label: "Organization Postcode",
     },
     {
       type: "text",
@@ -145,11 +146,12 @@ const CreateDeliveryOrder = () => {
       label: string;
     }[]
   ) => {
-    const blob = await pdf(<MyDocument />).toBlob();
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${data[1].value}.pdf`;
-    link.click();
+    // const blob = await pdf(<MyDocument />).toBlob();
+    // const link = document.createElement("a");
+    // link.href = URL.createObjectURL(blob);
+    // link.download = `${data[1].value}.pdf`;
+    // link.click();
+    const deliveryOrderPrintData = convertToDeliveryOrder();
   };
 
   return (
@@ -176,8 +178,8 @@ const CreateDeliveryOrder = () => {
             )}
           </div>
         ))}
-        <table className="col-span-12">
-          <thead>
+        <table className="col-span-12 rounded-md border-1 border-slate-800 border-solid">
+          <thead className="border-solid border-2 border-slate-800">
             <tr>
               <th className="w-[5%]">NO</th>
               <th className="w-[10%]">SKU</th>

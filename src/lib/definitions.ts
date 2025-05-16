@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
 export const SignupFormSchema = z
   .object({
@@ -100,3 +100,35 @@ export type CustomerFormState =
       message?: string;
     }
   | undefined;
+
+export type DeliveryOrderType = {
+  deliveryOrderNo: string;
+  agent: string;
+  salesRep: string;
+  applicationSpec: string;
+  date: string;
+  customerTitle: string;
+  customerName: string;
+  organizationDept: string;
+  organizationName: string;
+  organizationAddressLine1: string;
+  organizationAddressLine2: string;
+  organizationAddressLine3: string;
+  organizationPosscode: string;
+  organizationCity: string;
+  organizationState: string;
+  organizationCountry: string;
+  products: ProductDeliveryOrderType[];
+};
+
+export type ProductDeliveryOrderType = {
+  sku: string;
+  productCode: string;
+  description: string;
+  qty: number;
+  oum: string;
+  unitPrice: number;
+  totalPrice: number;
+};
+
+export type QuotationData = Record<string, string>;

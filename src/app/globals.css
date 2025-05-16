@@ -134,5 +134,5 @@ td {
 }
 
 td:focus {
-  border-color: red;
+  background-color: #000;
 }

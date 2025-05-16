@@ -178,7 +178,7 @@ exports.Prisma.StoreScalarFieldEnum = {
   state: 'state',
   userId: 'userId',
   createdAt: 'createdAt',
-  updateAt: 'updateAt'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.StockScalarFieldEnum = {
@@ -190,6 +190,12 @@ exports.Prisma.StockScalarFieldEnum = {
   productId: 'productId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreStockScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  stockId: 'stockId'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -218,6 +224,27 @@ exports.Prisma.CustomerOrganizationDepartmentScalarFieldEnum = {
   id: 'id',
   department: 'department',
   customerOrganizationId: 'customerOrganizationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuotationScalarFieldEnum = {
+  id: 'id',
+  quoteId: 'quoteId',
+  date: 'date',
+  customerId: 'customerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuotationItemScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  productCode: 'productCode',
+  description: 'description',
+  unitPrice: 'unitPrice',
+  oum: 'oum',
+  qty: 'qty',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -259,9 +286,12 @@ exports.Prisma.ModelName = {
   Product: 'Product',
   Store: 'Store',
   Stock: 'Stock',
+  StoreStock: 'StoreStock',
   Customer: 'Customer',
   CustomerOrganization: 'CustomerOrganization',
-  CustomerOrganizationDepartment: 'CustomerOrganizationDepartment'
+  CustomerOrganizationDepartment: 'CustomerOrganizationDepartment',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem'
 };
 
 /**

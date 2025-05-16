@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
+import { QuotationData } from "@/lib/definitions";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -14,15 +15,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   letterHead: {
-    justifyContent: "space-between",
     fontSize: 8,
     margin: 10,
     padding: 10,
-    flexDirection: "row",
+    position: "relative",
   },
   letterHeadLeft: {
-    // flexGrow: 1,
-    // flexDirection: "row",
+    position: "absolute",
+    left: 10,
   },
   letterHeadRight: {
     textAlign: "right",
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 export const MyDocument: React.FC<{
-  data: { type: string; value: string; name: string; label: string }[];
+  data: QuotationData;
 }> = (detailDO) => {
   const { data } = detailDO;
   return (

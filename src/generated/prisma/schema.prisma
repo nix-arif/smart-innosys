@@ -82,12 +82,12 @@ model Product {
   id          String @id @default(cuid())
   productCode String @unique
   description String
-  unitPrice   Int
+  unitPrice   Float
   oum         String
 
   // relationship
-  supplierId String
-  supplier   Supplier @relation(fields: [supplierId], references: [id])
+  supplierId String?
+  supplier   Supplier? @relation(fields: [supplierId], references: [id])
   stocks     Stock[]
 
   createdAt DateTime @default(now())
@@ -104,12 +104,12 @@ model Store {
   city         String
   state        String
 
-  userId String  @unique
-  user   User    @relation(fields: [userId], references: [id])
-  stocks Stock[]
+  userId      String       @unique
+  user        User         @relation(fields: [userId], references: [id])
+  storeStocks StoreStock[]
 
   createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  updatedAt DateTime @updatedAt
 }
 
 model Stock {
@@ -122,10 +122,21 @@ model Stock {
   productId       String
   products        Product   @relation(fields: [productId], references: [id])
 
-  stores Store[]
+  storeStocks StoreStock[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model StoreStock {
+  id      String @id @default(cuid())
+  storeId String
+  stockId String
+
+  store Store @relation(fields: [storeId], references: [id])
+  stock Stock @relation(fields: [stockId], references: [id])
+
+  @@unique([storeId, stockId])
 }
 
 model Customer {
@@ -135,6 +146,7 @@ model Customer {
 
   // relation
   customerOrganization CustomerOrganization[]
+  quotations           Quotation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -164,6 +176,36 @@ model CustomerOrganizationDepartment {
   department             String
   customerOrganizationId String
   CustomerOrganization   CustomerOrganization @relation(fields: [customerOrganizationId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Quotation {
+  id      String   @id @default(cuid())
+  quoteId String   @unique
+  date    DateTime @default(now())
+
+  // relation
+  customerId String
+  customer   Customer        @relation(fields: [customerId], references: [id])
+  items      QuotationItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuotationItem {
+  id          String    @id @default(cuid())
+  quotationId String
+  quotation   Quotation @relation(fields: [quotationId], references: [id])
+
+  // Soft reference (optional)
+  productCode String
+  description String
+  unitPrice   Float
+  oum         String
+  qty         Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

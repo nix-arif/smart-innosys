@@ -44,6 +44,11 @@ export type Store = $Result.DefaultSelection<Prisma.$StorePayload>
  */
 export type Stock = $Result.DefaultSelection<Prisma.$StockPayload>
 /**
+ * Model StoreStock
+ * 
+ */
+export type StoreStock = $Result.DefaultSelection<Prisma.$StoreStockPayload>
+/**
  * Model Customer
  * 
  */
@@ -58,6 +63,16 @@ export type CustomerOrganization = $Result.DefaultSelection<Prisma.$CustomerOrga
  * 
  */
 export type CustomerOrganizationDepartment = $Result.DefaultSelection<Prisma.$CustomerOrganizationDepartmentPayload>
+/**
+ * Model Quotation
+ * 
+ */
+export type Quotation = $Result.DefaultSelection<Prisma.$QuotationPayload>
+/**
+ * Model QuotationItem
+ * 
+ */
+export type QuotationItem = $Result.DefaultSelection<Prisma.$QuotationItemPayload>
 
 /**
  * Enums
@@ -280,6 +295,16 @@ export class PrismaClient<
   get stock(): Prisma.StockDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.storeStock`: Exposes CRUD operations for the **StoreStock** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StoreStocks
+    * const storeStocks = await prisma.storeStock.findMany()
+    * ```
+    */
+  get storeStock(): Prisma.StoreStockDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.customer`: Exposes CRUD operations for the **Customer** model.
     * Example usage:
     * ```ts
@@ -308,6 +333,26 @@ export class PrismaClient<
     * ```
     */
   get customerOrganizationDepartment(): Prisma.CustomerOrganizationDepartmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quotation`: Exposes CRUD operations for the **Quotation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Quotations
+    * const quotations = await prisma.quotation.findMany()
+    * ```
+    */
+  get quotation(): Prisma.QuotationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quotationItem`: Exposes CRUD operations for the **QuotationItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuotationItems
+    * const quotationItems = await prisma.quotationItem.findMany()
+    * ```
+    */
+  get quotationItem(): Prisma.QuotationItemDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -754,9 +799,12 @@ export namespace Prisma {
     Product: 'Product',
     Store: 'Store',
     Stock: 'Stock',
+    StoreStock: 'StoreStock',
     Customer: 'Customer',
     CustomerOrganization: 'CustomerOrganization',
-    CustomerOrganizationDepartment: 'CustomerOrganizationDepartment'
+    CustomerOrganizationDepartment: 'CustomerOrganizationDepartment',
+    Quotation: 'Quotation',
+    QuotationItem: 'QuotationItem'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -775,7 +823,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "supplier" | "product" | "store" | "stock" | "customer" | "customerOrganization" | "customerOrganizationDepartment"
+      modelProps: "user" | "session" | "supplier" | "product" | "store" | "stock" | "storeStock" | "customer" | "customerOrganization" | "customerOrganizationDepartment" | "quotation" | "quotationItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1223,6 +1271,80 @@ export namespace Prisma {
           }
         }
       }
+      StoreStock: {
+        payload: Prisma.$StoreStockPayload<ExtArgs>
+        fields: Prisma.StoreStockFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StoreStockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StoreStockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>
+          }
+          findFirst: {
+            args: Prisma.StoreStockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StoreStockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>
+          }
+          findMany: {
+            args: Prisma.StoreStockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>[]
+          }
+          create: {
+            args: Prisma.StoreStockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>
+          }
+          createMany: {
+            args: Prisma.StoreStockCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StoreStockCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>[]
+          }
+          delete: {
+            args: Prisma.StoreStockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>
+          }
+          update: {
+            args: Prisma.StoreStockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>
+          }
+          deleteMany: {
+            args: Prisma.StoreStockDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StoreStockUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StoreStockUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>[]
+          }
+          upsert: {
+            args: Prisma.StoreStockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoreStockPayload>
+          }
+          aggregate: {
+            args: Prisma.StoreStockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStoreStock>
+          }
+          groupBy: {
+            args: Prisma.StoreStockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StoreStockGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StoreStockCountArgs<ExtArgs>
+            result: $Utils.Optional<StoreStockCountAggregateOutputType> | number
+          }
+        }
+      }
       Customer: {
         payload: Prisma.$CustomerPayload<ExtArgs>
         fields: Prisma.CustomerFieldRefs
@@ -1445,6 +1567,154 @@ export namespace Prisma {
           }
         }
       }
+      Quotation: {
+        payload: Prisma.$QuotationPayload<ExtArgs>
+        fields: Prisma.QuotationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuotationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuotationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>
+          }
+          findFirst: {
+            args: Prisma.QuotationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuotationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>
+          }
+          findMany: {
+            args: Prisma.QuotationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+          }
+          create: {
+            args: Prisma.QuotationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>
+          }
+          createMany: {
+            args: Prisma.QuotationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuotationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+          }
+          delete: {
+            args: Prisma.QuotationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>
+          }
+          update: {
+            args: Prisma.QuotationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuotationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuotationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuotationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuotationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationPayload>
+          }
+          aggregate: {
+            args: Prisma.QuotationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuotation>
+          }
+          groupBy: {
+            args: Prisma.QuotationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuotationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuotationCountArgs<ExtArgs>
+            result: $Utils.Optional<QuotationCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuotationItem: {
+        payload: Prisma.$QuotationItemPayload<ExtArgs>
+        fields: Prisma.QuotationItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuotationItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuotationItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+          }
+          findFirst: {
+            args: Prisma.QuotationItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuotationItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+          }
+          findMany: {
+            args: Prisma.QuotationItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+          }
+          create: {
+            args: Prisma.QuotationItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+          }
+          createMany: {
+            args: Prisma.QuotationItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuotationItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+          }
+          delete: {
+            args: Prisma.QuotationItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+          }
+          update: {
+            args: Prisma.QuotationItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuotationItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuotationItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuotationItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuotationItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuotationItemPayload>
+          }
+          aggregate: {
+            args: Prisma.QuotationItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuotationItem>
+          }
+          groupBy: {
+            args: Prisma.QuotationItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuotationItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuotationItemCountArgs<ExtArgs>
+            result: $Utils.Optional<QuotationItemCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1535,9 +1805,12 @@ export namespace Prisma {
     product?: ProductOmit
     store?: StoreOmit
     stock?: StockOmit
+    storeStock?: StoreStockOmit
     customer?: CustomerOmit
     customerOrganization?: CustomerOrganizationOmit
     customerOrganizationDepartment?: CustomerOrganizationDepartmentOmit
+    quotation?: QuotationOmit
+    quotationItem?: QuotationItemOmit
   }
 
   /* Types for Logging */
@@ -1725,11 +1998,11 @@ export namespace Prisma {
    */
 
   export type StoreCountOutputType = {
-    stocks: number
+    storeStocks: number
   }
 
   export type StoreCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    stocks?: boolean | StoreCountOutputTypeCountStocksArgs
+    storeStocks?: boolean | StoreCountOutputTypeCountStoreStocksArgs
   }
 
   // Custom InputTypes
@@ -1746,8 +2019,8 @@ export namespace Prisma {
   /**
    * StoreCountOutputType without action
    */
-  export type StoreCountOutputTypeCountStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StockWhereInput
+  export type StoreCountOutputTypeCountStoreStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoreStockWhereInput
   }
 
 
@@ -1756,11 +2029,11 @@ export namespace Prisma {
    */
 
   export type StockCountOutputType = {
-    stores: number
+    storeStocks: number
   }
 
   export type StockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    stores?: boolean | StockCountOutputTypeCountStoresArgs
+    storeStocks?: boolean | StockCountOutputTypeCountStoreStocksArgs
   }
 
   // Custom InputTypes
@@ -1777,8 +2050,8 @@ export namespace Prisma {
   /**
    * StockCountOutputType without action
    */
-  export type StockCountOutputTypeCountStoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoreWhereInput
+  export type StockCountOutputTypeCountStoreStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoreStockWhereInput
   }
 
 
@@ -1788,10 +2061,12 @@ export namespace Prisma {
 
   export type CustomerCountOutputType = {
     customerOrganization: number
+    quotations: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customerOrganization?: boolean | CustomerCountOutputTypeCountCustomerOrganizationArgs
+    quotations?: boolean | CustomerCountOutputTypeCountQuotationsArgs
   }
 
   // Custom InputTypes
@@ -1810,6 +2085,13 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountCustomerOrganizationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CustomerOrganizationWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountQuotationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuotationWhereInput
   }
 
 
@@ -1850,6 +2132,37 @@ export namespace Prisma {
    */
   export type CustomerOrganizationCountOutputTypeCountDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CustomerOrganizationDepartmentWhereInput
+  }
+
+
+  /**
+   * Count Type QuotationCountOutputType
+   */
+
+  export type QuotationCountOutputType = {
+    items: number
+  }
+
+  export type QuotationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    items?: boolean | QuotationCountOutputTypeCountItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * QuotationCountOutputType without action
+   */
+  export type QuotationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationCountOutputType
+     */
+    select?: QuotationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * QuotationCountOutputType without action
+   */
+  export type QuotationCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuotationItemWhereInput
   }
 
 
@@ -5462,7 +5775,7 @@ export namespace Prisma {
     description: string
     unitPrice: number
     oum: string
-    supplierId: string
+    supplierId: string | null
     createdAt: Date
     updatedAt: Date
     _count: ProductCountAggregateOutputType | null
@@ -5495,7 +5808,7 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+    supplier?: boolean | Product$supplierArgs<ExtArgs>
     stocks?: boolean | Product$stocksArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -5509,7 +5822,7 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5521,7 +5834,7 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
@@ -5537,21 +5850,21 @@ export namespace Prisma {
 
   export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productCode" | "description" | "unitPrice" | "oum" | "supplierId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+    supplier?: boolean | Product$supplierArgs<ExtArgs>
     stocks?: boolean | Product$stocksArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }
   export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
-      supplier: Prisma.$SupplierPayload<ExtArgs>
+      supplier: Prisma.$SupplierPayload<ExtArgs> | null
       stocks: Prisma.$StockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5560,7 +5873,7 @@ export namespace Prisma {
       description: string
       unitPrice: number
       oum: string
-      supplierId: string
+      supplierId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["product"]>
@@ -5957,7 +6270,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    supplier<T extends SupplierDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SupplierDefaultArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    supplier<T extends Product$supplierArgs<ExtArgs> = {}>(args?: Subset<T, Product$supplierArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     stocks<T extends Product$stocksArgs<ExtArgs> = {}>(args?: Subset<T, Product$stocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5991,7 +6304,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Product", 'String'>
     readonly productCode: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
-    readonly unitPrice: FieldRef<"Product", 'Int'>
+    readonly unitPrice: FieldRef<"Product", 'Float'>
     readonly oum: FieldRef<"Product", 'String'>
     readonly supplierId: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
@@ -6392,6 +6705,25 @@ export namespace Prisma {
   }
 
   /**
+   * Product.supplier
+   */
+  export type Product$supplierArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Supplier
+     */
+    select?: SupplierSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Supplier
+     */
+    omit?: SupplierOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplierInclude<ExtArgs> | null
+    where?: SupplierWhereInput
+  }
+
+  /**
    * Product.stocks
    */
   export type Product$stocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6455,7 +6787,7 @@ export namespace Prisma {
     state: string | null
     userId: string | null
     createdAt: Date | null
-    updateAt: Date | null
+    updatedAt: Date | null
   }
 
   export type StoreMaxAggregateOutputType = {
@@ -6469,7 +6801,7 @@ export namespace Prisma {
     state: string | null
     userId: string | null
     createdAt: Date | null
-    updateAt: Date | null
+    updatedAt: Date | null
   }
 
   export type StoreCountAggregateOutputType = {
@@ -6483,7 +6815,7 @@ export namespace Prisma {
     state: number
     userId: number
     createdAt: number
-    updateAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -6499,7 +6831,7 @@ export namespace Prisma {
     state?: true
     userId?: true
     createdAt?: true
-    updateAt?: true
+    updatedAt?: true
   }
 
   export type StoreMaxAggregateInputType = {
@@ -6513,7 +6845,7 @@ export namespace Prisma {
     state?: true
     userId?: true
     createdAt?: true
-    updateAt?: true
+    updatedAt?: true
   }
 
   export type StoreCountAggregateInputType = {
@@ -6527,7 +6859,7 @@ export namespace Prisma {
     state?: true
     userId?: true
     createdAt?: true
-    updateAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6614,7 +6946,7 @@ export namespace Prisma {
     state: string
     userId: string
     createdAt: Date
-    updateAt: Date
+    updatedAt: Date
     _count: StoreCountAggregateOutputType | null
     _min: StoreMinAggregateOutputType | null
     _max: StoreMaxAggregateOutputType | null
@@ -6645,9 +6977,9 @@ export namespace Prisma {
     state?: boolean
     userId?: boolean
     createdAt?: boolean
-    updateAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    stocks?: boolean | Store$stocksArgs<ExtArgs>
+    storeStocks?: boolean | Store$storeStocksArgs<ExtArgs>
     _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
@@ -6662,7 +6994,7 @@ export namespace Prisma {
     state?: boolean
     userId?: boolean
     createdAt?: boolean
-    updateAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
@@ -6677,7 +7009,7 @@ export namespace Prisma {
     state?: boolean
     userId?: boolean
     createdAt?: boolean
-    updateAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
@@ -6692,13 +7024,13 @@ export namespace Prisma {
     state?: boolean
     userId?: boolean
     createdAt?: boolean
-    updateAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storeName" | "addressLine1" | "addressLine2" | "addressLine3" | "poscode" | "city" | "state" | "userId" | "createdAt" | "updateAt", ExtArgs["result"]["store"]>
+  export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storeName" | "addressLine1" | "addressLine2" | "addressLine3" | "poscode" | "city" | "state" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["store"]>
   export type StoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    stocks?: boolean | Store$stocksArgs<ExtArgs>
+    storeStocks?: boolean | Store$storeStocksArgs<ExtArgs>
     _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6712,7 +7044,7 @@ export namespace Prisma {
     name: "Store"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      stocks: Prisma.$StockPayload<ExtArgs>[]
+      storeStocks: Prisma.$StoreStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6725,7 +7057,7 @@ export namespace Prisma {
       state: string
       userId: string
       createdAt: Date
-      updateAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["store"]>
     composites: {}
   }
@@ -7121,7 +7453,7 @@ export namespace Prisma {
   export interface Prisma__StoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    stocks<T extends Store$stocksArgs<ExtArgs> = {}>(args?: Subset<T, Store$stocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storeStocks<T extends Store$storeStocksArgs<ExtArgs> = {}>(args?: Subset<T, Store$storeStocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7161,7 +7493,7 @@ export namespace Prisma {
     readonly state: FieldRef<"Store", 'String'>
     readonly userId: FieldRef<"Store", 'String'>
     readonly createdAt: FieldRef<"Store", 'DateTime'>
-    readonly updateAt: FieldRef<"Store", 'DateTime'>
+    readonly updatedAt: FieldRef<"Store", 'DateTime'>
   }
     
 
@@ -7558,27 +7890,27 @@ export namespace Prisma {
   }
 
   /**
-   * Store.stocks
+   * Store.storeStocks
    */
-  export type Store$stocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Store$storeStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Stock
+     * Select specific fields to fetch from the StoreStock
      */
-    select?: StockSelect<ExtArgs> | null
+    select?: StoreStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Stock
+     * Omit specific fields from the StoreStock
      */
-    omit?: StockOmit<ExtArgs> | null
+    omit?: StoreStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StockInclude<ExtArgs> | null
-    where?: StockWhereInput
-    orderBy?: StockOrderByWithRelationInput | StockOrderByWithRelationInput[]
-    cursor?: StockWhereUniqueInput
+    include?: StoreStockInclude<ExtArgs> | null
+    where?: StoreStockWhereInput
+    orderBy?: StoreStockOrderByWithRelationInput | StoreStockOrderByWithRelationInput[]
+    cursor?: StoreStockWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: StockScalarFieldEnum | StockScalarFieldEnum[]
+    distinct?: StoreStockScalarFieldEnum | StoreStockScalarFieldEnum[]
   }
 
   /**
@@ -7823,7 +8155,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     products?: boolean | ProductDefaultArgs<ExtArgs>
-    stores?: boolean | Stock$storesArgs<ExtArgs>
+    storeStocks?: boolean | Stock$storeStocksArgs<ExtArgs>
     _count?: boolean | StockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stock"]>
 
@@ -7865,7 +8197,7 @@ export namespace Prisma {
   export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lotNo" | "manufactureDate" | "expiredDate" | "qty" | "productId" | "createdAt" | "updatedAt", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | ProductDefaultArgs<ExtArgs>
-    stores?: boolean | Stock$storesArgs<ExtArgs>
+    storeStocks?: boolean | Stock$storeStocksArgs<ExtArgs>
     _count?: boolean | StockCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7879,7 +8211,7 @@ export namespace Prisma {
     name: "Stock"
     objects: {
       products: Prisma.$ProductPayload<ExtArgs>
-      stores: Prisma.$StorePayload<ExtArgs>[]
+      storeStocks: Prisma.$StoreStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8285,7 +8617,7 @@ export namespace Prisma {
   export interface Prisma__StockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     products<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    stores<T extends Stock$storesArgs<ExtArgs> = {}>(args?: Subset<T, Stock$storesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storeStocks<T extends Stock$storeStocksArgs<ExtArgs> = {}>(args?: Subset<T, Stock$storeStocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8719,27 +9051,27 @@ export namespace Prisma {
   }
 
   /**
-   * Stock.stores
+   * Stock.storeStocks
    */
-  export type Stock$storesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Stock$storeStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Store
+     * Select specific fields to fetch from the StoreStock
      */
-    select?: StoreSelect<ExtArgs> | null
+    select?: StoreStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Store
+     * Omit specific fields from the StoreStock
      */
-    omit?: StoreOmit<ExtArgs> | null
+    omit?: StoreStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoreInclude<ExtArgs> | null
-    where?: StoreWhereInput
-    orderBy?: StoreOrderByWithRelationInput | StoreOrderByWithRelationInput[]
-    cursor?: StoreWhereUniqueInput
+    include?: StoreStockInclude<ExtArgs> | null
+    where?: StoreStockWhereInput
+    orderBy?: StoreStockOrderByWithRelationInput | StoreStockOrderByWithRelationInput[]
+    cursor?: StoreStockWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: StoreScalarFieldEnum | StoreScalarFieldEnum[]
+    distinct?: StoreStockScalarFieldEnum | StoreStockScalarFieldEnum[]
   }
 
   /**
@@ -8758,6 +9090,1046 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: StockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StoreStock
+   */
+
+  export type AggregateStoreStock = {
+    _count: StoreStockCountAggregateOutputType | null
+    _min: StoreStockMinAggregateOutputType | null
+    _max: StoreStockMaxAggregateOutputType | null
+  }
+
+  export type StoreStockMinAggregateOutputType = {
+    id: string | null
+    storeId: string | null
+    stockId: string | null
+  }
+
+  export type StoreStockMaxAggregateOutputType = {
+    id: string | null
+    storeId: string | null
+    stockId: string | null
+  }
+
+  export type StoreStockCountAggregateOutputType = {
+    id: number
+    storeId: number
+    stockId: number
+    _all: number
+  }
+
+
+  export type StoreStockMinAggregateInputType = {
+    id?: true
+    storeId?: true
+    stockId?: true
+  }
+
+  export type StoreStockMaxAggregateInputType = {
+    id?: true
+    storeId?: true
+    stockId?: true
+  }
+
+  export type StoreStockCountAggregateInputType = {
+    id?: true
+    storeId?: true
+    stockId?: true
+    _all?: true
+  }
+
+  export type StoreStockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StoreStock to aggregate.
+     */
+    where?: StoreStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoreStocks to fetch.
+     */
+    orderBy?: StoreStockOrderByWithRelationInput | StoreStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StoreStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoreStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoreStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StoreStocks
+    **/
+    _count?: true | StoreStockCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StoreStockMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StoreStockMaxAggregateInputType
+  }
+
+  export type GetStoreStockAggregateType<T extends StoreStockAggregateArgs> = {
+        [P in keyof T & keyof AggregateStoreStock]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStoreStock[P]>
+      : GetScalarType<T[P], AggregateStoreStock[P]>
+  }
+
+
+
+
+  export type StoreStockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoreStockWhereInput
+    orderBy?: StoreStockOrderByWithAggregationInput | StoreStockOrderByWithAggregationInput[]
+    by: StoreStockScalarFieldEnum[] | StoreStockScalarFieldEnum
+    having?: StoreStockScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StoreStockCountAggregateInputType | true
+    _min?: StoreStockMinAggregateInputType
+    _max?: StoreStockMaxAggregateInputType
+  }
+
+  export type StoreStockGroupByOutputType = {
+    id: string
+    storeId: string
+    stockId: string
+    _count: StoreStockCountAggregateOutputType | null
+    _min: StoreStockMinAggregateOutputType | null
+    _max: StoreStockMaxAggregateOutputType | null
+  }
+
+  type GetStoreStockGroupByPayload<T extends StoreStockGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StoreStockGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StoreStockGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StoreStockGroupByOutputType[P]>
+            : GetScalarType<T[P], StoreStockGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StoreStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    storeId?: boolean
+    stockId?: boolean
+    store?: boolean | StoreDefaultArgs<ExtArgs>
+    stock?: boolean | StockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storeStock"]>
+
+  export type StoreStockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    storeId?: boolean
+    stockId?: boolean
+    store?: boolean | StoreDefaultArgs<ExtArgs>
+    stock?: boolean | StockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storeStock"]>
+
+  export type StoreStockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    storeId?: boolean
+    stockId?: boolean
+    store?: boolean | StoreDefaultArgs<ExtArgs>
+    stock?: boolean | StockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storeStock"]>
+
+  export type StoreStockSelectScalar = {
+    id?: boolean
+    storeId?: boolean
+    stockId?: boolean
+  }
+
+  export type StoreStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storeId" | "stockId", ExtArgs["result"]["storeStock"]>
+  export type StoreStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    store?: boolean | StoreDefaultArgs<ExtArgs>
+    stock?: boolean | StockDefaultArgs<ExtArgs>
+  }
+  export type StoreStockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    store?: boolean | StoreDefaultArgs<ExtArgs>
+    stock?: boolean | StockDefaultArgs<ExtArgs>
+  }
+  export type StoreStockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    store?: boolean | StoreDefaultArgs<ExtArgs>
+    stock?: boolean | StockDefaultArgs<ExtArgs>
+  }
+
+  export type $StoreStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StoreStock"
+    objects: {
+      store: Prisma.$StorePayload<ExtArgs>
+      stock: Prisma.$StockPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      storeId: string
+      stockId: string
+    }, ExtArgs["result"]["storeStock"]>
+    composites: {}
+  }
+
+  type StoreStockGetPayload<S extends boolean | null | undefined | StoreStockDefaultArgs> = $Result.GetResult<Prisma.$StoreStockPayload, S>
+
+  type StoreStockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StoreStockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StoreStockCountAggregateInputType | true
+    }
+
+  export interface StoreStockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StoreStock'], meta: { name: 'StoreStock' } }
+    /**
+     * Find zero or one StoreStock that matches the filter.
+     * @param {StoreStockFindUniqueArgs} args - Arguments to find a StoreStock
+     * @example
+     * // Get one StoreStock
+     * const storeStock = await prisma.storeStock.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StoreStockFindUniqueArgs>(args: SelectSubset<T, StoreStockFindUniqueArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StoreStock that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StoreStockFindUniqueOrThrowArgs} args - Arguments to find a StoreStock
+     * @example
+     * // Get one StoreStock
+     * const storeStock = await prisma.storeStock.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StoreStockFindUniqueOrThrowArgs>(args: SelectSubset<T, StoreStockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StoreStock that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockFindFirstArgs} args - Arguments to find a StoreStock
+     * @example
+     * // Get one StoreStock
+     * const storeStock = await prisma.storeStock.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StoreStockFindFirstArgs>(args?: SelectSubset<T, StoreStockFindFirstArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StoreStock that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockFindFirstOrThrowArgs} args - Arguments to find a StoreStock
+     * @example
+     * // Get one StoreStock
+     * const storeStock = await prisma.storeStock.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StoreStockFindFirstOrThrowArgs>(args?: SelectSubset<T, StoreStockFindFirstOrThrowArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StoreStocks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StoreStocks
+     * const storeStocks = await prisma.storeStock.findMany()
+     * 
+     * // Get first 10 StoreStocks
+     * const storeStocks = await prisma.storeStock.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const storeStockWithIdOnly = await prisma.storeStock.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StoreStockFindManyArgs>(args?: SelectSubset<T, StoreStockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StoreStock.
+     * @param {StoreStockCreateArgs} args - Arguments to create a StoreStock.
+     * @example
+     * // Create one StoreStock
+     * const StoreStock = await prisma.storeStock.create({
+     *   data: {
+     *     // ... data to create a StoreStock
+     *   }
+     * })
+     * 
+     */
+    create<T extends StoreStockCreateArgs>(args: SelectSubset<T, StoreStockCreateArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StoreStocks.
+     * @param {StoreStockCreateManyArgs} args - Arguments to create many StoreStocks.
+     * @example
+     * // Create many StoreStocks
+     * const storeStock = await prisma.storeStock.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StoreStockCreateManyArgs>(args?: SelectSubset<T, StoreStockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StoreStocks and returns the data saved in the database.
+     * @param {StoreStockCreateManyAndReturnArgs} args - Arguments to create many StoreStocks.
+     * @example
+     * // Create many StoreStocks
+     * const storeStock = await prisma.storeStock.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StoreStocks and only return the `id`
+     * const storeStockWithIdOnly = await prisma.storeStock.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StoreStockCreateManyAndReturnArgs>(args?: SelectSubset<T, StoreStockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StoreStock.
+     * @param {StoreStockDeleteArgs} args - Arguments to delete one StoreStock.
+     * @example
+     * // Delete one StoreStock
+     * const StoreStock = await prisma.storeStock.delete({
+     *   where: {
+     *     // ... filter to delete one StoreStock
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StoreStockDeleteArgs>(args: SelectSubset<T, StoreStockDeleteArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StoreStock.
+     * @param {StoreStockUpdateArgs} args - Arguments to update one StoreStock.
+     * @example
+     * // Update one StoreStock
+     * const storeStock = await prisma.storeStock.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StoreStockUpdateArgs>(args: SelectSubset<T, StoreStockUpdateArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StoreStocks.
+     * @param {StoreStockDeleteManyArgs} args - Arguments to filter StoreStocks to delete.
+     * @example
+     * // Delete a few StoreStocks
+     * const { count } = await prisma.storeStock.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StoreStockDeleteManyArgs>(args?: SelectSubset<T, StoreStockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StoreStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StoreStocks
+     * const storeStock = await prisma.storeStock.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StoreStockUpdateManyArgs>(args: SelectSubset<T, StoreStockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StoreStocks and returns the data updated in the database.
+     * @param {StoreStockUpdateManyAndReturnArgs} args - Arguments to update many StoreStocks.
+     * @example
+     * // Update many StoreStocks
+     * const storeStock = await prisma.storeStock.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StoreStocks and only return the `id`
+     * const storeStockWithIdOnly = await prisma.storeStock.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StoreStockUpdateManyAndReturnArgs>(args: SelectSubset<T, StoreStockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StoreStock.
+     * @param {StoreStockUpsertArgs} args - Arguments to update or create a StoreStock.
+     * @example
+     * // Update or create a StoreStock
+     * const storeStock = await prisma.storeStock.upsert({
+     *   create: {
+     *     // ... data to create a StoreStock
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StoreStock we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StoreStockUpsertArgs>(args: SelectSubset<T, StoreStockUpsertArgs<ExtArgs>>): Prisma__StoreStockClient<$Result.GetResult<Prisma.$StoreStockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StoreStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockCountArgs} args - Arguments to filter StoreStocks to count.
+     * @example
+     * // Count the number of StoreStocks
+     * const count = await prisma.storeStock.count({
+     *   where: {
+     *     // ... the filter for the StoreStocks we want to count
+     *   }
+     * })
+    **/
+    count<T extends StoreStockCountArgs>(
+      args?: Subset<T, StoreStockCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StoreStockCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StoreStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StoreStockAggregateArgs>(args: Subset<T, StoreStockAggregateArgs>): Prisma.PrismaPromise<GetStoreStockAggregateType<T>>
+
+    /**
+     * Group by StoreStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoreStockGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StoreStockGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StoreStockGroupByArgs['orderBy'] }
+        : { orderBy?: StoreStockGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StoreStockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStoreStockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StoreStock model
+   */
+  readonly fields: StoreStockFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StoreStock.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StoreStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    store<T extends StoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoreDefaultArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    stock<T extends StockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StockDefaultArgs<ExtArgs>>): Prisma__StockClient<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StoreStock model
+   */
+  interface StoreStockFieldRefs {
+    readonly id: FieldRef<"StoreStock", 'String'>
+    readonly storeId: FieldRef<"StoreStock", 'String'>
+    readonly stockId: FieldRef<"StoreStock", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StoreStock findUnique
+   */
+  export type StoreStockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * Filter, which StoreStock to fetch.
+     */
+    where: StoreStockWhereUniqueInput
+  }
+
+  /**
+   * StoreStock findUniqueOrThrow
+   */
+  export type StoreStockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * Filter, which StoreStock to fetch.
+     */
+    where: StoreStockWhereUniqueInput
+  }
+
+  /**
+   * StoreStock findFirst
+   */
+  export type StoreStockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * Filter, which StoreStock to fetch.
+     */
+    where?: StoreStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoreStocks to fetch.
+     */
+    orderBy?: StoreStockOrderByWithRelationInput | StoreStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StoreStocks.
+     */
+    cursor?: StoreStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoreStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoreStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StoreStocks.
+     */
+    distinct?: StoreStockScalarFieldEnum | StoreStockScalarFieldEnum[]
+  }
+
+  /**
+   * StoreStock findFirstOrThrow
+   */
+  export type StoreStockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * Filter, which StoreStock to fetch.
+     */
+    where?: StoreStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoreStocks to fetch.
+     */
+    orderBy?: StoreStockOrderByWithRelationInput | StoreStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StoreStocks.
+     */
+    cursor?: StoreStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoreStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoreStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StoreStocks.
+     */
+    distinct?: StoreStockScalarFieldEnum | StoreStockScalarFieldEnum[]
+  }
+
+  /**
+   * StoreStock findMany
+   */
+  export type StoreStockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * Filter, which StoreStocks to fetch.
+     */
+    where?: StoreStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoreStocks to fetch.
+     */
+    orderBy?: StoreStockOrderByWithRelationInput | StoreStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StoreStocks.
+     */
+    cursor?: StoreStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoreStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoreStocks.
+     */
+    skip?: number
+    distinct?: StoreStockScalarFieldEnum | StoreStockScalarFieldEnum[]
+  }
+
+  /**
+   * StoreStock create
+   */
+  export type StoreStockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StoreStock.
+     */
+    data: XOR<StoreStockCreateInput, StoreStockUncheckedCreateInput>
+  }
+
+  /**
+   * StoreStock createMany
+   */
+  export type StoreStockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StoreStocks.
+     */
+    data: StoreStockCreateManyInput | StoreStockCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StoreStock createManyAndReturn
+   */
+  export type StoreStockCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * The data used to create many StoreStocks.
+     */
+    data: StoreStockCreateManyInput | StoreStockCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StoreStock update
+   */
+  export type StoreStockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StoreStock.
+     */
+    data: XOR<StoreStockUpdateInput, StoreStockUncheckedUpdateInput>
+    /**
+     * Choose, which StoreStock to update.
+     */
+    where: StoreStockWhereUniqueInput
+  }
+
+  /**
+   * StoreStock updateMany
+   */
+  export type StoreStockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StoreStocks.
+     */
+    data: XOR<StoreStockUpdateManyMutationInput, StoreStockUncheckedUpdateManyInput>
+    /**
+     * Filter which StoreStocks to update
+     */
+    where?: StoreStockWhereInput
+    /**
+     * Limit how many StoreStocks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StoreStock updateManyAndReturn
+   */
+  export type StoreStockUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * The data used to update StoreStocks.
+     */
+    data: XOR<StoreStockUpdateManyMutationInput, StoreStockUncheckedUpdateManyInput>
+    /**
+     * Filter which StoreStocks to update
+     */
+    where?: StoreStockWhereInput
+    /**
+     * Limit how many StoreStocks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StoreStock upsert
+   */
+  export type StoreStockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StoreStock to update in case it exists.
+     */
+    where: StoreStockWhereUniqueInput
+    /**
+     * In case the StoreStock found by the `where` argument doesn't exist, create a new StoreStock with this data.
+     */
+    create: XOR<StoreStockCreateInput, StoreStockUncheckedCreateInput>
+    /**
+     * In case the StoreStock was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StoreStockUpdateInput, StoreStockUncheckedUpdateInput>
+  }
+
+  /**
+   * StoreStock delete
+   */
+  export type StoreStockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
+    /**
+     * Filter which StoreStock to delete.
+     */
+    where: StoreStockWhereUniqueInput
+  }
+
+  /**
+   * StoreStock deleteMany
+   */
+  export type StoreStockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StoreStocks to delete
+     */
+    where?: StoreStockWhereInput
+    /**
+     * Limit how many StoreStocks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StoreStock without action
+   */
+  export type StoreStockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreStock
+     */
+    select?: StoreStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoreStock
+     */
+    omit?: StoreStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoreStockInclude<ExtArgs> | null
   }
 
 
@@ -8926,6 +10298,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     customerOrganization?: boolean | Customer$customerOrganizationArgs<ExtArgs>
+    quotations?: boolean | Customer$quotationsArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -8956,6 +10329,7 @@ export namespace Prisma {
   export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "fullname" | "createdAt" | "updatedAt", ExtArgs["result"]["customer"]>
   export type CustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customerOrganization?: boolean | Customer$customerOrganizationArgs<ExtArgs>
+    quotations?: boolean | Customer$quotationsArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -8965,6 +10339,7 @@ export namespace Prisma {
     name: "Customer"
     objects: {
       customerOrganization: Prisma.$CustomerOrganizationPayload<ExtArgs>[]
+      quotations: Prisma.$QuotationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9367,6 +10742,7 @@ export namespace Prisma {
   export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customerOrganization<T extends Customer$customerOrganizationArgs<ExtArgs> = {}>(args?: Subset<T, Customer$customerOrganizationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerOrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quotations<T extends Customer$quotationsArgs<ExtArgs> = {}>(args?: Subset<T, Customer$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9810,6 +11186,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CustomerOrganizationScalarFieldEnum | CustomerOrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.quotations
+   */
+  export type Customer$quotationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    where?: QuotationWhereInput
+    orderBy?: QuotationOrderByWithRelationInput | QuotationOrderByWithRelationInput[]
+    cursor?: QuotationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuotationScalarFieldEnum | QuotationScalarFieldEnum[]
   }
 
   /**
@@ -12066,6 +13466,2255 @@ export namespace Prisma {
 
 
   /**
+   * Model Quotation
+   */
+
+  export type AggregateQuotation = {
+    _count: QuotationCountAggregateOutputType | null
+    _min: QuotationMinAggregateOutputType | null
+    _max: QuotationMaxAggregateOutputType | null
+  }
+
+  export type QuotationMinAggregateOutputType = {
+    id: string | null
+    quoteId: string | null
+    date: Date | null
+    customerId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type QuotationMaxAggregateOutputType = {
+    id: string | null
+    quoteId: string | null
+    date: Date | null
+    customerId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type QuotationCountAggregateOutputType = {
+    id: number
+    quoteId: number
+    date: number
+    customerId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type QuotationMinAggregateInputType = {
+    id?: true
+    quoteId?: true
+    date?: true
+    customerId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type QuotationMaxAggregateInputType = {
+    id?: true
+    quoteId?: true
+    date?: true
+    customerId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type QuotationCountAggregateInputType = {
+    id?: true
+    quoteId?: true
+    date?: true
+    customerId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type QuotationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Quotation to aggregate.
+     */
+    where?: QuotationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Quotations to fetch.
+     */
+    orderBy?: QuotationOrderByWithRelationInput | QuotationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuotationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Quotations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Quotations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Quotations
+    **/
+    _count?: true | QuotationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuotationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuotationMaxAggregateInputType
+  }
+
+  export type GetQuotationAggregateType<T extends QuotationAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuotation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuotation[P]>
+      : GetScalarType<T[P], AggregateQuotation[P]>
+  }
+
+
+
+
+  export type QuotationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuotationWhereInput
+    orderBy?: QuotationOrderByWithAggregationInput | QuotationOrderByWithAggregationInput[]
+    by: QuotationScalarFieldEnum[] | QuotationScalarFieldEnum
+    having?: QuotationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuotationCountAggregateInputType | true
+    _min?: QuotationMinAggregateInputType
+    _max?: QuotationMaxAggregateInputType
+  }
+
+  export type QuotationGroupByOutputType = {
+    id: string
+    quoteId: string
+    date: Date
+    customerId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: QuotationCountAggregateOutputType | null
+    _min: QuotationMinAggregateOutputType | null
+    _max: QuotationMaxAggregateOutputType | null
+  }
+
+  type GetQuotationGroupByPayload<T extends QuotationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuotationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuotationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuotationGroupByOutputType[P]>
+            : GetScalarType<T[P], QuotationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuotationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quoteId?: boolean
+    date?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    items?: boolean | Quotation$itemsArgs<ExtArgs>
+    _count?: boolean | QuotationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quotation"]>
+
+  export type QuotationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quoteId?: boolean
+    date?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quotation"]>
+
+  export type QuotationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quoteId?: boolean
+    date?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quotation"]>
+
+  export type QuotationSelectScalar = {
+    id?: boolean
+    quoteId?: boolean
+    date?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type QuotationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "quoteId" | "date" | "customerId" | "createdAt" | "updatedAt", ExtArgs["result"]["quotation"]>
+  export type QuotationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    items?: boolean | Quotation$itemsArgs<ExtArgs>
+    _count?: boolean | QuotationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type QuotationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+  export type QuotationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+
+  export type $QuotationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Quotation"
+    objects: {
+      customer: Prisma.$CustomerPayload<ExtArgs>
+      items: Prisma.$QuotationItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      quoteId: string
+      date: Date
+      customerId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["quotation"]>
+    composites: {}
+  }
+
+  type QuotationGetPayload<S extends boolean | null | undefined | QuotationDefaultArgs> = $Result.GetResult<Prisma.$QuotationPayload, S>
+
+  type QuotationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuotationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuotationCountAggregateInputType | true
+    }
+
+  export interface QuotationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Quotation'], meta: { name: 'Quotation' } }
+    /**
+     * Find zero or one Quotation that matches the filter.
+     * @param {QuotationFindUniqueArgs} args - Arguments to find a Quotation
+     * @example
+     * // Get one Quotation
+     * const quotation = await prisma.quotation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuotationFindUniqueArgs>(args: SelectSubset<T, QuotationFindUniqueArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Quotation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuotationFindUniqueOrThrowArgs} args - Arguments to find a Quotation
+     * @example
+     * // Get one Quotation
+     * const quotation = await prisma.quotation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuotationFindUniqueOrThrowArgs>(args: SelectSubset<T, QuotationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Quotation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationFindFirstArgs} args - Arguments to find a Quotation
+     * @example
+     * // Get one Quotation
+     * const quotation = await prisma.quotation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuotationFindFirstArgs>(args?: SelectSubset<T, QuotationFindFirstArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Quotation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationFindFirstOrThrowArgs} args - Arguments to find a Quotation
+     * @example
+     * // Get one Quotation
+     * const quotation = await prisma.quotation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuotationFindFirstOrThrowArgs>(args?: SelectSubset<T, QuotationFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Quotations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Quotations
+     * const quotations = await prisma.quotation.findMany()
+     * 
+     * // Get first 10 Quotations
+     * const quotations = await prisma.quotation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quotationWithIdOnly = await prisma.quotation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuotationFindManyArgs>(args?: SelectSubset<T, QuotationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Quotation.
+     * @param {QuotationCreateArgs} args - Arguments to create a Quotation.
+     * @example
+     * // Create one Quotation
+     * const Quotation = await prisma.quotation.create({
+     *   data: {
+     *     // ... data to create a Quotation
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuotationCreateArgs>(args: SelectSubset<T, QuotationCreateArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Quotations.
+     * @param {QuotationCreateManyArgs} args - Arguments to create many Quotations.
+     * @example
+     * // Create many Quotations
+     * const quotation = await prisma.quotation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuotationCreateManyArgs>(args?: SelectSubset<T, QuotationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Quotations and returns the data saved in the database.
+     * @param {QuotationCreateManyAndReturnArgs} args - Arguments to create many Quotations.
+     * @example
+     * // Create many Quotations
+     * const quotation = await prisma.quotation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Quotations and only return the `id`
+     * const quotationWithIdOnly = await prisma.quotation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuotationCreateManyAndReturnArgs>(args?: SelectSubset<T, QuotationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Quotation.
+     * @param {QuotationDeleteArgs} args - Arguments to delete one Quotation.
+     * @example
+     * // Delete one Quotation
+     * const Quotation = await prisma.quotation.delete({
+     *   where: {
+     *     // ... filter to delete one Quotation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuotationDeleteArgs>(args: SelectSubset<T, QuotationDeleteArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Quotation.
+     * @param {QuotationUpdateArgs} args - Arguments to update one Quotation.
+     * @example
+     * // Update one Quotation
+     * const quotation = await prisma.quotation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuotationUpdateArgs>(args: SelectSubset<T, QuotationUpdateArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Quotations.
+     * @param {QuotationDeleteManyArgs} args - Arguments to filter Quotations to delete.
+     * @example
+     * // Delete a few Quotations
+     * const { count } = await prisma.quotation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuotationDeleteManyArgs>(args?: SelectSubset<T, QuotationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Quotations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Quotations
+     * const quotation = await prisma.quotation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuotationUpdateManyArgs>(args: SelectSubset<T, QuotationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Quotations and returns the data updated in the database.
+     * @param {QuotationUpdateManyAndReturnArgs} args - Arguments to update many Quotations.
+     * @example
+     * // Update many Quotations
+     * const quotation = await prisma.quotation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Quotations and only return the `id`
+     * const quotationWithIdOnly = await prisma.quotation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuotationUpdateManyAndReturnArgs>(args: SelectSubset<T, QuotationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Quotation.
+     * @param {QuotationUpsertArgs} args - Arguments to update or create a Quotation.
+     * @example
+     * // Update or create a Quotation
+     * const quotation = await prisma.quotation.upsert({
+     *   create: {
+     *     // ... data to create a Quotation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Quotation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuotationUpsertArgs>(args: SelectSubset<T, QuotationUpsertArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Quotations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationCountArgs} args - Arguments to filter Quotations to count.
+     * @example
+     * // Count the number of Quotations
+     * const count = await prisma.quotation.count({
+     *   where: {
+     *     // ... the filter for the Quotations we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuotationCountArgs>(
+      args?: Subset<T, QuotationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuotationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Quotation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuotationAggregateArgs>(args: Subset<T, QuotationAggregateArgs>): Prisma.PrismaPromise<GetQuotationAggregateType<T>>
+
+    /**
+     * Group by Quotation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuotationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuotationGroupByArgs['orderBy'] }
+        : { orderBy?: QuotationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuotationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuotationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Quotation model
+   */
+  readonly fields: QuotationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Quotation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuotationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    items<T extends Quotation$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Quotation$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Quotation model
+   */
+  interface QuotationFieldRefs {
+    readonly id: FieldRef<"Quotation", 'String'>
+    readonly quoteId: FieldRef<"Quotation", 'String'>
+    readonly date: FieldRef<"Quotation", 'DateTime'>
+    readonly customerId: FieldRef<"Quotation", 'String'>
+    readonly createdAt: FieldRef<"Quotation", 'DateTime'>
+    readonly updatedAt: FieldRef<"Quotation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Quotation findUnique
+   */
+  export type QuotationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * Filter, which Quotation to fetch.
+     */
+    where: QuotationWhereUniqueInput
+  }
+
+  /**
+   * Quotation findUniqueOrThrow
+   */
+  export type QuotationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * Filter, which Quotation to fetch.
+     */
+    where: QuotationWhereUniqueInput
+  }
+
+  /**
+   * Quotation findFirst
+   */
+  export type QuotationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * Filter, which Quotation to fetch.
+     */
+    where?: QuotationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Quotations to fetch.
+     */
+    orderBy?: QuotationOrderByWithRelationInput | QuotationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Quotations.
+     */
+    cursor?: QuotationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Quotations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Quotations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Quotations.
+     */
+    distinct?: QuotationScalarFieldEnum | QuotationScalarFieldEnum[]
+  }
+
+  /**
+   * Quotation findFirstOrThrow
+   */
+  export type QuotationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * Filter, which Quotation to fetch.
+     */
+    where?: QuotationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Quotations to fetch.
+     */
+    orderBy?: QuotationOrderByWithRelationInput | QuotationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Quotations.
+     */
+    cursor?: QuotationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Quotations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Quotations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Quotations.
+     */
+    distinct?: QuotationScalarFieldEnum | QuotationScalarFieldEnum[]
+  }
+
+  /**
+   * Quotation findMany
+   */
+  export type QuotationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * Filter, which Quotations to fetch.
+     */
+    where?: QuotationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Quotations to fetch.
+     */
+    orderBy?: QuotationOrderByWithRelationInput | QuotationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Quotations.
+     */
+    cursor?: QuotationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Quotations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Quotations.
+     */
+    skip?: number
+    distinct?: QuotationScalarFieldEnum | QuotationScalarFieldEnum[]
+  }
+
+  /**
+   * Quotation create
+   */
+  export type QuotationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Quotation.
+     */
+    data: XOR<QuotationCreateInput, QuotationUncheckedCreateInput>
+  }
+
+  /**
+   * Quotation createMany
+   */
+  export type QuotationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Quotations.
+     */
+    data: QuotationCreateManyInput | QuotationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Quotation createManyAndReturn
+   */
+  export type QuotationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Quotations.
+     */
+    data: QuotationCreateManyInput | QuotationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Quotation update
+   */
+  export type QuotationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Quotation.
+     */
+    data: XOR<QuotationUpdateInput, QuotationUncheckedUpdateInput>
+    /**
+     * Choose, which Quotation to update.
+     */
+    where: QuotationWhereUniqueInput
+  }
+
+  /**
+   * Quotation updateMany
+   */
+  export type QuotationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Quotations.
+     */
+    data: XOR<QuotationUpdateManyMutationInput, QuotationUncheckedUpdateManyInput>
+    /**
+     * Filter which Quotations to update
+     */
+    where?: QuotationWhereInput
+    /**
+     * Limit how many Quotations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Quotation updateManyAndReturn
+   */
+  export type QuotationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * The data used to update Quotations.
+     */
+    data: XOR<QuotationUpdateManyMutationInput, QuotationUncheckedUpdateManyInput>
+    /**
+     * Filter which Quotations to update
+     */
+    where?: QuotationWhereInput
+    /**
+     * Limit how many Quotations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Quotation upsert
+   */
+  export type QuotationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Quotation to update in case it exists.
+     */
+    where: QuotationWhereUniqueInput
+    /**
+     * In case the Quotation found by the `where` argument doesn't exist, create a new Quotation with this data.
+     */
+    create: XOR<QuotationCreateInput, QuotationUncheckedCreateInput>
+    /**
+     * In case the Quotation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuotationUpdateInput, QuotationUncheckedUpdateInput>
+  }
+
+  /**
+   * Quotation delete
+   */
+  export type QuotationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+    /**
+     * Filter which Quotation to delete.
+     */
+    where: QuotationWhereUniqueInput
+  }
+
+  /**
+   * Quotation deleteMany
+   */
+  export type QuotationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Quotations to delete
+     */
+    where?: QuotationWhereInput
+    /**
+     * Limit how many Quotations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Quotation.items
+   */
+  export type Quotation$itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    where?: QuotationItemWhereInput
+    orderBy?: QuotationItemOrderByWithRelationInput | QuotationItemOrderByWithRelationInput[]
+    cursor?: QuotationItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuotationItemScalarFieldEnum | QuotationItemScalarFieldEnum[]
+  }
+
+  /**
+   * Quotation without action
+   */
+  export type QuotationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quotation
+     */
+    select?: QuotationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quotation
+     */
+    omit?: QuotationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuotationItem
+   */
+
+  export type AggregateQuotationItem = {
+    _count: QuotationItemCountAggregateOutputType | null
+    _avg: QuotationItemAvgAggregateOutputType | null
+    _sum: QuotationItemSumAggregateOutputType | null
+    _min: QuotationItemMinAggregateOutputType | null
+    _max: QuotationItemMaxAggregateOutputType | null
+  }
+
+  export type QuotationItemAvgAggregateOutputType = {
+    unitPrice: number | null
+    qty: number | null
+  }
+
+  export type QuotationItemSumAggregateOutputType = {
+    unitPrice: number | null
+    qty: number | null
+  }
+
+  export type QuotationItemMinAggregateOutputType = {
+    id: string | null
+    quotationId: string | null
+    productCode: string | null
+    description: string | null
+    unitPrice: number | null
+    oum: string | null
+    qty: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type QuotationItemMaxAggregateOutputType = {
+    id: string | null
+    quotationId: string | null
+    productCode: string | null
+    description: string | null
+    unitPrice: number | null
+    oum: string | null
+    qty: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type QuotationItemCountAggregateOutputType = {
+    id: number
+    quotationId: number
+    productCode: number
+    description: number
+    unitPrice: number
+    oum: number
+    qty: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type QuotationItemAvgAggregateInputType = {
+    unitPrice?: true
+    qty?: true
+  }
+
+  export type QuotationItemSumAggregateInputType = {
+    unitPrice?: true
+    qty?: true
+  }
+
+  export type QuotationItemMinAggregateInputType = {
+    id?: true
+    quotationId?: true
+    productCode?: true
+    description?: true
+    unitPrice?: true
+    oum?: true
+    qty?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type QuotationItemMaxAggregateInputType = {
+    id?: true
+    quotationId?: true
+    productCode?: true
+    description?: true
+    unitPrice?: true
+    oum?: true
+    qty?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type QuotationItemCountAggregateInputType = {
+    id?: true
+    quotationId?: true
+    productCode?: true
+    description?: true
+    unitPrice?: true
+    oum?: true
+    qty?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type QuotationItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuotationItem to aggregate.
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuotationItems to fetch.
+     */
+    orderBy?: QuotationItemOrderByWithRelationInput | QuotationItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuotationItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuotationItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuotationItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuotationItems
+    **/
+    _count?: true | QuotationItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuotationItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuotationItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuotationItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuotationItemMaxAggregateInputType
+  }
+
+  export type GetQuotationItemAggregateType<T extends QuotationItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuotationItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuotationItem[P]>
+      : GetScalarType<T[P], AggregateQuotationItem[P]>
+  }
+
+
+
+
+  export type QuotationItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuotationItemWhereInput
+    orderBy?: QuotationItemOrderByWithAggregationInput | QuotationItemOrderByWithAggregationInput[]
+    by: QuotationItemScalarFieldEnum[] | QuotationItemScalarFieldEnum
+    having?: QuotationItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuotationItemCountAggregateInputType | true
+    _avg?: QuotationItemAvgAggregateInputType
+    _sum?: QuotationItemSumAggregateInputType
+    _min?: QuotationItemMinAggregateInputType
+    _max?: QuotationItemMaxAggregateInputType
+  }
+
+  export type QuotationItemGroupByOutputType = {
+    id: string
+    quotationId: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt: Date
+    updatedAt: Date
+    _count: QuotationItemCountAggregateOutputType | null
+    _avg: QuotationItemAvgAggregateOutputType | null
+    _sum: QuotationItemSumAggregateOutputType | null
+    _min: QuotationItemMinAggregateOutputType | null
+    _max: QuotationItemMaxAggregateOutputType | null
+  }
+
+  type GetQuotationItemGroupByPayload<T extends QuotationItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuotationItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuotationItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuotationItemGroupByOutputType[P]>
+            : GetScalarType<T[P], QuotationItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuotationItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quotationId?: boolean
+    productCode?: boolean
+    description?: boolean
+    unitPrice?: boolean
+    oum?: boolean
+    qty?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    quotation?: boolean | QuotationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quotationItem"]>
+
+  export type QuotationItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quotationId?: boolean
+    productCode?: boolean
+    description?: boolean
+    unitPrice?: boolean
+    oum?: boolean
+    qty?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    quotation?: boolean | QuotationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quotationItem"]>
+
+  export type QuotationItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quotationId?: boolean
+    productCode?: boolean
+    description?: boolean
+    unitPrice?: boolean
+    oum?: boolean
+    qty?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    quotation?: boolean | QuotationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quotationItem"]>
+
+  export type QuotationItemSelectScalar = {
+    id?: boolean
+    quotationId?: boolean
+    productCode?: boolean
+    description?: boolean
+    unitPrice?: boolean
+    oum?: boolean
+    qty?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type QuotationItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "quotationId" | "productCode" | "description" | "unitPrice" | "oum" | "qty" | "createdAt" | "updatedAt", ExtArgs["result"]["quotationItem"]>
+  export type QuotationItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quotation?: boolean | QuotationDefaultArgs<ExtArgs>
+  }
+  export type QuotationItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quotation?: boolean | QuotationDefaultArgs<ExtArgs>
+  }
+  export type QuotationItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quotation?: boolean | QuotationDefaultArgs<ExtArgs>
+  }
+
+  export type $QuotationItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuotationItem"
+    objects: {
+      quotation: Prisma.$QuotationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      quotationId: string
+      productCode: string
+      description: string
+      unitPrice: number
+      oum: string
+      qty: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["quotationItem"]>
+    composites: {}
+  }
+
+  type QuotationItemGetPayload<S extends boolean | null | undefined | QuotationItemDefaultArgs> = $Result.GetResult<Prisma.$QuotationItemPayload, S>
+
+  type QuotationItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuotationItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuotationItemCountAggregateInputType | true
+    }
+
+  export interface QuotationItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuotationItem'], meta: { name: 'QuotationItem' } }
+    /**
+     * Find zero or one QuotationItem that matches the filter.
+     * @param {QuotationItemFindUniqueArgs} args - Arguments to find a QuotationItem
+     * @example
+     * // Get one QuotationItem
+     * const quotationItem = await prisma.quotationItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuotationItemFindUniqueArgs>(args: SelectSubset<T, QuotationItemFindUniqueArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuotationItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuotationItemFindUniqueOrThrowArgs} args - Arguments to find a QuotationItem
+     * @example
+     * // Get one QuotationItem
+     * const quotationItem = await prisma.quotationItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuotationItemFindUniqueOrThrowArgs>(args: SelectSubset<T, QuotationItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuotationItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemFindFirstArgs} args - Arguments to find a QuotationItem
+     * @example
+     * // Get one QuotationItem
+     * const quotationItem = await prisma.quotationItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuotationItemFindFirstArgs>(args?: SelectSubset<T, QuotationItemFindFirstArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuotationItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemFindFirstOrThrowArgs} args - Arguments to find a QuotationItem
+     * @example
+     * // Get one QuotationItem
+     * const quotationItem = await prisma.quotationItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuotationItemFindFirstOrThrowArgs>(args?: SelectSubset<T, QuotationItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuotationItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuotationItems
+     * const quotationItems = await prisma.quotationItem.findMany()
+     * 
+     * // Get first 10 QuotationItems
+     * const quotationItems = await prisma.quotationItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quotationItemWithIdOnly = await prisma.quotationItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuotationItemFindManyArgs>(args?: SelectSubset<T, QuotationItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuotationItem.
+     * @param {QuotationItemCreateArgs} args - Arguments to create a QuotationItem.
+     * @example
+     * // Create one QuotationItem
+     * const QuotationItem = await prisma.quotationItem.create({
+     *   data: {
+     *     // ... data to create a QuotationItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuotationItemCreateArgs>(args: SelectSubset<T, QuotationItemCreateArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuotationItems.
+     * @param {QuotationItemCreateManyArgs} args - Arguments to create many QuotationItems.
+     * @example
+     * // Create many QuotationItems
+     * const quotationItem = await prisma.quotationItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuotationItemCreateManyArgs>(args?: SelectSubset<T, QuotationItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuotationItems and returns the data saved in the database.
+     * @param {QuotationItemCreateManyAndReturnArgs} args - Arguments to create many QuotationItems.
+     * @example
+     * // Create many QuotationItems
+     * const quotationItem = await prisma.quotationItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuotationItems and only return the `id`
+     * const quotationItemWithIdOnly = await prisma.quotationItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuotationItemCreateManyAndReturnArgs>(args?: SelectSubset<T, QuotationItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuotationItem.
+     * @param {QuotationItemDeleteArgs} args - Arguments to delete one QuotationItem.
+     * @example
+     * // Delete one QuotationItem
+     * const QuotationItem = await prisma.quotationItem.delete({
+     *   where: {
+     *     // ... filter to delete one QuotationItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuotationItemDeleteArgs>(args: SelectSubset<T, QuotationItemDeleteArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuotationItem.
+     * @param {QuotationItemUpdateArgs} args - Arguments to update one QuotationItem.
+     * @example
+     * // Update one QuotationItem
+     * const quotationItem = await prisma.quotationItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuotationItemUpdateArgs>(args: SelectSubset<T, QuotationItemUpdateArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuotationItems.
+     * @param {QuotationItemDeleteManyArgs} args - Arguments to filter QuotationItems to delete.
+     * @example
+     * // Delete a few QuotationItems
+     * const { count } = await prisma.quotationItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuotationItemDeleteManyArgs>(args?: SelectSubset<T, QuotationItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuotationItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuotationItems
+     * const quotationItem = await prisma.quotationItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuotationItemUpdateManyArgs>(args: SelectSubset<T, QuotationItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuotationItems and returns the data updated in the database.
+     * @param {QuotationItemUpdateManyAndReturnArgs} args - Arguments to update many QuotationItems.
+     * @example
+     * // Update many QuotationItems
+     * const quotationItem = await prisma.quotationItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuotationItems and only return the `id`
+     * const quotationItemWithIdOnly = await prisma.quotationItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuotationItemUpdateManyAndReturnArgs>(args: SelectSubset<T, QuotationItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuotationItem.
+     * @param {QuotationItemUpsertArgs} args - Arguments to update or create a QuotationItem.
+     * @example
+     * // Update or create a QuotationItem
+     * const quotationItem = await prisma.quotationItem.upsert({
+     *   create: {
+     *     // ... data to create a QuotationItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuotationItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuotationItemUpsertArgs>(args: SelectSubset<T, QuotationItemUpsertArgs<ExtArgs>>): Prisma__QuotationItemClient<$Result.GetResult<Prisma.$QuotationItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuotationItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemCountArgs} args - Arguments to filter QuotationItems to count.
+     * @example
+     * // Count the number of QuotationItems
+     * const count = await prisma.quotationItem.count({
+     *   where: {
+     *     // ... the filter for the QuotationItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuotationItemCountArgs>(
+      args?: Subset<T, QuotationItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuotationItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuotationItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuotationItemAggregateArgs>(args: Subset<T, QuotationItemAggregateArgs>): Prisma.PrismaPromise<GetQuotationItemAggregateType<T>>
+
+    /**
+     * Group by QuotationItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuotationItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuotationItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuotationItemGroupByArgs['orderBy'] }
+        : { orderBy?: QuotationItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuotationItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuotationItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuotationItem model
+   */
+  readonly fields: QuotationItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuotationItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuotationItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    quotation<T extends QuotationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuotationDefaultArgs<ExtArgs>>): Prisma__QuotationClient<$Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuotationItem model
+   */
+  interface QuotationItemFieldRefs {
+    readonly id: FieldRef<"QuotationItem", 'String'>
+    readonly quotationId: FieldRef<"QuotationItem", 'String'>
+    readonly productCode: FieldRef<"QuotationItem", 'String'>
+    readonly description: FieldRef<"QuotationItem", 'String'>
+    readonly unitPrice: FieldRef<"QuotationItem", 'Float'>
+    readonly oum: FieldRef<"QuotationItem", 'String'>
+    readonly qty: FieldRef<"QuotationItem", 'Int'>
+    readonly createdAt: FieldRef<"QuotationItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"QuotationItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuotationItem findUnique
+   */
+  export type QuotationItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuotationItem to fetch.
+     */
+    where: QuotationItemWhereUniqueInput
+  }
+
+  /**
+   * QuotationItem findUniqueOrThrow
+   */
+  export type QuotationItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuotationItem to fetch.
+     */
+    where: QuotationItemWhereUniqueInput
+  }
+
+  /**
+   * QuotationItem findFirst
+   */
+  export type QuotationItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuotationItem to fetch.
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuotationItems to fetch.
+     */
+    orderBy?: QuotationItemOrderByWithRelationInput | QuotationItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuotationItems.
+     */
+    cursor?: QuotationItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuotationItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuotationItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuotationItems.
+     */
+    distinct?: QuotationItemScalarFieldEnum | QuotationItemScalarFieldEnum[]
+  }
+
+  /**
+   * QuotationItem findFirstOrThrow
+   */
+  export type QuotationItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuotationItem to fetch.
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuotationItems to fetch.
+     */
+    orderBy?: QuotationItemOrderByWithRelationInput | QuotationItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuotationItems.
+     */
+    cursor?: QuotationItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuotationItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuotationItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuotationItems.
+     */
+    distinct?: QuotationItemScalarFieldEnum | QuotationItemScalarFieldEnum[]
+  }
+
+  /**
+   * QuotationItem findMany
+   */
+  export type QuotationItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuotationItems to fetch.
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuotationItems to fetch.
+     */
+    orderBy?: QuotationItemOrderByWithRelationInput | QuotationItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuotationItems.
+     */
+    cursor?: QuotationItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuotationItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuotationItems.
+     */
+    skip?: number
+    distinct?: QuotationItemScalarFieldEnum | QuotationItemScalarFieldEnum[]
+  }
+
+  /**
+   * QuotationItem create
+   */
+  export type QuotationItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QuotationItem.
+     */
+    data: XOR<QuotationItemCreateInput, QuotationItemUncheckedCreateInput>
+  }
+
+  /**
+   * QuotationItem createMany
+   */
+  export type QuotationItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuotationItems.
+     */
+    data: QuotationItemCreateManyInput | QuotationItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuotationItem createManyAndReturn
+   */
+  export type QuotationItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuotationItems.
+     */
+    data: QuotationItemCreateManyInput | QuotationItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuotationItem update
+   */
+  export type QuotationItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QuotationItem.
+     */
+    data: XOR<QuotationItemUpdateInput, QuotationItemUncheckedUpdateInput>
+    /**
+     * Choose, which QuotationItem to update.
+     */
+    where: QuotationItemWhereUniqueInput
+  }
+
+  /**
+   * QuotationItem updateMany
+   */
+  export type QuotationItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuotationItems.
+     */
+    data: XOR<QuotationItemUpdateManyMutationInput, QuotationItemUncheckedUpdateManyInput>
+    /**
+     * Filter which QuotationItems to update
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * Limit how many QuotationItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuotationItem updateManyAndReturn
+   */
+  export type QuotationItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * The data used to update QuotationItems.
+     */
+    data: XOR<QuotationItemUpdateManyMutationInput, QuotationItemUncheckedUpdateManyInput>
+    /**
+     * Filter which QuotationItems to update
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * Limit how many QuotationItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuotationItem upsert
+   */
+  export type QuotationItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QuotationItem to update in case it exists.
+     */
+    where: QuotationItemWhereUniqueInput
+    /**
+     * In case the QuotationItem found by the `where` argument doesn't exist, create a new QuotationItem with this data.
+     */
+    create: XOR<QuotationItemCreateInput, QuotationItemUncheckedCreateInput>
+    /**
+     * In case the QuotationItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuotationItemUpdateInput, QuotationItemUncheckedUpdateInput>
+  }
+
+  /**
+   * QuotationItem delete
+   */
+  export type QuotationItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+    /**
+     * Filter which QuotationItem to delete.
+     */
+    where: QuotationItemWhereUniqueInput
+  }
+
+  /**
+   * QuotationItem deleteMany
+   */
+  export type QuotationItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuotationItems to delete
+     */
+    where?: QuotationItemWhereInput
+    /**
+     * Limit how many QuotationItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuotationItem without action
+   */
+  export type QuotationItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuotationItem
+     */
+    select?: QuotationItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuotationItem
+     */
+    omit?: QuotationItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuotationItemInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12152,7 +15801,7 @@ export namespace Prisma {
     state: 'state',
     userId: 'userId',
     createdAt: 'createdAt',
-    updateAt: 'updateAt'
+    updatedAt: 'updatedAt'
   };
 
   export type StoreScalarFieldEnum = (typeof StoreScalarFieldEnum)[keyof typeof StoreScalarFieldEnum]
@@ -12170,6 +15819,15 @@ export namespace Prisma {
   };
 
   export type StockScalarFieldEnum = (typeof StockScalarFieldEnum)[keyof typeof StockScalarFieldEnum]
+
+
+  export const StoreStockScalarFieldEnum: {
+    id: 'id',
+    storeId: 'storeId',
+    stockId: 'stockId'
+  };
+
+  export type StoreStockScalarFieldEnum = (typeof StoreStockScalarFieldEnum)[keyof typeof StoreStockScalarFieldEnum]
 
 
   export const CustomerScalarFieldEnum: {
@@ -12209,6 +15867,33 @@ export namespace Prisma {
   };
 
   export type CustomerOrganizationDepartmentScalarFieldEnum = (typeof CustomerOrganizationDepartmentScalarFieldEnum)[keyof typeof CustomerOrganizationDepartmentScalarFieldEnum]
+
+
+  export const QuotationScalarFieldEnum: {
+    id: 'id',
+    quoteId: 'quoteId',
+    date: 'date',
+    customerId: 'customerId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+  export const QuotationItemScalarFieldEnum: {
+    id: 'id',
+    quotationId: 'quotationId',
+    productCode: 'productCode',
+    description: 'description',
+    unitPrice: 'unitPrice',
+    oum: 'oum',
+    qty: 'qty',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12297,20 +15982,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12321,6 +15992,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -12577,12 +16262,12 @@ export namespace Prisma {
     id?: StringFilter<"Product"> | string
     productCode?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    unitPrice?: IntFilter<"Product"> | number
+    unitPrice?: FloatFilter<"Product"> | number
     oum?: StringFilter<"Product"> | string
-    supplierId?: StringFilter<"Product"> | string
+    supplierId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    supplier?: XOR<SupplierScalarRelationFilter, SupplierWhereInput>
+    supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
     stocks?: StockListRelationFilter
   }
 
@@ -12592,7 +16277,7 @@ export namespace Prisma {
     description?: SortOrder
     unitPrice?: SortOrder
     oum?: SortOrder
-    supplierId?: SortOrder
+    supplierId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     supplier?: SupplierOrderByWithRelationInput
@@ -12606,12 +16291,12 @@ export namespace Prisma {
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     description?: StringFilter<"Product"> | string
-    unitPrice?: IntFilter<"Product"> | number
+    unitPrice?: FloatFilter<"Product"> | number
     oum?: StringFilter<"Product"> | string
-    supplierId?: StringFilter<"Product"> | string
+    supplierId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    supplier?: XOR<SupplierScalarRelationFilter, SupplierWhereInput>
+    supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
     stocks?: StockListRelationFilter
   }, "id" | "productCode">
 
@@ -12621,7 +16306,7 @@ export namespace Prisma {
     description?: SortOrder
     unitPrice?: SortOrder
     oum?: SortOrder
-    supplierId?: SortOrder
+    supplierId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -12638,9 +16323,9 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Product"> | string
     productCode?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
-    unitPrice?: IntWithAggregatesFilter<"Product"> | number
+    unitPrice?: FloatWithAggregatesFilter<"Product"> | number
     oum?: StringWithAggregatesFilter<"Product"> | string
-    supplierId?: StringWithAggregatesFilter<"Product"> | string
+    supplierId?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
@@ -12659,9 +16344,9 @@ export namespace Prisma {
     state?: StringFilter<"Store"> | string
     userId?: StringFilter<"Store"> | string
     createdAt?: DateTimeFilter<"Store"> | Date | string
-    updateAt?: DateTimeFilter<"Store"> | Date | string
+    updatedAt?: DateTimeFilter<"Store"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    stocks?: StockListRelationFilter
+    storeStocks?: StoreStockListRelationFilter
   }
 
   export type StoreOrderByWithRelationInput = {
@@ -12675,9 +16360,9 @@ export namespace Prisma {
     state?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    updateAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    stocks?: StockOrderByRelationAggregateInput
+    storeStocks?: StoreStockOrderByRelationAggregateInput
   }
 
   export type StoreWhereUniqueInput = Prisma.AtLeast<{
@@ -12694,9 +16379,9 @@ export namespace Prisma {
     city?: StringFilter<"Store"> | string
     state?: StringFilter<"Store"> | string
     createdAt?: DateTimeFilter<"Store"> | Date | string
-    updateAt?: DateTimeFilter<"Store"> | Date | string
+    updatedAt?: DateTimeFilter<"Store"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    stocks?: StockListRelationFilter
+    storeStocks?: StoreStockListRelationFilter
   }, "id" | "storeName" | "userId">
 
   export type StoreOrderByWithAggregationInput = {
@@ -12710,7 +16395,7 @@ export namespace Prisma {
     state?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    updateAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: StoreCountOrderByAggregateInput
     _max?: StoreMaxOrderByAggregateInput
     _min?: StoreMinOrderByAggregateInput
@@ -12730,7 +16415,7 @@ export namespace Prisma {
     state?: StringWithAggregatesFilter<"Store"> | string
     userId?: StringWithAggregatesFilter<"Store"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Store"> | Date | string
-    updateAt?: DateTimeWithAggregatesFilter<"Store"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Store"> | Date | string
   }
 
   export type StockWhereInput = {
@@ -12746,7 +16431,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Stock"> | Date | string
     updatedAt?: DateTimeFilter<"Stock"> | Date | string
     products?: XOR<ProductScalarRelationFilter, ProductWhereInput>
-    stores?: StoreListRelationFilter
+    storeStocks?: StoreStockListRelationFilter
   }
 
   export type StockOrderByWithRelationInput = {
@@ -12759,7 +16444,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     products?: ProductOrderByWithRelationInput
-    stores?: StoreOrderByRelationAggregateInput
+    storeStocks?: StoreStockOrderByRelationAggregateInput
   }
 
   export type StockWhereUniqueInput = Prisma.AtLeast<{
@@ -12775,7 +16460,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Stock"> | Date | string
     updatedAt?: DateTimeFilter<"Stock"> | Date | string
     products?: XOR<ProductScalarRelationFilter, ProductWhereInput>
-    stores?: StoreListRelationFilter
+    storeStocks?: StoreStockListRelationFilter
   }, "id">
 
   export type StockOrderByWithAggregationInput = {
@@ -12808,6 +16493,55 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Stock"> | Date | string
   }
 
+  export type StoreStockWhereInput = {
+    AND?: StoreStockWhereInput | StoreStockWhereInput[]
+    OR?: StoreStockWhereInput[]
+    NOT?: StoreStockWhereInput | StoreStockWhereInput[]
+    id?: StringFilter<"StoreStock"> | string
+    storeId?: StringFilter<"StoreStock"> | string
+    stockId?: StringFilter<"StoreStock"> | string
+    store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
+    stock?: XOR<StockScalarRelationFilter, StockWhereInput>
+  }
+
+  export type StoreStockOrderByWithRelationInput = {
+    id?: SortOrder
+    storeId?: SortOrder
+    stockId?: SortOrder
+    store?: StoreOrderByWithRelationInput
+    stock?: StockOrderByWithRelationInput
+  }
+
+  export type StoreStockWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    storeId_stockId?: StoreStockStoreIdStockIdCompoundUniqueInput
+    AND?: StoreStockWhereInput | StoreStockWhereInput[]
+    OR?: StoreStockWhereInput[]
+    NOT?: StoreStockWhereInput | StoreStockWhereInput[]
+    storeId?: StringFilter<"StoreStock"> | string
+    stockId?: StringFilter<"StoreStock"> | string
+    store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
+    stock?: XOR<StockScalarRelationFilter, StockWhereInput>
+  }, "id" | "storeId_stockId">
+
+  export type StoreStockOrderByWithAggregationInput = {
+    id?: SortOrder
+    storeId?: SortOrder
+    stockId?: SortOrder
+    _count?: StoreStockCountOrderByAggregateInput
+    _max?: StoreStockMaxOrderByAggregateInput
+    _min?: StoreStockMinOrderByAggregateInput
+  }
+
+  export type StoreStockScalarWhereWithAggregatesInput = {
+    AND?: StoreStockScalarWhereWithAggregatesInput | StoreStockScalarWhereWithAggregatesInput[]
+    OR?: StoreStockScalarWhereWithAggregatesInput[]
+    NOT?: StoreStockScalarWhereWithAggregatesInput | StoreStockScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StoreStock"> | string
+    storeId?: StringWithAggregatesFilter<"StoreStock"> | string
+    stockId?: StringWithAggregatesFilter<"StoreStock"> | string
+  }
+
   export type CustomerWhereInput = {
     AND?: CustomerWhereInput | CustomerWhereInput[]
     OR?: CustomerWhereInput[]
@@ -12818,6 +16552,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Customer"> | Date | string
     updatedAt?: DateTimeFilter<"Customer"> | Date | string
     customerOrganization?: CustomerOrganizationListRelationFilter
+    quotations?: QuotationListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
@@ -12827,6 +16562,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     customerOrganization?: CustomerOrganizationOrderByRelationAggregateInput
+    quotations?: QuotationOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -12839,6 +16575,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Customer"> | Date | string
     updatedAt?: DateTimeFilter<"Customer"> | Date | string
     customerOrganization?: CustomerOrganizationListRelationFilter
+    quotations?: QuotationListRelationFilter
   }, "id">
 
   export type CustomerOrderByWithAggregationInput = {
@@ -13004,6 +16741,146 @@ export namespace Prisma {
     customerOrganizationId?: StringWithAggregatesFilter<"CustomerOrganizationDepartment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"CustomerOrganizationDepartment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"CustomerOrganizationDepartment"> | Date | string
+  }
+
+  export type QuotationWhereInput = {
+    AND?: QuotationWhereInput | QuotationWhereInput[]
+    OR?: QuotationWhereInput[]
+    NOT?: QuotationWhereInput | QuotationWhereInput[]
+    id?: StringFilter<"Quotation"> | string
+    quoteId?: StringFilter<"Quotation"> | string
+    date?: DateTimeFilter<"Quotation"> | Date | string
+    customerId?: StringFilter<"Quotation"> | string
+    createdAt?: DateTimeFilter<"Quotation"> | Date | string
+    updatedAt?: DateTimeFilter<"Quotation"> | Date | string
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    items?: QuotationItemListRelationFilter
+  }
+
+  export type QuotationOrderByWithRelationInput = {
+    id?: SortOrder
+    quoteId?: SortOrder
+    date?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customer?: CustomerOrderByWithRelationInput
+    items?: QuotationItemOrderByRelationAggregateInput
+  }
+
+  export type QuotationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    quoteId?: string
+    AND?: QuotationWhereInput | QuotationWhereInput[]
+    OR?: QuotationWhereInput[]
+    NOT?: QuotationWhereInput | QuotationWhereInput[]
+    date?: DateTimeFilter<"Quotation"> | Date | string
+    customerId?: StringFilter<"Quotation"> | string
+    createdAt?: DateTimeFilter<"Quotation"> | Date | string
+    updatedAt?: DateTimeFilter<"Quotation"> | Date | string
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    items?: QuotationItemListRelationFilter
+  }, "id" | "quoteId">
+
+  export type QuotationOrderByWithAggregationInput = {
+    id?: SortOrder
+    quoteId?: SortOrder
+    date?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: QuotationCountOrderByAggregateInput
+    _max?: QuotationMaxOrderByAggregateInput
+    _min?: QuotationMinOrderByAggregateInput
+  }
+
+  export type QuotationScalarWhereWithAggregatesInput = {
+    AND?: QuotationScalarWhereWithAggregatesInput | QuotationScalarWhereWithAggregatesInput[]
+    OR?: QuotationScalarWhereWithAggregatesInput[]
+    NOT?: QuotationScalarWhereWithAggregatesInput | QuotationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Quotation"> | string
+    quoteId?: StringWithAggregatesFilter<"Quotation"> | string
+    date?: DateTimeWithAggregatesFilter<"Quotation"> | Date | string
+    customerId?: StringWithAggregatesFilter<"Quotation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Quotation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Quotation"> | Date | string
+  }
+
+  export type QuotationItemWhereInput = {
+    AND?: QuotationItemWhereInput | QuotationItemWhereInput[]
+    OR?: QuotationItemWhereInput[]
+    NOT?: QuotationItemWhereInput | QuotationItemWhereInput[]
+    id?: StringFilter<"QuotationItem"> | string
+    quotationId?: StringFilter<"QuotationItem"> | string
+    productCode?: StringFilter<"QuotationItem"> | string
+    description?: StringFilter<"QuotationItem"> | string
+    unitPrice?: FloatFilter<"QuotationItem"> | number
+    oum?: StringFilter<"QuotationItem"> | string
+    qty?: IntFilter<"QuotationItem"> | number
+    createdAt?: DateTimeFilter<"QuotationItem"> | Date | string
+    updatedAt?: DateTimeFilter<"QuotationItem"> | Date | string
+    quotation?: XOR<QuotationScalarRelationFilter, QuotationWhereInput>
+  }
+
+  export type QuotationItemOrderByWithRelationInput = {
+    id?: SortOrder
+    quotationId?: SortOrder
+    productCode?: SortOrder
+    description?: SortOrder
+    unitPrice?: SortOrder
+    oum?: SortOrder
+    qty?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    quotation?: QuotationOrderByWithRelationInput
+  }
+
+  export type QuotationItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QuotationItemWhereInput | QuotationItemWhereInput[]
+    OR?: QuotationItemWhereInput[]
+    NOT?: QuotationItemWhereInput | QuotationItemWhereInput[]
+    quotationId?: StringFilter<"QuotationItem"> | string
+    productCode?: StringFilter<"QuotationItem"> | string
+    description?: StringFilter<"QuotationItem"> | string
+    unitPrice?: FloatFilter<"QuotationItem"> | number
+    oum?: StringFilter<"QuotationItem"> | string
+    qty?: IntFilter<"QuotationItem"> | number
+    createdAt?: DateTimeFilter<"QuotationItem"> | Date | string
+    updatedAt?: DateTimeFilter<"QuotationItem"> | Date | string
+    quotation?: XOR<QuotationScalarRelationFilter, QuotationWhereInput>
+  }, "id">
+
+  export type QuotationItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    quotationId?: SortOrder
+    productCode?: SortOrder
+    description?: SortOrder
+    unitPrice?: SortOrder
+    oum?: SortOrder
+    qty?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: QuotationItemCountOrderByAggregateInput
+    _avg?: QuotationItemAvgOrderByAggregateInput
+    _max?: QuotationItemMaxOrderByAggregateInput
+    _min?: QuotationItemMinOrderByAggregateInput
+    _sum?: QuotationItemSumOrderByAggregateInput
+  }
+
+  export type QuotationItemScalarWhereWithAggregatesInput = {
+    AND?: QuotationItemScalarWhereWithAggregatesInput | QuotationItemScalarWhereWithAggregatesInput[]
+    OR?: QuotationItemScalarWhereWithAggregatesInput[]
+    NOT?: QuotationItemScalarWhereWithAggregatesInput | QuotationItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuotationItem"> | string
+    quotationId?: StringWithAggregatesFilter<"QuotationItem"> | string
+    productCode?: StringWithAggregatesFilter<"QuotationItem"> | string
+    description?: StringWithAggregatesFilter<"QuotationItem"> | string
+    unitPrice?: FloatWithAggregatesFilter<"QuotationItem"> | number
+    oum?: StringWithAggregatesFilter<"QuotationItem"> | string
+    qty?: IntWithAggregatesFilter<"QuotationItem"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"QuotationItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"QuotationItem"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -13298,7 +17175,7 @@ export namespace Prisma {
     oum: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    supplier: SupplierCreateNestedOneWithoutProductsInput
+    supplier?: SupplierCreateNestedOneWithoutProductsInput
     stocks?: StockCreateNestedManyWithoutProductsInput
   }
 
@@ -13308,7 +17185,7 @@ export namespace Prisma {
     description: string
     unitPrice: number
     oum: string
-    supplierId: string
+    supplierId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     stocks?: StockUncheckedCreateNestedManyWithoutProductsInput
@@ -13318,11 +17195,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    supplier?: SupplierUpdateOneRequiredWithoutProductsNestedInput
+    supplier?: SupplierUpdateOneWithoutProductsNestedInput
     stocks?: StockUpdateManyWithoutProductsNestedInput
   }
 
@@ -13330,9 +17207,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
-    supplierId?: StringFieldUpdateOperationsInput | string
+    supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     stocks?: StockUncheckedUpdateManyWithoutProductsNestedInput
@@ -13344,7 +17221,7 @@ export namespace Prisma {
     description: string
     unitPrice: number
     oum: string
-    supplierId: string
+    supplierId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13353,7 +17230,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13363,9 +17240,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
-    supplierId?: StringFieldUpdateOperationsInput | string
+    supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13380,9 +17257,9 @@ export namespace Prisma {
     city: string
     state: string
     createdAt?: Date | string
-    updateAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutStoreInput
-    stocks?: StockCreateNestedManyWithoutStoresInput
+    storeStocks?: StoreStockCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUncheckedCreateInput = {
@@ -13396,8 +17273,8 @@ export namespace Prisma {
     state: string
     userId: string
     createdAt?: Date | string
-    updateAt?: Date | string
-    stocks?: StockUncheckedCreateNestedManyWithoutStoresInput
+    updatedAt?: Date | string
+    storeStocks?: StoreStockUncheckedCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUpdateInput = {
@@ -13410,9 +17287,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutStoreNestedInput
-    stocks?: StockUpdateManyWithoutStoresNestedInput
+    storeStocks?: StoreStockUpdateManyWithoutStoreNestedInput
   }
 
   export type StoreUncheckedUpdateInput = {
@@ -13426,8 +17303,8 @@ export namespace Prisma {
     state?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    stocks?: StockUncheckedUpdateManyWithoutStoresNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeStocks?: StoreStockUncheckedUpdateManyWithoutStoreNestedInput
   }
 
   export type StoreCreateManyInput = {
@@ -13441,7 +17318,7 @@ export namespace Prisma {
     state: string
     userId: string
     createdAt?: Date | string
-    updateAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type StoreUpdateManyMutationInput = {
@@ -13454,7 +17331,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StoreUncheckedUpdateManyInput = {
@@ -13468,7 +17345,7 @@ export namespace Prisma {
     state?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StockCreateInput = {
@@ -13480,7 +17357,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     products: ProductCreateNestedOneWithoutStocksInput
-    stores?: StoreCreateNestedManyWithoutStocksInput
+    storeStocks?: StoreStockCreateNestedManyWithoutStockInput
   }
 
   export type StockUncheckedCreateInput = {
@@ -13492,7 +17369,7 @@ export namespace Prisma {
     productId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    stores?: StoreUncheckedCreateNestedManyWithoutStocksInput
+    storeStocks?: StoreStockUncheckedCreateNestedManyWithoutStockInput
   }
 
   export type StockUpdateInput = {
@@ -13504,7 +17381,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateOneRequiredWithoutStocksNestedInput
-    stores?: StoreUpdateManyWithoutStocksNestedInput
+    storeStocks?: StoreStockUpdateManyWithoutStockNestedInput
   }
 
   export type StockUncheckedUpdateInput = {
@@ -13516,7 +17393,7 @@ export namespace Prisma {
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    stores?: StoreUncheckedUpdateManyWithoutStocksNestedInput
+    storeStocks?: StoreStockUncheckedUpdateManyWithoutStockNestedInput
   }
 
   export type StockCreateManyInput = {
@@ -13551,6 +17428,46 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StoreStockCreateInput = {
+    id?: string
+    store: StoreCreateNestedOneWithoutStoreStocksInput
+    stock: StockCreateNestedOneWithoutStoreStocksInput
+  }
+
+  export type StoreStockUncheckedCreateInput = {
+    id?: string
+    storeId: string
+    stockId: string
+  }
+
+  export type StoreStockUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    store?: StoreUpdateOneRequiredWithoutStoreStocksNestedInput
+    stock?: StockUpdateOneRequiredWithoutStoreStocksNestedInput
+  }
+
+  export type StoreStockUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
+    stockId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StoreStockCreateManyInput = {
+    id?: string
+    storeId: string
+    stockId: string
+  }
+
+  export type StoreStockUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StoreStockUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
+    stockId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type CustomerCreateInput = {
     id?: string
     title: string
@@ -13558,6 +17475,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     customerOrganization?: CustomerOrganizationCreateNestedManyWithoutCustomerInput
+    quotations?: QuotationCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateInput = {
@@ -13567,6 +17485,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     customerOrganization?: CustomerOrganizationUncheckedCreateNestedManyWithoutCustomerInput
+    quotations?: QuotationUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUpdateInput = {
@@ -13576,6 +17495,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerOrganization?: CustomerOrganizationUpdateManyWithoutCustomerNestedInput
+    quotations?: QuotationUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
@@ -13585,6 +17505,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerOrganization?: CustomerOrganizationUncheckedUpdateManyWithoutCustomerNestedInput
+    quotations?: QuotationUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateManyInput = {
@@ -13768,6 +17689,155 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
     customerOrganizationId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationCreateInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: CustomerCreateNestedOneWithoutQuotationsInput
+    items?: QuotationItemCreateNestedManyWithoutQuotationInput
+  }
+
+  export type QuotationUncheckedCreateInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    customerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  }
+
+  export type QuotationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneRequiredWithoutQuotationsNestedInput
+    items?: QuotationItemUpdateManyWithoutQuotationNestedInput
+  }
+
+  export type QuotationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  }
+
+  export type QuotationCreateManyInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    customerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationItemCreateInput = {
+    id?: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quotation: QuotationCreateNestedOneWithoutItemsInput
+  }
+
+  export type QuotationItemUncheckedCreateInput = {
+    id?: string
+    quotationId: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quotation?: QuotationUpdateOneRequiredWithoutItemsNestedInput
+  }
+
+  export type QuotationItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quotationId?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationItemCreateManyInput = {
+    id?: string
+    quotationId: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quotationId?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14049,20 +18119,20 @@ export namespace Prisma {
     country?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type SupplierScalarRelationFilter = {
-    is?: SupplierWhereInput
-    isNot?: SupplierWhereInput
+  export type SupplierNullableScalarRelationFilter = {
+    is?: SupplierWhereInput | null
+    isNot?: SupplierWhereInput | null
   }
 
   export type StockListRelationFilter = {
@@ -14116,20 +18186,30 @@ export namespace Prisma {
     unitPrice?: SortOrder
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type StoreStockListRelationFilter = {
+    every?: StoreStockWhereInput
+    some?: StoreStockWhereInput
+    none?: StoreStockWhereInput
+  }
+
+  export type StoreStockOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type StoreCountOrderByAggregateInput = {
@@ -14143,7 +18223,7 @@ export namespace Prisma {
     state?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    updateAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StoreMaxOrderByAggregateInput = {
@@ -14157,7 +18237,7 @@ export namespace Prisma {
     state?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    updateAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StoreMinOrderByAggregateInput = {
@@ -14171,7 +18251,7 @@ export namespace Prisma {
     state?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    updateAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -14185,19 +18265,20 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type ProductScalarRelationFilter = {
     is?: ProductWhereInput
     isNot?: ProductWhereInput
-  }
-
-  export type StoreListRelationFilter = {
-    every?: StoreWhereInput
-    some?: StoreWhereInput
-    none?: StoreWhereInput
-  }
-
-  export type StoreOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type StockCountOrderByAggregateInput = {
@@ -14255,13 +18336,72 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StoreScalarRelationFilter = {
+    is?: StoreWhereInput
+    isNot?: StoreWhereInput
+  }
+
+  export type StockScalarRelationFilter = {
+    is?: StockWhereInput
+    isNot?: StockWhereInput
+  }
+
+  export type StoreStockStoreIdStockIdCompoundUniqueInput = {
+    storeId: string
+    stockId: string
+  }
+
+  export type StoreStockCountOrderByAggregateInput = {
+    id?: SortOrder
+    storeId?: SortOrder
+    stockId?: SortOrder
+  }
+
+  export type StoreStockMaxOrderByAggregateInput = {
+    id?: SortOrder
+    storeId?: SortOrder
+    stockId?: SortOrder
+  }
+
+  export type StoreStockMinOrderByAggregateInput = {
+    id?: SortOrder
+    storeId?: SortOrder
+    stockId?: SortOrder
+  }
+
   export type CustomerOrganizationListRelationFilter = {
     every?: CustomerOrganizationWhereInput
     some?: CustomerOrganizationWhereInput
     none?: CustomerOrganizationWhereInput
   }
 
+  export type QuotationListRelationFilter = {
+    every?: QuotationWhereInput
+    some?: QuotationWhereInput
+    none?: QuotationWhereInput
+  }
+
   export type CustomerOrganizationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuotationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14378,6 +18518,99 @@ export namespace Prisma {
     customerOrganizationId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type CustomerScalarRelationFilter = {
+    is?: CustomerWhereInput
+    isNot?: CustomerWhereInput
+  }
+
+  export type QuotationItemListRelationFilter = {
+    every?: QuotationItemWhereInput
+    some?: QuotationItemWhereInput
+    none?: QuotationItemWhereInput
+  }
+
+  export type QuotationItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuotationCountOrderByAggregateInput = {
+    id?: SortOrder
+    quoteId?: SortOrder
+    date?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuotationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    quoteId?: SortOrder
+    date?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuotationMinOrderByAggregateInput = {
+    id?: SortOrder
+    quoteId?: SortOrder
+    date?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuotationScalarRelationFilter = {
+    is?: QuotationWhereInput
+    isNot?: QuotationWhereInput
+  }
+
+  export type QuotationItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    quotationId?: SortOrder
+    productCode?: SortOrder
+    description?: SortOrder
+    unitPrice?: SortOrder
+    oum?: SortOrder
+    qty?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuotationItemAvgOrderByAggregateInput = {
+    unitPrice?: SortOrder
+    qty?: SortOrder
+  }
+
+  export type QuotationItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    quotationId?: SortOrder
+    productCode?: SortOrder
+    description?: SortOrder
+    unitPrice?: SortOrder
+    oum?: SortOrder
+    qty?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuotationItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    quotationId?: SortOrder
+    productCode?: SortOrder
+    description?: SortOrder
+    unitPrice?: SortOrder
+    oum?: SortOrder
+    qty?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuotationItemSumOrderByAggregateInput = {
+    unitPrice?: SortOrder
+    qty?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -14550,7 +18783,7 @@ export namespace Prisma {
     connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
+  export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
@@ -14558,10 +18791,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type SupplierUpdateOneRequiredWithoutProductsNestedInput = {
+  export type SupplierUpdateOneWithoutProductsNestedInput = {
     create?: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
     connectOrCreate?: SupplierCreateOrConnectWithoutProductsInput
     upsert?: SupplierUpsertWithoutProductsInput
+    disconnect?: SupplierWhereInput | boolean
+    delete?: SupplierWhereInput | boolean
     connect?: SupplierWhereUniqueInput
     update?: XOR<XOR<SupplierUpdateToOneWithWhereWithoutProductsInput, SupplierUpdateWithoutProductsInput>, SupplierUncheckedUpdateWithoutProductsInput>
   }
@@ -14600,16 +18835,18 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type StockCreateNestedManyWithoutStoresInput = {
-    create?: XOR<StockCreateWithoutStoresInput, StockUncheckedCreateWithoutStoresInput> | StockCreateWithoutStoresInput[] | StockUncheckedCreateWithoutStoresInput[]
-    connectOrCreate?: StockCreateOrConnectWithoutStoresInput | StockCreateOrConnectWithoutStoresInput[]
-    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  export type StoreStockCreateNestedManyWithoutStoreInput = {
+    create?: XOR<StoreStockCreateWithoutStoreInput, StoreStockUncheckedCreateWithoutStoreInput> | StoreStockCreateWithoutStoreInput[] | StoreStockUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStoreInput | StoreStockCreateOrConnectWithoutStoreInput[]
+    createMany?: StoreStockCreateManyStoreInputEnvelope
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
   }
 
-  export type StockUncheckedCreateNestedManyWithoutStoresInput = {
-    create?: XOR<StockCreateWithoutStoresInput, StockUncheckedCreateWithoutStoresInput> | StockCreateWithoutStoresInput[] | StockUncheckedCreateWithoutStoresInput[]
-    connectOrCreate?: StockCreateOrConnectWithoutStoresInput | StockCreateOrConnectWithoutStoresInput[]
-    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  export type StoreStockUncheckedCreateNestedManyWithoutStoreInput = {
+    create?: XOR<StoreStockCreateWithoutStoreInput, StoreStockUncheckedCreateWithoutStoreInput> | StoreStockCreateWithoutStoreInput[] | StoreStockUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStoreInput | StoreStockCreateOrConnectWithoutStoreInput[]
+    createMany?: StoreStockCreateManyStoreInputEnvelope
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutStoreNestedInput = {
@@ -14620,30 +18857,32 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStoreInput, UserUpdateWithoutStoreInput>, UserUncheckedUpdateWithoutStoreInput>
   }
 
-  export type StockUpdateManyWithoutStoresNestedInput = {
-    create?: XOR<StockCreateWithoutStoresInput, StockUncheckedCreateWithoutStoresInput> | StockCreateWithoutStoresInput[] | StockUncheckedCreateWithoutStoresInput[]
-    connectOrCreate?: StockCreateOrConnectWithoutStoresInput | StockCreateOrConnectWithoutStoresInput[]
-    upsert?: StockUpsertWithWhereUniqueWithoutStoresInput | StockUpsertWithWhereUniqueWithoutStoresInput[]
-    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    update?: StockUpdateWithWhereUniqueWithoutStoresInput | StockUpdateWithWhereUniqueWithoutStoresInput[]
-    updateMany?: StockUpdateManyWithWhereWithoutStoresInput | StockUpdateManyWithWhereWithoutStoresInput[]
-    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  export type StoreStockUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<StoreStockCreateWithoutStoreInput, StoreStockUncheckedCreateWithoutStoreInput> | StoreStockCreateWithoutStoreInput[] | StoreStockUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStoreInput | StoreStockCreateOrConnectWithoutStoreInput[]
+    upsert?: StoreStockUpsertWithWhereUniqueWithoutStoreInput | StoreStockUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: StoreStockCreateManyStoreInputEnvelope
+    set?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    disconnect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    delete?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    update?: StoreStockUpdateWithWhereUniqueWithoutStoreInput | StoreStockUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: StoreStockUpdateManyWithWhereWithoutStoreInput | StoreStockUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: StoreStockScalarWhereInput | StoreStockScalarWhereInput[]
   }
 
-  export type StockUncheckedUpdateManyWithoutStoresNestedInput = {
-    create?: XOR<StockCreateWithoutStoresInput, StockUncheckedCreateWithoutStoresInput> | StockCreateWithoutStoresInput[] | StockUncheckedCreateWithoutStoresInput[]
-    connectOrCreate?: StockCreateOrConnectWithoutStoresInput | StockCreateOrConnectWithoutStoresInput[]
-    upsert?: StockUpsertWithWhereUniqueWithoutStoresInput | StockUpsertWithWhereUniqueWithoutStoresInput[]
-    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
-    update?: StockUpdateWithWhereUniqueWithoutStoresInput | StockUpdateWithWhereUniqueWithoutStoresInput[]
-    updateMany?: StockUpdateManyWithWhereWithoutStoresInput | StockUpdateManyWithWhereWithoutStoresInput[]
-    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  export type StoreStockUncheckedUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<StoreStockCreateWithoutStoreInput, StoreStockUncheckedCreateWithoutStoreInput> | StoreStockCreateWithoutStoreInput[] | StoreStockUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStoreInput | StoreStockCreateOrConnectWithoutStoreInput[]
+    upsert?: StoreStockUpsertWithWhereUniqueWithoutStoreInput | StoreStockUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: StoreStockCreateManyStoreInputEnvelope
+    set?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    disconnect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    delete?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    update?: StoreStockUpdateWithWhereUniqueWithoutStoreInput | StoreStockUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: StoreStockUpdateManyWithWhereWithoutStoreInput | StoreStockUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: StoreStockScalarWhereInput | StoreStockScalarWhereInput[]
   }
 
   export type ProductCreateNestedOneWithoutStocksInput = {
@@ -14652,20 +18891,30 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput
   }
 
-  export type StoreCreateNestedManyWithoutStocksInput = {
-    create?: XOR<StoreCreateWithoutStocksInput, StoreUncheckedCreateWithoutStocksInput> | StoreCreateWithoutStocksInput[] | StoreUncheckedCreateWithoutStocksInput[]
-    connectOrCreate?: StoreCreateOrConnectWithoutStocksInput | StoreCreateOrConnectWithoutStocksInput[]
-    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+  export type StoreStockCreateNestedManyWithoutStockInput = {
+    create?: XOR<StoreStockCreateWithoutStockInput, StoreStockUncheckedCreateWithoutStockInput> | StoreStockCreateWithoutStockInput[] | StoreStockUncheckedCreateWithoutStockInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStockInput | StoreStockCreateOrConnectWithoutStockInput[]
+    createMany?: StoreStockCreateManyStockInputEnvelope
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
   }
 
-  export type StoreUncheckedCreateNestedManyWithoutStocksInput = {
-    create?: XOR<StoreCreateWithoutStocksInput, StoreUncheckedCreateWithoutStocksInput> | StoreCreateWithoutStocksInput[] | StoreUncheckedCreateWithoutStocksInput[]
-    connectOrCreate?: StoreCreateOrConnectWithoutStocksInput | StoreCreateOrConnectWithoutStocksInput[]
-    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+  export type StoreStockUncheckedCreateNestedManyWithoutStockInput = {
+    create?: XOR<StoreStockCreateWithoutStockInput, StoreStockUncheckedCreateWithoutStockInput> | StoreStockCreateWithoutStockInput[] | StoreStockUncheckedCreateWithoutStockInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStockInput | StoreStockCreateOrConnectWithoutStockInput[]
+    createMany?: StoreStockCreateManyStockInputEnvelope
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type ProductUpdateOneRequiredWithoutStocksNestedInput = {
@@ -14676,30 +18925,60 @@ export namespace Prisma {
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutStocksInput, ProductUpdateWithoutStocksInput>, ProductUncheckedUpdateWithoutStocksInput>
   }
 
-  export type StoreUpdateManyWithoutStocksNestedInput = {
-    create?: XOR<StoreCreateWithoutStocksInput, StoreUncheckedCreateWithoutStocksInput> | StoreCreateWithoutStocksInput[] | StoreUncheckedCreateWithoutStocksInput[]
-    connectOrCreate?: StoreCreateOrConnectWithoutStocksInput | StoreCreateOrConnectWithoutStocksInput[]
-    upsert?: StoreUpsertWithWhereUniqueWithoutStocksInput | StoreUpsertWithWhereUniqueWithoutStocksInput[]
-    set?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    disconnect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    delete?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    update?: StoreUpdateWithWhereUniqueWithoutStocksInput | StoreUpdateWithWhereUniqueWithoutStocksInput[]
-    updateMany?: StoreUpdateManyWithWhereWithoutStocksInput | StoreUpdateManyWithWhereWithoutStocksInput[]
-    deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
+  export type StoreStockUpdateManyWithoutStockNestedInput = {
+    create?: XOR<StoreStockCreateWithoutStockInput, StoreStockUncheckedCreateWithoutStockInput> | StoreStockCreateWithoutStockInput[] | StoreStockUncheckedCreateWithoutStockInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStockInput | StoreStockCreateOrConnectWithoutStockInput[]
+    upsert?: StoreStockUpsertWithWhereUniqueWithoutStockInput | StoreStockUpsertWithWhereUniqueWithoutStockInput[]
+    createMany?: StoreStockCreateManyStockInputEnvelope
+    set?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    disconnect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    delete?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    update?: StoreStockUpdateWithWhereUniqueWithoutStockInput | StoreStockUpdateWithWhereUniqueWithoutStockInput[]
+    updateMany?: StoreStockUpdateManyWithWhereWithoutStockInput | StoreStockUpdateManyWithWhereWithoutStockInput[]
+    deleteMany?: StoreStockScalarWhereInput | StoreStockScalarWhereInput[]
   }
 
-  export type StoreUncheckedUpdateManyWithoutStocksNestedInput = {
-    create?: XOR<StoreCreateWithoutStocksInput, StoreUncheckedCreateWithoutStocksInput> | StoreCreateWithoutStocksInput[] | StoreUncheckedCreateWithoutStocksInput[]
-    connectOrCreate?: StoreCreateOrConnectWithoutStocksInput | StoreCreateOrConnectWithoutStocksInput[]
-    upsert?: StoreUpsertWithWhereUniqueWithoutStocksInput | StoreUpsertWithWhereUniqueWithoutStocksInput[]
-    set?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    disconnect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    delete?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
-    update?: StoreUpdateWithWhereUniqueWithoutStocksInput | StoreUpdateWithWhereUniqueWithoutStocksInput[]
-    updateMany?: StoreUpdateManyWithWhereWithoutStocksInput | StoreUpdateManyWithWhereWithoutStocksInput[]
-    deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
+  export type StoreStockUncheckedUpdateManyWithoutStockNestedInput = {
+    create?: XOR<StoreStockCreateWithoutStockInput, StoreStockUncheckedCreateWithoutStockInput> | StoreStockCreateWithoutStockInput[] | StoreStockUncheckedCreateWithoutStockInput[]
+    connectOrCreate?: StoreStockCreateOrConnectWithoutStockInput | StoreStockCreateOrConnectWithoutStockInput[]
+    upsert?: StoreStockUpsertWithWhereUniqueWithoutStockInput | StoreStockUpsertWithWhereUniqueWithoutStockInput[]
+    createMany?: StoreStockCreateManyStockInputEnvelope
+    set?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    disconnect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    delete?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    connect?: StoreStockWhereUniqueInput | StoreStockWhereUniqueInput[]
+    update?: StoreStockUpdateWithWhereUniqueWithoutStockInput | StoreStockUpdateWithWhereUniqueWithoutStockInput[]
+    updateMany?: StoreStockUpdateManyWithWhereWithoutStockInput | StoreStockUpdateManyWithWhereWithoutStockInput[]
+    deleteMany?: StoreStockScalarWhereInput | StoreStockScalarWhereInput[]
+  }
+
+  export type StoreCreateNestedOneWithoutStoreStocksInput = {
+    create?: XOR<StoreCreateWithoutStoreStocksInput, StoreUncheckedCreateWithoutStoreStocksInput>
+    connectOrCreate?: StoreCreateOrConnectWithoutStoreStocksInput
+    connect?: StoreWhereUniqueInput
+  }
+
+  export type StockCreateNestedOneWithoutStoreStocksInput = {
+    create?: XOR<StockCreateWithoutStoreStocksInput, StockUncheckedCreateWithoutStoreStocksInput>
+    connectOrCreate?: StockCreateOrConnectWithoutStoreStocksInput
+    connect?: StockWhereUniqueInput
+  }
+
+  export type StoreUpdateOneRequiredWithoutStoreStocksNestedInput = {
+    create?: XOR<StoreCreateWithoutStoreStocksInput, StoreUncheckedCreateWithoutStoreStocksInput>
+    connectOrCreate?: StoreCreateOrConnectWithoutStoreStocksInput
+    upsert?: StoreUpsertWithoutStoreStocksInput
+    connect?: StoreWhereUniqueInput
+    update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutStoreStocksInput, StoreUpdateWithoutStoreStocksInput>, StoreUncheckedUpdateWithoutStoreStocksInput>
+  }
+
+  export type StockUpdateOneRequiredWithoutStoreStocksNestedInput = {
+    create?: XOR<StockCreateWithoutStoreStocksInput, StockUncheckedCreateWithoutStoreStocksInput>
+    connectOrCreate?: StockCreateOrConnectWithoutStoreStocksInput
+    upsert?: StockUpsertWithoutStoreStocksInput
+    connect?: StockWhereUniqueInput
+    update?: XOR<XOR<StockUpdateToOneWithWhereWithoutStoreStocksInput, StockUpdateWithoutStoreStocksInput>, StockUncheckedUpdateWithoutStoreStocksInput>
   }
 
   export type CustomerOrganizationCreateNestedManyWithoutCustomerInput = {
@@ -14708,10 +18987,24 @@ export namespace Prisma {
     connect?: CustomerOrganizationWhereUniqueInput | CustomerOrganizationWhereUniqueInput[]
   }
 
+  export type QuotationCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<QuotationCreateWithoutCustomerInput, QuotationUncheckedCreateWithoutCustomerInput> | QuotationCreateWithoutCustomerInput[] | QuotationUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: QuotationCreateOrConnectWithoutCustomerInput | QuotationCreateOrConnectWithoutCustomerInput[]
+    createMany?: QuotationCreateManyCustomerInputEnvelope
+    connect?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+  }
+
   export type CustomerOrganizationUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<CustomerOrganizationCreateWithoutCustomerInput, CustomerOrganizationUncheckedCreateWithoutCustomerInput> | CustomerOrganizationCreateWithoutCustomerInput[] | CustomerOrganizationUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: CustomerOrganizationCreateOrConnectWithoutCustomerInput | CustomerOrganizationCreateOrConnectWithoutCustomerInput[]
     connect?: CustomerOrganizationWhereUniqueInput | CustomerOrganizationWhereUniqueInput[]
+  }
+
+  export type QuotationUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<QuotationCreateWithoutCustomerInput, QuotationUncheckedCreateWithoutCustomerInput> | QuotationCreateWithoutCustomerInput[] | QuotationUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: QuotationCreateOrConnectWithoutCustomerInput | QuotationCreateOrConnectWithoutCustomerInput[]
+    createMany?: QuotationCreateManyCustomerInputEnvelope
+    connect?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
   }
 
   export type CustomerOrganizationUpdateManyWithoutCustomerNestedInput = {
@@ -14727,6 +19020,20 @@ export namespace Prisma {
     deleteMany?: CustomerOrganizationScalarWhereInput | CustomerOrganizationScalarWhereInput[]
   }
 
+  export type QuotationUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<QuotationCreateWithoutCustomerInput, QuotationUncheckedCreateWithoutCustomerInput> | QuotationCreateWithoutCustomerInput[] | QuotationUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: QuotationCreateOrConnectWithoutCustomerInput | QuotationCreateOrConnectWithoutCustomerInput[]
+    upsert?: QuotationUpsertWithWhereUniqueWithoutCustomerInput | QuotationUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: QuotationCreateManyCustomerInputEnvelope
+    set?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    disconnect?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    delete?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    connect?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    update?: QuotationUpdateWithWhereUniqueWithoutCustomerInput | QuotationUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: QuotationUpdateManyWithWhereWithoutCustomerInput | QuotationUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: QuotationScalarWhereInput | QuotationScalarWhereInput[]
+  }
+
   export type CustomerOrganizationUncheckedUpdateManyWithoutCustomerNestedInput = {
     create?: XOR<CustomerOrganizationCreateWithoutCustomerInput, CustomerOrganizationUncheckedCreateWithoutCustomerInput> | CustomerOrganizationCreateWithoutCustomerInput[] | CustomerOrganizationUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: CustomerOrganizationCreateOrConnectWithoutCustomerInput | CustomerOrganizationCreateOrConnectWithoutCustomerInput[]
@@ -14738,6 +19045,20 @@ export namespace Prisma {
     update?: CustomerOrganizationUpdateWithWhereUniqueWithoutCustomerInput | CustomerOrganizationUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: CustomerOrganizationUpdateManyWithWhereWithoutCustomerInput | CustomerOrganizationUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: CustomerOrganizationScalarWhereInput | CustomerOrganizationScalarWhereInput[]
+  }
+
+  export type QuotationUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<QuotationCreateWithoutCustomerInput, QuotationUncheckedCreateWithoutCustomerInput> | QuotationCreateWithoutCustomerInput[] | QuotationUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: QuotationCreateOrConnectWithoutCustomerInput | QuotationCreateOrConnectWithoutCustomerInput[]
+    upsert?: QuotationUpsertWithWhereUniqueWithoutCustomerInput | QuotationUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: QuotationCreateManyCustomerInputEnvelope
+    set?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    disconnect?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    delete?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    connect?: QuotationWhereUniqueInput | QuotationWhereUniqueInput[]
+    update?: QuotationUpdateWithWhereUniqueWithoutCustomerInput | QuotationUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: QuotationUpdateManyWithWhereWithoutCustomerInput | QuotationUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: QuotationScalarWhereInput | QuotationScalarWhereInput[]
   }
 
   export type CustomerCreateNestedManyWithoutCustomerOrganizationInput = {
@@ -14832,6 +19153,76 @@ export namespace Prisma {
     upsert?: CustomerOrganizationUpsertWithoutDepartmentInput
     connect?: CustomerOrganizationWhereUniqueInput
     update?: XOR<XOR<CustomerOrganizationUpdateToOneWithWhereWithoutDepartmentInput, CustomerOrganizationUpdateWithoutDepartmentInput>, CustomerOrganizationUncheckedUpdateWithoutDepartmentInput>
+  }
+
+  export type CustomerCreateNestedOneWithoutQuotationsInput = {
+    create?: XOR<CustomerCreateWithoutQuotationsInput, CustomerUncheckedCreateWithoutQuotationsInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutQuotationsInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type QuotationItemCreateNestedManyWithoutQuotationInput = {
+    create?: XOR<QuotationItemCreateWithoutQuotationInput, QuotationItemUncheckedCreateWithoutQuotationInput> | QuotationItemCreateWithoutQuotationInput[] | QuotationItemUncheckedCreateWithoutQuotationInput[]
+    connectOrCreate?: QuotationItemCreateOrConnectWithoutQuotationInput | QuotationItemCreateOrConnectWithoutQuotationInput[]
+    createMany?: QuotationItemCreateManyQuotationInputEnvelope
+    connect?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+  }
+
+  export type QuotationItemUncheckedCreateNestedManyWithoutQuotationInput = {
+    create?: XOR<QuotationItemCreateWithoutQuotationInput, QuotationItemUncheckedCreateWithoutQuotationInput> | QuotationItemCreateWithoutQuotationInput[] | QuotationItemUncheckedCreateWithoutQuotationInput[]
+    connectOrCreate?: QuotationItemCreateOrConnectWithoutQuotationInput | QuotationItemCreateOrConnectWithoutQuotationInput[]
+    createMany?: QuotationItemCreateManyQuotationInputEnvelope
+    connect?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+  }
+
+  export type CustomerUpdateOneRequiredWithoutQuotationsNestedInput = {
+    create?: XOR<CustomerCreateWithoutQuotationsInput, CustomerUncheckedCreateWithoutQuotationsInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutQuotationsInput
+    upsert?: CustomerUpsertWithoutQuotationsInput
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutQuotationsInput, CustomerUpdateWithoutQuotationsInput>, CustomerUncheckedUpdateWithoutQuotationsInput>
+  }
+
+  export type QuotationItemUpdateManyWithoutQuotationNestedInput = {
+    create?: XOR<QuotationItemCreateWithoutQuotationInput, QuotationItemUncheckedCreateWithoutQuotationInput> | QuotationItemCreateWithoutQuotationInput[] | QuotationItemUncheckedCreateWithoutQuotationInput[]
+    connectOrCreate?: QuotationItemCreateOrConnectWithoutQuotationInput | QuotationItemCreateOrConnectWithoutQuotationInput[]
+    upsert?: QuotationItemUpsertWithWhereUniqueWithoutQuotationInput | QuotationItemUpsertWithWhereUniqueWithoutQuotationInput[]
+    createMany?: QuotationItemCreateManyQuotationInputEnvelope
+    set?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    disconnect?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    delete?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    connect?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    update?: QuotationItemUpdateWithWhereUniqueWithoutQuotationInput | QuotationItemUpdateWithWhereUniqueWithoutQuotationInput[]
+    updateMany?: QuotationItemUpdateManyWithWhereWithoutQuotationInput | QuotationItemUpdateManyWithWhereWithoutQuotationInput[]
+    deleteMany?: QuotationItemScalarWhereInput | QuotationItemScalarWhereInput[]
+  }
+
+  export type QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput = {
+    create?: XOR<QuotationItemCreateWithoutQuotationInput, QuotationItemUncheckedCreateWithoutQuotationInput> | QuotationItemCreateWithoutQuotationInput[] | QuotationItemUncheckedCreateWithoutQuotationInput[]
+    connectOrCreate?: QuotationItemCreateOrConnectWithoutQuotationInput | QuotationItemCreateOrConnectWithoutQuotationInput[]
+    upsert?: QuotationItemUpsertWithWhereUniqueWithoutQuotationInput | QuotationItemUpsertWithWhereUniqueWithoutQuotationInput[]
+    createMany?: QuotationItemCreateManyQuotationInputEnvelope
+    set?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    disconnect?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    delete?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    connect?: QuotationItemWhereUniqueInput | QuotationItemWhereUniqueInput[]
+    update?: QuotationItemUpdateWithWhereUniqueWithoutQuotationInput | QuotationItemUpdateWithWhereUniqueWithoutQuotationInput[]
+    updateMany?: QuotationItemUpdateManyWithWhereWithoutQuotationInput | QuotationItemUpdateManyWithWhereWithoutQuotationInput[]
+    deleteMany?: QuotationItemScalarWhereInput | QuotationItemScalarWhereInput[]
+  }
+
+  export type QuotationCreateNestedOneWithoutItemsInput = {
+    create?: XOR<QuotationCreateWithoutItemsInput, QuotationUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: QuotationCreateOrConnectWithoutItemsInput
+    connect?: QuotationWhereUniqueInput
+  }
+
+  export type QuotationUpdateOneRequiredWithoutItemsNestedInput = {
+    create?: XOR<QuotationCreateWithoutItemsInput, QuotationUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: QuotationCreateOrConnectWithoutItemsInput
+    upsert?: QuotationUpsertWithoutItemsInput
+    connect?: QuotationWhereUniqueInput
+    update?: XOR<XOR<QuotationUpdateToOneWithWhereWithoutItemsInput, QuotationUpdateWithoutItemsInput>, QuotationUncheckedUpdateWithoutItemsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -14977,22 +19368,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -15002,6 +19377,22 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -15027,6 +19418,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -15059,8 +19466,8 @@ export namespace Prisma {
     city: string
     state: string
     createdAt?: Date | string
-    updateAt?: Date | string
-    stocks?: StockCreateNestedManyWithoutStoresInput
+    updatedAt?: Date | string
+    storeStocks?: StoreStockCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUncheckedCreateWithoutUserInput = {
@@ -15073,8 +19480,8 @@ export namespace Prisma {
     city: string
     state: string
     createdAt?: Date | string
-    updateAt?: Date | string
-    stocks?: StockUncheckedCreateNestedManyWithoutStoresInput
+    updatedAt?: Date | string
+    storeStocks?: StoreStockUncheckedCreateNestedManyWithoutStoreInput
   }
 
   export type StoreCreateOrConnectWithoutUserInput = {
@@ -15128,8 +19535,8 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    stocks?: StockUpdateManyWithoutStoresNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeStocks?: StoreStockUpdateManyWithoutStoreNestedInput
   }
 
   export type StoreUncheckedUpdateWithoutUserInput = {
@@ -15142,8 +19549,8 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    stocks?: StockUncheckedUpdateManyWithoutStoresNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeStocks?: StoreStockUncheckedUpdateManyWithoutStoreNestedInput
   }
 
   export type UserCreateWithoutSessionInput = {
@@ -15301,9 +19708,9 @@ export namespace Prisma {
     id?: StringFilter<"Product"> | string
     productCode?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    unitPrice?: IntFilter<"Product"> | number
+    unitPrice?: FloatFilter<"Product"> | number
     oum?: StringFilter<"Product"> | string
-    supplierId?: StringFilter<"Product"> | string
+    supplierId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
   }
@@ -15347,7 +19754,7 @@ export namespace Prisma {
     qty: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    stores?: StoreCreateNestedManyWithoutStocksInput
+    storeStocks?: StoreStockCreateNestedManyWithoutStockInput
   }
 
   export type StockUncheckedCreateWithoutProductsInput = {
@@ -15358,7 +19765,7 @@ export namespace Prisma {
     qty: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    stores?: StoreUncheckedCreateNestedManyWithoutStocksInput
+    storeStocks?: StoreStockUncheckedCreateNestedManyWithoutStockInput
   }
 
   export type StockCreateOrConnectWithoutProductsInput = {
@@ -15485,31 +19892,24 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutStoreInput, UserUncheckedCreateWithoutStoreInput>
   }
 
-  export type StockCreateWithoutStoresInput = {
+  export type StoreStockCreateWithoutStoreInput = {
     id?: string
-    lotNo?: string | null
-    manufactureDate?: Date | string | null
-    expiredDate?: Date | string | null
-    qty: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    products: ProductCreateNestedOneWithoutStocksInput
+    stock: StockCreateNestedOneWithoutStoreStocksInput
   }
 
-  export type StockUncheckedCreateWithoutStoresInput = {
+  export type StoreStockUncheckedCreateWithoutStoreInput = {
     id?: string
-    lotNo?: string | null
-    manufactureDate?: Date | string | null
-    expiredDate?: Date | string | null
-    qty: number
-    productId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    stockId: string
   }
 
-  export type StockCreateOrConnectWithoutStoresInput = {
-    where: StockWhereUniqueInput
-    create: XOR<StockCreateWithoutStoresInput, StockUncheckedCreateWithoutStoresInput>
+  export type StoreStockCreateOrConnectWithoutStoreInput = {
+    where: StoreStockWhereUniqueInput
+    create: XOR<StoreStockCreateWithoutStoreInput, StoreStockUncheckedCreateWithoutStoreInput>
+  }
+
+  export type StoreStockCreateManyStoreInputEnvelope = {
+    data: StoreStockCreateManyStoreInput | StoreStockCreateManyStoreInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutStoreInput = {
@@ -15565,20 +19965,29 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type StockUpsertWithWhereUniqueWithoutStoresInput = {
-    where: StockWhereUniqueInput
-    update: XOR<StockUpdateWithoutStoresInput, StockUncheckedUpdateWithoutStoresInput>
-    create: XOR<StockCreateWithoutStoresInput, StockUncheckedCreateWithoutStoresInput>
+  export type StoreStockUpsertWithWhereUniqueWithoutStoreInput = {
+    where: StoreStockWhereUniqueInput
+    update: XOR<StoreStockUpdateWithoutStoreInput, StoreStockUncheckedUpdateWithoutStoreInput>
+    create: XOR<StoreStockCreateWithoutStoreInput, StoreStockUncheckedCreateWithoutStoreInput>
   }
 
-  export type StockUpdateWithWhereUniqueWithoutStoresInput = {
-    where: StockWhereUniqueInput
-    data: XOR<StockUpdateWithoutStoresInput, StockUncheckedUpdateWithoutStoresInput>
+  export type StoreStockUpdateWithWhereUniqueWithoutStoreInput = {
+    where: StoreStockWhereUniqueInput
+    data: XOR<StoreStockUpdateWithoutStoreInput, StoreStockUncheckedUpdateWithoutStoreInput>
   }
 
-  export type StockUpdateManyWithWhereWithoutStoresInput = {
-    where: StockScalarWhereInput
-    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutStoresInput>
+  export type StoreStockUpdateManyWithWhereWithoutStoreInput = {
+    where: StoreStockScalarWhereInput
+    data: XOR<StoreStockUpdateManyMutationInput, StoreStockUncheckedUpdateManyWithoutStoreInput>
+  }
+
+  export type StoreStockScalarWhereInput = {
+    AND?: StoreStockScalarWhereInput | StoreStockScalarWhereInput[]
+    OR?: StoreStockScalarWhereInput[]
+    NOT?: StoreStockScalarWhereInput | StoreStockScalarWhereInput[]
+    id?: StringFilter<"StoreStock"> | string
+    storeId?: StringFilter<"StoreStock"> | string
+    stockId?: StringFilter<"StoreStock"> | string
   }
 
   export type ProductCreateWithoutStocksInput = {
@@ -15589,7 +19998,7 @@ export namespace Prisma {
     oum: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    supplier: SupplierCreateNestedOneWithoutProductsInput
+    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutStocksInput = {
@@ -15598,7 +20007,7 @@ export namespace Prisma {
     description: string
     unitPrice: number
     oum: string
-    supplierId: string
+    supplierId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15608,37 +20017,24 @@ export namespace Prisma {
     create: XOR<ProductCreateWithoutStocksInput, ProductUncheckedCreateWithoutStocksInput>
   }
 
-  export type StoreCreateWithoutStocksInput = {
+  export type StoreStockCreateWithoutStockInput = {
     id?: string
-    storeName: string
-    addressLine1: string
-    addressLine2: string
-    addressLine3?: string | null
-    poscode: string
-    city: string
-    state: string
-    createdAt?: Date | string
-    updateAt?: Date | string
-    user: UserCreateNestedOneWithoutStoreInput
+    store: StoreCreateNestedOneWithoutStoreStocksInput
   }
 
-  export type StoreUncheckedCreateWithoutStocksInput = {
+  export type StoreStockUncheckedCreateWithoutStockInput = {
     id?: string
-    storeName: string
-    addressLine1: string
-    addressLine2: string
-    addressLine3?: string | null
-    poscode: string
-    city: string
-    state: string
-    userId: string
-    createdAt?: Date | string
-    updateAt?: Date | string
+    storeId: string
   }
 
-  export type StoreCreateOrConnectWithoutStocksInput = {
-    where: StoreWhereUniqueInput
-    create: XOR<StoreCreateWithoutStocksInput, StoreUncheckedCreateWithoutStocksInput>
+  export type StoreStockCreateOrConnectWithoutStockInput = {
+    where: StoreStockWhereUniqueInput
+    create: XOR<StoreStockCreateWithoutStockInput, StoreStockUncheckedCreateWithoutStockInput>
+  }
+
+  export type StoreStockCreateManyStockInputEnvelope = {
+    data: StoreStockCreateManyStockInput | StoreStockCreateManyStockInput[]
+    skipDuplicates?: boolean
   }
 
   export type ProductUpsertWithoutStocksInput = {
@@ -15656,55 +20052,170 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    supplier?: SupplierUpdateOneRequiredWithoutProductsNestedInput
+    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutStocksInput = {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
-    supplierId?: StringFieldUpdateOperationsInput | string
+    supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StoreUpsertWithWhereUniqueWithoutStocksInput = {
+  export type StoreStockUpsertWithWhereUniqueWithoutStockInput = {
+    where: StoreStockWhereUniqueInput
+    update: XOR<StoreStockUpdateWithoutStockInput, StoreStockUncheckedUpdateWithoutStockInput>
+    create: XOR<StoreStockCreateWithoutStockInput, StoreStockUncheckedCreateWithoutStockInput>
+  }
+
+  export type StoreStockUpdateWithWhereUniqueWithoutStockInput = {
+    where: StoreStockWhereUniqueInput
+    data: XOR<StoreStockUpdateWithoutStockInput, StoreStockUncheckedUpdateWithoutStockInput>
+  }
+
+  export type StoreStockUpdateManyWithWhereWithoutStockInput = {
+    where: StoreStockScalarWhereInput
+    data: XOR<StoreStockUpdateManyMutationInput, StoreStockUncheckedUpdateManyWithoutStockInput>
+  }
+
+  export type StoreCreateWithoutStoreStocksInput = {
+    id?: string
+    storeName: string
+    addressLine1: string
+    addressLine2: string
+    addressLine3?: string | null
+    poscode: string
+    city: string
+    state: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutStoreInput
+  }
+
+  export type StoreUncheckedCreateWithoutStoreStocksInput = {
+    id?: string
+    storeName: string
+    addressLine1: string
+    addressLine2: string
+    addressLine3?: string | null
+    poscode: string
+    city: string
+    state: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoreCreateOrConnectWithoutStoreStocksInput = {
     where: StoreWhereUniqueInput
-    update: XOR<StoreUpdateWithoutStocksInput, StoreUncheckedUpdateWithoutStocksInput>
-    create: XOR<StoreCreateWithoutStocksInput, StoreUncheckedCreateWithoutStocksInput>
+    create: XOR<StoreCreateWithoutStoreStocksInput, StoreUncheckedCreateWithoutStoreStocksInput>
   }
 
-  export type StoreUpdateWithWhereUniqueWithoutStocksInput = {
-    where: StoreWhereUniqueInput
-    data: XOR<StoreUpdateWithoutStocksInput, StoreUncheckedUpdateWithoutStocksInput>
+  export type StockCreateWithoutStoreStocksInput = {
+    id?: string
+    lotNo?: string | null
+    manufactureDate?: Date | string | null
+    expiredDate?: Date | string | null
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products: ProductCreateNestedOneWithoutStocksInput
   }
 
-  export type StoreUpdateManyWithWhereWithoutStocksInput = {
-    where: StoreScalarWhereInput
-    data: XOR<StoreUpdateManyMutationInput, StoreUncheckedUpdateManyWithoutStocksInput>
+  export type StockUncheckedCreateWithoutStoreStocksInput = {
+    id?: string
+    lotNo?: string | null
+    manufactureDate?: Date | string | null
+    expiredDate?: Date | string | null
+    qty: number
+    productId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type StoreScalarWhereInput = {
-    AND?: StoreScalarWhereInput | StoreScalarWhereInput[]
-    OR?: StoreScalarWhereInput[]
-    NOT?: StoreScalarWhereInput | StoreScalarWhereInput[]
-    id?: StringFilter<"Store"> | string
-    storeName?: StringFilter<"Store"> | string
-    addressLine1?: StringFilter<"Store"> | string
-    addressLine2?: StringFilter<"Store"> | string
-    addressLine3?: StringNullableFilter<"Store"> | string | null
-    poscode?: StringFilter<"Store"> | string
-    city?: StringFilter<"Store"> | string
-    state?: StringFilter<"Store"> | string
-    userId?: StringFilter<"Store"> | string
-    createdAt?: DateTimeFilter<"Store"> | Date | string
-    updateAt?: DateTimeFilter<"Store"> | Date | string
+  export type StockCreateOrConnectWithoutStoreStocksInput = {
+    where: StockWhereUniqueInput
+    create: XOR<StockCreateWithoutStoreStocksInput, StockUncheckedCreateWithoutStoreStocksInput>
+  }
+
+  export type StoreUpsertWithoutStoreStocksInput = {
+    update: XOR<StoreUpdateWithoutStoreStocksInput, StoreUncheckedUpdateWithoutStoreStocksInput>
+    create: XOR<StoreCreateWithoutStoreStocksInput, StoreUncheckedCreateWithoutStoreStocksInput>
+    where?: StoreWhereInput
+  }
+
+  export type StoreUpdateToOneWithWhereWithoutStoreStocksInput = {
+    where?: StoreWhereInput
+    data: XOR<StoreUpdateWithoutStoreStocksInput, StoreUncheckedUpdateWithoutStoreStocksInput>
+  }
+
+  export type StoreUpdateWithoutStoreStocksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storeName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
+    poscode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutStoreNestedInput
+  }
+
+  export type StoreUncheckedUpdateWithoutStoreStocksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storeName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
+    poscode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StockUpsertWithoutStoreStocksInput = {
+    update: XOR<StockUpdateWithoutStoreStocksInput, StockUncheckedUpdateWithoutStoreStocksInput>
+    create: XOR<StockCreateWithoutStoreStocksInput, StockUncheckedCreateWithoutStoreStocksInput>
+    where?: StockWhereInput
+  }
+
+  export type StockUpdateToOneWithWhereWithoutStoreStocksInput = {
+    where?: StockWhereInput
+    data: XOR<StockUpdateWithoutStoreStocksInput, StockUncheckedUpdateWithoutStoreStocksInput>
+  }
+
+  export type StockUpdateWithoutStoreStocksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lotNo?: NullableStringFieldUpdateOperationsInput | string | null
+    manufactureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateOneRequiredWithoutStocksNestedInput
+  }
+
+  export type StockUncheckedUpdateWithoutStoreStocksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lotNo?: NullableStringFieldUpdateOperationsInput | string | null
+    manufactureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    qty?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CustomerOrganizationCreateWithoutCustomerInput = {
@@ -15742,6 +20253,34 @@ export namespace Prisma {
     create: XOR<CustomerOrganizationCreateWithoutCustomerInput, CustomerOrganizationUncheckedCreateWithoutCustomerInput>
   }
 
+  export type QuotationCreateWithoutCustomerInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: QuotationItemCreateNestedManyWithoutQuotationInput
+  }
+
+  export type QuotationUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: QuotationItemUncheckedCreateNestedManyWithoutQuotationInput
+  }
+
+  export type QuotationCreateOrConnectWithoutCustomerInput = {
+    where: QuotationWhereUniqueInput
+    create: XOR<QuotationCreateWithoutCustomerInput, QuotationUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type QuotationCreateManyCustomerInputEnvelope = {
+    data: QuotationCreateManyCustomerInput | QuotationCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CustomerOrganizationUpsertWithWhereUniqueWithoutCustomerInput = {
     where: CustomerOrganizationWhereUniqueInput
     update: XOR<CustomerOrganizationUpdateWithoutCustomerInput, CustomerOrganizationUncheckedUpdateWithoutCustomerInput>
@@ -15775,12 +20314,41 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"CustomerOrganization"> | Date | string
   }
 
+  export type QuotationUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: QuotationWhereUniqueInput
+    update: XOR<QuotationUpdateWithoutCustomerInput, QuotationUncheckedUpdateWithoutCustomerInput>
+    create: XOR<QuotationCreateWithoutCustomerInput, QuotationUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type QuotationUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: QuotationWhereUniqueInput
+    data: XOR<QuotationUpdateWithoutCustomerInput, QuotationUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type QuotationUpdateManyWithWhereWithoutCustomerInput = {
+    where: QuotationScalarWhereInput
+    data: XOR<QuotationUpdateManyMutationInput, QuotationUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type QuotationScalarWhereInput = {
+    AND?: QuotationScalarWhereInput | QuotationScalarWhereInput[]
+    OR?: QuotationScalarWhereInput[]
+    NOT?: QuotationScalarWhereInput | QuotationScalarWhereInput[]
+    id?: StringFilter<"Quotation"> | string
+    quoteId?: StringFilter<"Quotation"> | string
+    date?: DateTimeFilter<"Quotation"> | Date | string
+    customerId?: StringFilter<"Quotation"> | string
+    createdAt?: DateTimeFilter<"Quotation"> | Date | string
+    updatedAt?: DateTimeFilter<"Quotation"> | Date | string
+  }
+
   export type CustomerCreateWithoutCustomerOrganizationInput = {
     id?: string
     title: string
     fullname: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    quotations?: QuotationCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutCustomerOrganizationInput = {
@@ -15789,6 +20357,7 @@ export namespace Prisma {
     fullname: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    quotations?: QuotationUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutCustomerOrganizationInput = {
@@ -15950,6 +20519,173 @@ export namespace Prisma {
     customer?: CustomerUncheckedUpdateManyWithoutCustomerOrganizationNestedInput
   }
 
+  export type CustomerCreateWithoutQuotationsInput = {
+    id?: string
+    title: string
+    fullname: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerOrganization?: CustomerOrganizationCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutQuotationsInput = {
+    id?: string
+    title: string
+    fullname: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerOrganization?: CustomerOrganizationUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutQuotationsInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutQuotationsInput, CustomerUncheckedCreateWithoutQuotationsInput>
+  }
+
+  export type QuotationItemCreateWithoutQuotationInput = {
+    id?: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationItemUncheckedCreateWithoutQuotationInput = {
+    id?: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationItemCreateOrConnectWithoutQuotationInput = {
+    where: QuotationItemWhereUniqueInput
+    create: XOR<QuotationItemCreateWithoutQuotationInput, QuotationItemUncheckedCreateWithoutQuotationInput>
+  }
+
+  export type QuotationItemCreateManyQuotationInputEnvelope = {
+    data: QuotationItemCreateManyQuotationInput | QuotationItemCreateManyQuotationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CustomerUpsertWithoutQuotationsInput = {
+    update: XOR<CustomerUpdateWithoutQuotationsInput, CustomerUncheckedUpdateWithoutQuotationsInput>
+    create: XOR<CustomerCreateWithoutQuotationsInput, CustomerUncheckedCreateWithoutQuotationsInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutQuotationsInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutQuotationsInput, CustomerUncheckedUpdateWithoutQuotationsInput>
+  }
+
+  export type CustomerUpdateWithoutQuotationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    fullname?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOrganization?: CustomerOrganizationUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutQuotationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    fullname?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOrganization?: CustomerOrganizationUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type QuotationItemUpsertWithWhereUniqueWithoutQuotationInput = {
+    where: QuotationItemWhereUniqueInput
+    update: XOR<QuotationItemUpdateWithoutQuotationInput, QuotationItemUncheckedUpdateWithoutQuotationInput>
+    create: XOR<QuotationItemCreateWithoutQuotationInput, QuotationItemUncheckedCreateWithoutQuotationInput>
+  }
+
+  export type QuotationItemUpdateWithWhereUniqueWithoutQuotationInput = {
+    where: QuotationItemWhereUniqueInput
+    data: XOR<QuotationItemUpdateWithoutQuotationInput, QuotationItemUncheckedUpdateWithoutQuotationInput>
+  }
+
+  export type QuotationItemUpdateManyWithWhereWithoutQuotationInput = {
+    where: QuotationItemScalarWhereInput
+    data: XOR<QuotationItemUpdateManyMutationInput, QuotationItemUncheckedUpdateManyWithoutQuotationInput>
+  }
+
+  export type QuotationItemScalarWhereInput = {
+    AND?: QuotationItemScalarWhereInput | QuotationItemScalarWhereInput[]
+    OR?: QuotationItemScalarWhereInput[]
+    NOT?: QuotationItemScalarWhereInput | QuotationItemScalarWhereInput[]
+    id?: StringFilter<"QuotationItem"> | string
+    quotationId?: StringFilter<"QuotationItem"> | string
+    productCode?: StringFilter<"QuotationItem"> | string
+    description?: StringFilter<"QuotationItem"> | string
+    unitPrice?: FloatFilter<"QuotationItem"> | number
+    oum?: StringFilter<"QuotationItem"> | string
+    qty?: IntFilter<"QuotationItem"> | number
+    createdAt?: DateTimeFilter<"QuotationItem"> | Date | string
+    updatedAt?: DateTimeFilter<"QuotationItem"> | Date | string
+  }
+
+  export type QuotationCreateWithoutItemsInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: CustomerCreateNestedOneWithoutQuotationsInput
+  }
+
+  export type QuotationUncheckedCreateWithoutItemsInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    customerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationCreateOrConnectWithoutItemsInput = {
+    where: QuotationWhereUniqueInput
+    create: XOR<QuotationCreateWithoutItemsInput, QuotationUncheckedCreateWithoutItemsInput>
+  }
+
+  export type QuotationUpsertWithoutItemsInput = {
+    update: XOR<QuotationUpdateWithoutItemsInput, QuotationUncheckedUpdateWithoutItemsInput>
+    create: XOR<QuotationCreateWithoutItemsInput, QuotationUncheckedCreateWithoutItemsInput>
+    where?: QuotationWhereInput
+  }
+
+  export type QuotationUpdateToOneWithWhereWithoutItemsInput = {
+    where?: QuotationWhereInput
+    data: XOR<QuotationUpdateWithoutItemsInput, QuotationUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type QuotationUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneRequiredWithoutQuotationsNestedInput
+  }
+
+  export type QuotationUncheckedUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SessionCreateManyUserInput = {
     id: string
     expiresAt: Date | string
@@ -15984,7 +20720,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15995,7 +20731,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16006,7 +20742,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productCode?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitPrice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16030,7 +20766,7 @@ export namespace Prisma {
     qty?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    stores?: StoreUpdateManyWithoutStocksNestedInput
+    storeStocks?: StoreStockUpdateManyWithoutStockNestedInput
   }
 
   export type StockUncheckedUpdateWithoutProductsInput = {
@@ -16041,7 +20777,7 @@ export namespace Prisma {
     qty?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    stores?: StoreUncheckedUpdateManyWithoutStocksNestedInput
+    storeStocks?: StoreStockUncheckedUpdateManyWithoutStockNestedInput
   }
 
   export type StockUncheckedUpdateManyWithoutProductsInput = {
@@ -16054,79 +20790,52 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StockUpdateWithoutStoresInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lotNo?: NullableStringFieldUpdateOperationsInput | string | null
-    manufactureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    qty?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    products?: ProductUpdateOneRequiredWithoutStocksNestedInput
+  export type StoreStockCreateManyStoreInput = {
+    id?: string
+    stockId: string
   }
 
-  export type StockUncheckedUpdateWithoutStoresInput = {
+  export type StoreStockUpdateWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lotNo?: NullableStringFieldUpdateOperationsInput | string | null
-    manufactureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    qty?: IntFieldUpdateOperationsInput | number
-    productId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stock?: StockUpdateOneRequiredWithoutStoreStocksNestedInput
   }
 
-  export type StockUncheckedUpdateManyWithoutStoresInput = {
+  export type StoreStockUncheckedUpdateWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lotNo?: NullableStringFieldUpdateOperationsInput | string | null
-    manufactureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    qty?: IntFieldUpdateOperationsInput | number
-    productId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stockId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StoreUpdateWithoutStocksInput = {
+  export type StoreStockUncheckedUpdateManyWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
-    storeName?: StringFieldUpdateOperationsInput | string
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
-    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    poscode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutStoreNestedInput
+    stockId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StoreUncheckedUpdateWithoutStocksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    storeName?: StringFieldUpdateOperationsInput | string
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
-    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    poscode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type StoreStockCreateManyStockInput = {
+    id?: string
+    storeId: string
   }
 
-  export type StoreUncheckedUpdateManyWithoutStocksInput = {
+  export type StoreStockUpdateWithoutStockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    storeName?: StringFieldUpdateOperationsInput | string
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
-    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    poscode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    store?: StoreUpdateOneRequiredWithoutStoreStocksNestedInput
+  }
+
+  export type StoreStockUncheckedUpdateWithoutStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StoreStockUncheckedUpdateManyWithoutStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuotationCreateManyCustomerInput = {
+    id?: string
+    quoteId: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CustomerOrganizationUpdateWithoutCustomerInput = {
@@ -16173,6 +20882,32 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type QuotationUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: QuotationItemUpdateManyWithoutQuotationNestedInput
+  }
+
+  export type QuotationUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: QuotationItemUncheckedUpdateManyWithoutQuotationNestedInput
+  }
+
+  export type QuotationUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quoteId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CustomerOrganizationDepartmentCreateManyCustomerOrganizationInput = {
     id?: string
     department: string
@@ -16186,6 +20921,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quotations?: QuotationUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutCustomerOrganizationInput = {
@@ -16194,6 +20930,7 @@ export namespace Prisma {
     fullname?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quotations?: QuotationUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateManyWithoutCustomerOrganizationInput = {
@@ -16221,6 +20958,50 @@ export namespace Prisma {
   export type CustomerOrganizationDepartmentUncheckedUpdateManyWithoutCustomerOrganizationInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationItemCreateManyQuotationInput = {
+    id?: string
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    qty: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuotationItemUpdateWithoutQuotationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationItemUncheckedUpdateWithoutQuotationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuotationItemUncheckedUpdateManyWithoutQuotationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    qty?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -7,7 +7,7 @@ import {
 } from "@/lib/definitions";
 import prisma from "@/lib/prisma";
 // import prisma from "@/lib/prisma";
-import { createSession } from "@/lib/session";
+import { createSession, deleteSession } from "@/lib/session";
 import { compare, genSalt, hash } from "bcrypt-ts";
 import { redirect } from "next/navigation";
 
@@ -113,4 +113,9 @@ export async function signin(state: AuthFormState, formData: FormData) {
       redirect("/dashboard");
     }
   }
+}
+
+export async function logout() {
+  await deleteSession();
+  redirect("/auth");
 }

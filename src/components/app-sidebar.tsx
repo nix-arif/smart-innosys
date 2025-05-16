@@ -8,15 +8,21 @@ import {
   Settings,
   ChevronDown,
   CircleDollarSignIcon,
+  CaravanIcon,
+  UsersRoundIcon,
+  User2,
+  ChevronUp,
 } from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
@@ -27,9 +33,16 @@ import {
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { redirect } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { logout } from "@/actions/auth";
 
 // Menu items.
-const items = [
+const operations = [
   {
     title: "Sale",
     url: "#",
@@ -53,7 +66,7 @@ const items = [
       },
       {
         title: "Quotation",
-        url: "#",
+        url: "/dashboard/quotations",
       },
       {
         title: "Proforma Invoice",
@@ -169,6 +182,31 @@ const items = [
   },
 ];
 
+const humanResources = [
+  {
+    title: "Leave Management",
+    url: "#",
+    icon: CaravanIcon,
+    submenu: [
+      {
+        title: "Application",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Payroll",
+    url: "#",
+    icon: UsersRoundIcon,
+    submenu: [
+      {
+        title: "Payslip",
+        url: "#",
+      },
+    ],
+  },
+];
+
 export function AppSidebar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
@@ -180,14 +218,43 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Company</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              <SidebarMenuItem>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <SidebarMenuButton>
+                      Select Workspace
+                      <ChevronDown className="ml-auto" />
+                    </SidebarMenuButton>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+                    <DropdownMenuItem>
+                      <span>Smart Innosys Sdn Bhd</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <span>Affirma Sdn Bhd</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <span>Bio Mech Supply Sdn Bhd</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Operation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {operations.map((operation) => (
+                <SidebarMenuItem key={operation.title}>
                   <Collapsible
-                    open={openMenu === item.title}
-                    onOpenChange={() => toggleMenu(item.title)}
+                    open={openMenu === operation.title}
+                    onOpenChange={() => toggleMenu(operation.title)}
                   >
                     <div className="flex items-center justify-between space-x-4 px-4">
                       <CollapsibleTrigger asChild>
@@ -197,8 +264,8 @@ export function AppSidebar() {
                           className="w-full flex justify-between"
                         >
                           <h4 className="text-sm font-semibold flex items-center">
-                            <item.icon />
-                            <div className="ml-4">{item.title}</div>
+                            <operation.icon />
+                            <div className="ml-4">{operation.title}</div>
                           </h4>
                           <ChevronDown className="h-4 w-4" />
                           <span className="sr-only">Toggle</span>
@@ -206,14 +273,11 @@ export function AppSidebar() {
                       </CollapsibleTrigger>
                     </div>
 
-                    {item.submenu?.map((menu) => (
+                    {operation.submenu?.map((menu) => (
                       <CollapsibleContent key={menu.title} className="px-4">
-                        {/* <div className="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
-                          {menu.title}
-                        </div> */}
                         <Button
                           variant="ghost"
-                          className="w-full relative"
+                          className="w-full relative h-7"
                           onClick={() => redirect(menu.url)}
                         >
                           <p className="absolute right-0 pr-4">{menu.title}</p>
@@ -227,10 +291,78 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Purchase</SidebarGroupLabel>
-          <SidebarMenu></SidebarMenu>
+          <SidebarGroupLabel>Human Resources</SidebarGroupLabel>
+          <SidebarMenu>
+            {" "}
+            {humanResources.map((operation) => (
+              <SidebarMenuItem key={operation.title}>
+                <Collapsible
+                  open={openMenu === operation.title}
+                  onOpenChange={() => toggleMenu(operation.title)}
+                >
+                  <div className="flex items-center justify-between space-x-4 px-4">
+                    <CollapsibleTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full flex justify-between"
+                      >
+                        <h4 className="text-sm font-semibold flex items-center">
+                          <operation.icon />
+                          <div className="ml-4">{operation.title}</div>
+                        </h4>
+                        <ChevronDown className="h-4 w-4" />
+                        <span className="sr-only">Toggle</span>
+                      </Button>
+                    </CollapsibleTrigger>
+                  </div>
+
+                  {operation.submenu?.map((menu) => (
+                    <CollapsibleContent key={menu.title} className="px-4">
+                      <Button
+                        variant="ghost"
+                        className="w-full relative h-7"
+                        onClick={() => redirect(menu.url)}
+                      >
+                        <p className="absolute right-0 pr-4">{menu.title}</p>
+                      </Button>
+                    </CollapsibleContent>
+                  ))}
+                </Collapsible>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  <User2 /> Username
+                  <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="top"
+                className="w-[--radix-popper-anchor-width]"
+              >
+                <DropdownMenuItem>
+                  <span>Account</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Billing</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout}>
+                  <span>Sign out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
