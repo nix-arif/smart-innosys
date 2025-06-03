@@ -66,7 +66,7 @@ const operations = [
       },
       {
         title: "Quotation",
-        url: "/dashboard/quotations",
+        url: "/dashboard/quotation",
       },
       {
         title: "Proforma Invoice",
@@ -74,7 +74,7 @@ const operations = [
       },
       {
         title: "Customer",
-        url: "#",
+        url: "/dashboard/customer",
       },
       {
         title: "Credit Note",

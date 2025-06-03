@@ -119,22 +119,23 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  fullname: 'fullname',
   username: 'username',
   email: 'email',
   hashedPassword: 'hashedPassword',
-  role: 'role',
-  department: 'department',
-  icNo: 'icNo',
-  epfNo: 'epfNo',
-  socsoNo: 'socsoNo',
-  phoneNo: 'phoneNo',
   addressLine1: 'addressLine1',
   addressLine2: 'addressLine2',
   addressLine3: 'addressLine3',
-  poscode: 'poscode',
   city: 'city',
-  state: 'state'
+  postcode: 'postcode',
+  province: 'province',
+  country: 'country',
+  department: 'department',
+  epfNo: 'epfNo',
+  fullname: 'fullname',
+  icNo: 'icNo',
+  phoneNo: 'phoneNo',
+  role: 'role',
+  socsoNo: 'socsoNo'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
@@ -151,13 +152,15 @@ exports.Prisma.SupplierScalarFieldEnum = {
   addressLine1: 'addressLine1',
   addressLine2: 'addressLine2',
   addressLine3: 'addressLine3',
-  poscode: 'poscode',
+  postcode: 'postcode',
   city: 'city',
+  province: 'province',
   country: 'country'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
+  sku: 'sku',
   productCode: 'productCode',
   description: 'description',
   unitPrice: 'unitPrice',
@@ -173,9 +176,10 @@ exports.Prisma.StoreScalarFieldEnum = {
   addressLine1: 'addressLine1',
   addressLine2: 'addressLine2',
   addressLine3: 'addressLine3',
-  poscode: 'poscode',
+  postcode: 'postcode',
   city: 'city',
-  state: 'state',
+  province: 'province',
+  country: 'country',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -208,37 +212,36 @@ exports.Prisma.CustomerScalarFieldEnum = {
 
 exports.Prisma.CustomerOrganizationScalarFieldEnum = {
   id: 'id',
+  department: 'department',
   organizationName: 'organizationName',
+  organizationSSMNo: 'organizationSSMNo',
+  organizationTINNo: 'organizationTINNo',
   addressLine1: 'addressLine1',
   addressLine2: 'addressLine2',
   addressLine3: 'addressLine3',
-  poscode: 'poscode',
   city: 'city',
-  state: 'state',
+  province: 'province',
   country: 'country',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.CustomerOrganizationDepartmentScalarFieldEnum = {
-  id: 'id',
-  department: 'department',
-  customerOrganizationId: 'customerOrganizationId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  postcode: 'postcode'
 };
 
 exports.Prisma.QuotationScalarFieldEnum = {
   id: 'id',
+  agent: 'agent',
+  quoteType: 'quoteType',
   quoteId: 'quoteId',
   date: 'date',
   customerId: 'customerId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  title: 'title'
 };
 
 exports.Prisma.QuotationItemScalarFieldEnum = {
   id: 'id',
+  sku: 'sku',
   quotationId: 'quotationId',
   productCode: 'productCode',
   description: 'description',
@@ -263,6 +266,14 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Department = exports.$Enums.Department = {
+  UNASSIGN: 'UNASSIGN',
+  MANAGEMENT: 'MANAGEMENT',
+  SALES: 'SALES',
+  MARKETING: 'MARKETING',
+  LOGISTIC: 'LOGISTIC'
+};
+
 exports.Role = exports.$Enums.Role = {
   SUPERADMIN: 'SUPERADMIN',
   DIRECTOR: 'DIRECTOR',
@@ -271,12 +282,9 @@ exports.Role = exports.$Enums.Role = {
   STAFF: 'STAFF'
 };
 
-exports.Department = exports.$Enums.Department = {
-  UNASSIGN: 'UNASSIGN',
-  MANAGEMENT: 'MANAGEMENT',
-  SALES: 'SALES',
-  MARKETING: 'MARKETING',
-  LOGISTIC: 'LOGISTIC'
+exports.QuoteType = exports.$Enums.QuoteType = {
+  ORIGINAL: 'ORIGINAL',
+  DUMMY: 'DUMMY'
 };
 
 exports.Prisma.ModelName = {
@@ -289,7 +297,6 @@ exports.Prisma.ModelName = {
   StoreStock: 'StoreStock',
   Customer: 'Customer',
   CustomerOrganization: 'CustomerOrganization',
-  CustomerOrganizationDepartment: 'CustomerOrganizationDepartment',
   Quotation: 'Quotation',
   QuotationItem: 'QuotationItem'
 };

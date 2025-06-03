@@ -1,4 +1,4 @@
-import { getCustomers } from "@/actions/customer";
+import { getCustomers } from "@/actions/customers";
 import {
   Card,
   CardDescription,

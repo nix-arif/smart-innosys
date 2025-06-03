@@ -1,3 +1,6 @@
+"use client";
+
+import { Quotation } from "@/redux/features/quotation/quotationAffirmaSlice";
 import {
   Page,
   Text,
@@ -6,13 +9,12 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import { QuotationData } from "@/lib/definitions";
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
     backgroundColor: "#FFFFFF",
-    fontSize: 12,
+    fontSize: 9,
   },
   letterHead: {
     fontSize: 8,
@@ -31,7 +33,10 @@ const styles = StyleSheet.create({
     width: 80,
   },
   section: {
-    marginLeft: 20,
+    padding: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   table: {
     // display: "table",
@@ -73,9 +78,21 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 export const MyDocument: React.FC<{
-  data: QuotationData;
-}> = (detailDO) => {
-  const { data } = detailDO;
+  data: Quotation;
+}> = ({ data }) => {
+  const { quotationHeader, quotationItem } = data;
+  const {
+    organizationName,
+    addressLine1,
+    addressLine2,
+    addressLine3,
+    postcode,
+    city,
+    province,
+    country,
+  } = quotationHeader.selectedOrganization;
+  const { title, fullname } = quotationHeader.customer;
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -94,8 +111,29 @@ export const MyDocument: React.FC<{
           </View>
         </View>
         {/* Delivery Order Detail */}
-        <View>
-          <Text></Text>
+        <View style={styles.section}>
+          <View>
+            <View>
+              <Text>{organizationName.toUpperCase()}</Text>
+              <Text>{addressLine1.toUpperCase()}</Text>
+              <Text>{addressLine2.toUpperCase()}</Text>
+              {addressLine3 && <Text>{addressLine3.toUpperCase()}</Text>}
+              <Text>{`${postcode}, ${city.toUpperCase()}`}</Text>
+              <Text>{`${province.toUpperCase()}, ${country.toUpperCase()}`}</Text>
+              <Text> </Text>
+            </View>
+            <View>
+              <Text>
+                <Text style={{ fontWeight: "bold" }}>Attn: </Text>
+                {`${title.toUpperCase()} ${fullname.toUpperCase()}`}
+              </Text>
+            </View>
+          </View>
+
+          <View>
+            <Text>Reference No.: {quotationHeader.quotationRef}</Text>
+            <Text>Date: {quotationHeader.date}</Text>
+          </View>
         </View>
 
         {/* Customer detail */}

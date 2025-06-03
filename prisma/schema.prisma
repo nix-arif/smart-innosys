@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider      = "prisma-client-js"
   output        = "../src/generated/prisma"
@@ -17,22 +11,24 @@ datasource db {
 
 model User {
   id             String     @id @default(cuid())
-  fullname       String?
   username       String
   email          String     @unique
   hashedPassword String
-  role           Role       @default(STAFF)
-  department     Department @default(UNASSIGN)
-  icNo           String?
-  epfNo          String?
-  socsoNo        String?
-  phoneNo        String?
   addressLine1   String?
   addressLine2   String?
   addressLine3   String?
-  poscode        String?
   city           String?
-  state          String?
+  postcode       String?
+  province       String?
+  country        String?
+  department     Department @default(UNASSIGN)
+  epfNo          String?
+  fullname       String?
+  icNo           String?
+  phoneNo        String?
+
+  role    Role    @default(STAFF)
+  socsoNo String?
 
   session Session[]
   store   Store?
@@ -42,8 +38,138 @@ model Session {
   id        String   @id
   userId    String
   expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id])
+}
 
-  user User @relation(fields: [userId], references: [id])
+model Supplier {
+  id           String    @id @default(cuid())
+  supplierName String
+  phone        String?
+  email        String?
+  addressLine1 String
+  addressLine2 String
+  addressLine3 String?
+  postcode     String
+  city         String
+  province     String
+  country      String
+  products     Product[]
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  sku         String?
+  productCode String    @unique
+  description String
+  unitPrice   Float
+  oum         String
+  supplierId  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  supplier    Supplier? @relation(fields: [supplierId], references: [id])
+  stocks      Stock[]
+}
+
+model Store {
+  id           String       @id @default(cuid())
+  storeName    String       @unique
+  addressLine1 String
+  addressLine2 String
+  addressLine3 String?
+  postcode     String
+  city         String
+  province     String
+  country      String
+  userId       String       @unique
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  user         User         @relation(fields: [userId], references: [id])
+  storeStocks  StoreStock[]
+}
+
+model Stock {
+  id              String       @id @default(cuid())
+  lotNo           String?
+  manufactureDate DateTime?
+  expiredDate     DateTime?
+  qty             Int
+  productId       String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  products        Product      @relation(fields: [productId], references: [id])
+  storeStocks     StoreStock[]
+}
+
+model StoreStock {
+  id      String @id @default(cuid())
+  storeId String
+  stockId String
+  stock   Stock  @relation(fields: [stockId], references: [id])
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  @@unique([storeId, stockId])
+}
+
+model Customer {
+  id                   String                 @id @default(cuid())
+  title                String
+  fullname             String
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  quotations           Quotation[]
+  customerOrganization CustomerOrganization[] @relation("CustomerToCustomerOrganization")
+}
+
+model CustomerOrganization {
+  id                String   @id @default(cuid())
+  department        String[]
+  organizationName  String   @unique
+  organizationSSMNo String?  @unique
+  organizationTINNo String?  @unique
+  addressLine1      String
+  addressLine2      String
+  addressLine3      String?
+  city              String
+  province          String
+  country           String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  postcode          String
+
+  customer Customer[] @relation("CustomerToCustomerOrganization")
+}
+
+enum QuoteType {
+  ORIGINAL
+  DUMMY
+}
+
+model Quotation {
+  id         String          @id @default(cuid())
+  agent      String
+  quoteType  QuoteType
+  quoteId    String          @unique
+  date       DateTime        @default(now())
+  customerId String
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  customer   Customer        @relation(fields: [customerId], references: [id])
+  title      String
+  items      QuotationItem[]
+}
+
+model QuotationItem {
+  id          String    @id @default(cuid())
+  sku         String?
+  quotationId String
+  productCode String
+  description String
+  unitPrice   Float
+  oum         String
+  qty         Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  quotation   Quotation @relation(fields: [quotationId], references: [id])
 }
 
 enum Role {
@@ -60,153 +186,4 @@ enum Department {
   SALES
   MARKETING
   LOGISTIC
-}
-
-model Supplier {
-  id           String  @id @default(cuid())
-  supplierName String
-  phone        String?
-  email        String?
-  addressLine1 String
-  addressLine2 String
-  addressLine3 String?
-  poscode      String
-  city         String
-  country      String
-
-  // relationship
-  products Product[]
-}
-
-model Product {
-  id          String @id @default(cuid())
-  productCode String @unique
-  description String
-  unitPrice   Float
-  oum         String
-
-  // relationship
-  supplierId String?
-  supplier   Supplier? @relation(fields: [supplierId], references: [id])
-  stocks     Stock[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Store {
-  id           String  @id @default(cuid())
-  storeName    String  @unique
-  addressLine1 String
-  addressLine2 String
-  addressLine3 String?
-  poscode      String
-  city         String
-  state        String
-
-  userId      String       @unique
-  user        User         @relation(fields: [userId], references: [id])
-  storeStocks StoreStock[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Stock {
-  id              String    @id @default(cuid())
-  lotNo           String?
-  manufactureDate DateTime?
-  expiredDate     DateTime?
-  qty             Int
-  // relationship
-  productId       String
-  products        Product   @relation(fields: [productId], references: [id])
-
-  storeStocks StoreStock[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model StoreStock {
-  id      String @id @default(cuid())
-  storeId String
-  stockId String
-
-  store Store @relation(fields: [storeId], references: [id])
-  stock Stock @relation(fields: [stockId], references: [id])
-
-  @@unique([storeId, stockId])
-}
-
-model Customer {
-  id       String @id @default(cuid())
-  title    String
-  fullname String
-
-  // relation
-  customerOrganization CustomerOrganization[]
-  quotations           Quotation[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model CustomerOrganization {
-  id               String  @id @default(cuid())
-  organizationName String
-  addressLine1     String
-  addressLine2     String
-  addressLine3     String?
-  postcode         String
-  city             String
-  state            String
-  country          String
-
-  // relations
-  customer   Customer[]
-  department CustomerOrganizationDepartment[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model CustomerOrganizationDepartment {
-  id                     String               @id @default(cuid())
-  department             String
-  customerOrganizationId String
-  CustomerOrganization   CustomerOrganization @relation(fields: [customerOrganizationId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Quotation {
-  id      String   @id @default(cuid())
-  quoteId String   @unique
-  date    DateTime @default(now())
-
-  // relation
-  customerId String
-  customer   Customer        @relation(fields: [customerId], references: [id])
-  items      QuotationItem[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model QuotationItem {
-  id          String    @id @default(cuid())
-  quotationId String
-  quotation   Quotation @relation(fields: [quotationId], references: [id])
-
-  // Soft reference (optional)
-  productCode String
-  description String
-  unitPrice   Float
-  oum         String
-  qty         Int
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { createCustomer } from "@/actions/customer";
+import { createCustomer } from "@/actions/customers";
 import { Button } from "@/components/ui/button";
 import React, { ChangeEvent, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";

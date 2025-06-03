@@ -91,16 +91,6 @@ export type DeliveryOrderFormState =
     }
   | undefined;
 
-export type CustomerFormState =
-  | {
-      errors?: {
-        title?: string[];
-        fullname?: string[];
-      };
-      message?: string;
-    }
-  | undefined;
-
 export type DeliveryOrderType = {
   deliveryOrderNo: string;
   agent: string;
@@ -131,4 +121,117 @@ export type ProductDeliveryOrderType = {
   totalPrice: number;
 };
 
-export type QuotationData = Record<string, string>;
+/* --------------------
+Quotation
+-------------------- */
+
+export type QuotationGeneralInfoData = Record<string, string>;
+export type QuotationItemsInfoData = {
+  productCode: string;
+  description: string;
+  qty: number;
+  oum: string;
+  unitPrice: number;
+  total: number;
+}[];
+export type QuotationData = {
+  general: QuotationGeneralInfoData;
+  items: QuotationItemsInfoData;
+};
+export type QuotationFormState =
+  | {
+      errors?: {
+        title?: string[];
+        fullname?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+/* --------------------
+Customer Organization
+-------------------- */
+
+export const CustomerOrganizationFormSchema = z.object({
+  department: z.string(),
+  organizationName: z.string(),
+  organizationSSMNo: z.string(),
+  organizationTINNo: z.string(),
+  addressLine1: z.string(),
+  addressLine2: z.string(),
+  addressLine3: z.string(),
+  postcode: z.string(),
+  city: z.string(),
+  province: z.string(),
+  country: z.string(),
+});
+export type CustomerOrganizationFormState =
+  | {
+      errors?: {
+        department?: string[];
+        organizationName?: string[];
+        addressLine1?: string[];
+        addressLine2?: string[];
+        addressLine3?: string[];
+        postcode?: string[];
+        city?: string[];
+        county?: string[];
+        country?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+export type CustomerOrganizationData = {
+  department: string;
+  organizationName: string;
+  organizationSSMNo: string;
+  organizationTINNo: string;
+  addressLine1: string;
+  addressLine2: string;
+  addressLine3: string;
+  postcode: string;
+  city: string;
+  province: string;
+  country: string;
+};
+
+/* --------------------
+Customer
+-------------------- */
+
+export const CustomerNameFormSchema = z.object({
+  title: z.string(),
+  fullname: z.string(),
+});
+export type CustomerNameFormState =
+  | {
+      errors?: {
+        title?: string[];
+        fullname?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+export type CustomerNameData = {
+  title: string;
+  fullname: string;
+};
+
+/* --------------------
+LocalStorage
+-------------------- */
+
+export type CustomerNameList = {
+  id: string;
+  title: string;
+  fullname: string;
+};
+
+export type LocalStorageData = {
+  quotationData: QuotationData;
+  customer: {
+    customerName: CustomerNameData;
+    customerOrganization: CustomerOrganizationData;
+  };
+  customerNameList: CustomerNameList[];
+};

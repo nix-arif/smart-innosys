@@ -26,7 +26,7 @@ export const generalInfoState = [
   {
     type: "text",
     value: "gleneagles",
-    name: "corganizationName",
+    name: "organizationName",
     label: "Organization Name",
   },
   {
