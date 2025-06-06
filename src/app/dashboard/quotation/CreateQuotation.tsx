@@ -18,6 +18,7 @@ import {
 } from "@/redux/features/quotation/quotationAffirmaSlice";
 import { pdf } from "@react-pdf/renderer";
 import { MyDocument } from "@/lib/generatePDF";
+import { PDFDocument } from "pdf-lib";
 
 const CreateQuotation = () => {
   const dispatch = useAppDispatch();
@@ -70,11 +71,41 @@ const CreateQuotation = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await dispatch(createAffirmaQuotation(quotationData));
-    const blob = await pdf(<MyDocument data={quotationAffirma} />).toBlob();
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${quotationAffirma.quotationHeader.quotationRef}.pdf`;
-    link.click();
+    const newPdfBlob = await pdf(
+      <MyDocument data={quotationAffirma} />
+    ).toBlob();
+    const newPdfBytes = await newPdfBlob.arrayBuffer();
+    const existingPdfBytes = await fetch("/file/DocSmartInnosys.pdf").then(
+      (res) => res.arrayBuffer()
+    );
+
+    // Create a new merged document
+    const mergedPdf = await PDFDocument.create();
+
+    const templateDoc = await PDFDocument.load(existingPdfBytes);
+    const generatedDoc = await PDFDocument.load(newPdfBytes);
+
+    // Copy pages from each
+    const templatePages = await mergedPdf.copyPages(
+      templateDoc,
+      templateDoc.getPageIndices()
+    );
+    const generatedPages = await mergedPdf.copyPages(
+      generatedDoc,
+      generatedDoc.getPageIndices()
+    );
+
+    generatedPages.forEach((page) => mergedPdf.addPage(page));
+    templatePages.forEach((page) => mergedPdf.addPage(page));
+
+    const mergedPdfBytes = await mergedPdf.save();
+
+    // const link = document.createElement("a");
+    const blob = new Blob([mergedPdfBytes], { type: "application/pdf" });
+    // link.download = `${quotationAffirma.quotationHeader.quotationRef}.pdf`;
+    // link.click();
+    const url = URL.createObjectURL(blob);
+    window.open(url);
   };
   return (
     <Card>

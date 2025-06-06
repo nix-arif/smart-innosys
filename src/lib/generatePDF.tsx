@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     width: 80,
   },
   section: {
-    padding: 20,
+    paddingRight: 20,
+    paddingLeft: 30,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -41,6 +42,8 @@ const styles = StyleSheet.create({
   table: {
     // display: "table",
     width: "100%",
+    paddingLeft: 30,
+    paddingRight: 20,
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: "#d3d3d3",
@@ -68,6 +71,23 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
   },
+  tableHeader: {
+    flexDirection: "row",
+    borderBottom: "1 solid black",
+    marginTop: 10,
+    paddingBottom: 5,
+  },
+  row: { flexDirection: "row", paddingVertical: 2 },
+  col: { flex: 1, paddingRight: 5 },
+  signature: { marginTop: 20 },
+  bold: { fontWeight: "bold" },
+  rightAlign: { textAlign: "right" },
+  colNo: { flex: 5 }, // 5%
+  colItem: { flex: 30 }, // 30%
+  colCat: { flex: 15 }, // 15%
+  colQty: { flex: 10 }, // 10%
+  colPrice: { flex: 20 }, // 20%
+  colTotal: { flex: 20 }, // 20%
   footer: {
     marginTop: 30,
     textAlign: "center",
@@ -92,6 +112,7 @@ export const MyDocument: React.FC<{
     country,
   } = quotationHeader.selectedOrganization;
   const { title, fullname } = quotationHeader.customer;
+  const products = quotationItem.products;
 
   return (
     <Document>
@@ -138,8 +159,79 @@ export const MyDocument: React.FC<{
 
         {/* Customer detail */}
 
+        {/* Table Header */}
         <View style={styles.table}>
-          <View style={styles.tableRow}></View>
+          <View style={styles.tableHeader}>
+            <Text style={[styles.col, styles.bold, styles.colNo]}>NO.</Text>
+            <Text style={[styles.col, styles.bold, styles.colItem]}>ITEM</Text>
+            <Text style={[styles.col, styles.bold, styles.colCat]}>CAT NO</Text>
+            <Text style={[styles.col, styles.bold, styles.colQty]}>QTY</Text>
+            <Text style={[styles.col, styles.bold, styles.colQty]}>OUM</Text>
+            <Text style={[styles.col, styles.bold, styles.colPrice]}>
+              PRICE/UNIT (RM)
+            </Text>
+            <Text style={[styles.col, styles.bold, styles.colTotal]}>
+              TOTAL (RM)
+            </Text>
+          </View>
+
+          {/* Table Rows */}
+          {products.map((item, idx) => (
+            <View style={styles.row} key={idx}>
+              <Text style={[styles.col, styles.colNo]}>{idx + 1}</Text>
+              <Text style={[styles.col, styles.colItem]}>
+                {item.description}
+              </Text>
+              <Text style={[styles.col, styles.colCat]}>
+                {item.productCode}
+              </Text>
+              <Text style={[styles.col, styles.colQty]}>{item.qty}</Text>
+              <Text style={[styles.col, styles.colQty]}>{item.oum}</Text>
+              <Text style={[styles.col, styles.colPrice]}>
+                {item.unitPrice.toFixed(2)}
+              </Text>
+              <Text style={[styles.col, styles.colTotal]}>
+                {item.totalPrice.toFixed(2)}
+              </Text>
+            </View>
+          ))}
+
+          {/* Totals */}
+          <View style={[styles.row, { marginTop: 10 }]}>
+            <Text style={[styles.col, styles.rightAlign, styles.bold]}>
+              TOTAL (RM):
+            </Text>
+            <Text style={styles.col}>20,000.00</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={[styles.col, styles.rightAlign, styles.bold]}>
+              SST:
+            </Text>
+            <Text style={styles.col}>0.00</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={[styles.col, styles.rightAlign, styles.bold]}>
+              GRAND TOTAL (RM):
+            </Text>
+            <Text style={styles.col}>20,000.00</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={[styles.col, styles.rightAlign, styles.bold]}>
+              GRAND TOTAL 2 SETS (RM):
+            </Text>
+            <Text style={styles.col}>40,000.00</Text>
+          </View>
+        </View>
+
+        {/* Footer */}
+        <View style={styles.signature}>
+          <Text>
+            Thank you for supporting us. If you require any further
+            clarification, feel free to contact us.
+          </Text>
+          <Text>Authorised Signature,</Text>
+          <Text style={{ marginTop: 20 }}>…………………………………</Text>
+          <Text>Mohd Azni</Text>
         </View>
       </Page>
     </Document>
