@@ -14,7 +14,7 @@ import {
 const styles = StyleSheet.create({
   page: {
     backgroundColor: "#FFFFFF",
-    fontSize: 9,
+    fontSize: 8,
   },
   letterHead: {
     fontSize: 8,
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     width: 80,
   },
   section: {
-    paddingRight: 20,
-    paddingLeft: 30,
+    paddingRight: 40,
+    paddingLeft: 40,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

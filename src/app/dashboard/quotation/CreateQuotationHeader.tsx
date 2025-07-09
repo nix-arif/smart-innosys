@@ -1,217 +1,218 @@
-import { CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
 import {
-  getAffirmaCurrentQuotationRef,
-  getCustomer,
-  Quotation,
-  setSelectedOrganization,
-} from "@/redux/features/quotation/quotationAffirmaSlice";
-import { toast } from "sonner";
+  changeAgent,
+  changeDepartment,
+  changeMarkup,
+  changeQuotationSequal,
+  changeQuoteType,
+  changeSelectedOrganization,
+  changeSupportingDoc,
+  quotationCount,
+  reCalculatePrice,
+} from "@/redux/features/quotation/quotationSlice";
+import DatePicker from "@/components/date-picker";
+import {
+  CustomerState,
+  getCustomers,
+} from "@/redux/features/customer/customerSlice";
+import { Combobox } from "@/components/combo-box";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  getCustomerOrganizationByCustomerId,
-  getCustomers,
-} from "@/redux/features/customer/customerSlice";
-import { produce } from "immer";
+import { capitalizeFirstLetter } from "@/lib/capitalFirstLetter";
+import { Input } from "@/components/ui/input";
 
-interface CreateQuotationHeaderProps {
-  affirmaFormState: Quotation;
-  setAffirmaFormState: React.Dispatch<React.SetStateAction<Quotation>>;
-}
-
-const CreateQuotationHeader = ({
-  affirmaFormState,
-  setAffirmaFormState,
-}: CreateQuotationHeaderProps) => {
+const CreateQuotationHeader = () => {
   const dispatch = useAppDispatch();
-  const { customers, organizationsByCustomerId } = useAppSelector(
+  const customerState: CustomerState = useAppSelector(
     (state) => state.customer
   );
-  const quotationAffirma = useAppSelector((state) => state.quotationAffirma);
+  const quotationData = useAppSelector((state) => state.quotation);
+  const [department, setDepartment] = useState("");
+  const [markUp, setMarkUp] = useState(0);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const [componentDate, setComponentDate] = useState(new Date());
+
+  const handleQuoteSequalChange = (value: string) => {
+    dispatch(changeQuotationSequal(value));
+    dispatch(changeAgent(quotationData.agent));
   };
 
-  const handleCustomerSelectChange = (value: string) => {
-    const selectedCustomer = customers.find(
-      (customer) => customer.id === value
-    );
-    dispatch(getCustomer(value));
-
-    if (selectedCustomer) {
-      setAffirmaFormState((prev) =>
-        produce(prev, (draft) => {
-          draft.quotationHeader.customer = selectedCustomer;
-        })
-      );
-      dispatch(getCustomerOrganizationByCustomerId(value));
-    }
+  const handleSupportingDocChange = (value: string) => {
+    dispatch(changeSupportingDoc(value));
   };
 
-  const handleOrganizationSelectChange = (value: string) => {
-    const selectedOrganization = organizationsByCustomerId.find(
-      (organization) => organization.id === value
-    );
-
-    if (selectedOrganization) {
-      setAffirmaFormState((prev) =>
-        produce(prev, (draft) => {
-          draft.quotationHeader.selectedOrganization = selectedOrganization;
-        })
-      );
-      dispatch(setSelectedOrganization(selectedOrganization));
-    }
+  const handleAgentChange = (value: string) => {
+    dispatch(changeAgent(value));
+    dispatch(changeQuoteType(value));
   };
 
   useEffect(() => {
-    const initializeData = async () => {
-      try {
-        await dispatch(getCustomers());
-        await dispatch(
-          getAffirmaCurrentQuotationRef(affirmaFormState.quotationHeader.agent)
-        ).unwrap();
-      } catch (error) {
-        console.error("Failed to fetch quotation ref:", error);
-      }
+    dispatch(getCustomers());
+    dispatch(changeQuoteType("affirma"));
+  }, []);
+
+  useEffect(() => {
+    const countQuote = async () => {
+      await dispatch(
+        quotationCount({
+          quoteSequal: quotationData.quotationSequal,
+          agent: quotationData.agent,
+        })
+      );
+      dispatch(changeAgent("affirma"));
     };
-
-    initializeData();
-  }, [dispatch, affirmaFormState.quotationHeader.agent]);
-
-  useEffect(() => {
-    if (quotationAffirma.quotationHeader.quotationRef) {
-      setAffirmaFormState((prev) =>
-        produce(prev, (draft) => {
-          draft.quotationHeader.quotationRef =
-            quotationAffirma.quotationHeader.quotationRef;
-        })
-      );
-    }
-  }, [quotationAffirma.quotationHeader.quotationRef]);
+    countQuote();
+  }, []);
 
   return (
-    <CardContent>
-      <div className="grid gap-2">
-        <div className="grid grid-cols-6">
-          <Label>Agent</Label>
-          <RadioGroup
-            defaultValue="affirma"
-            name="agent"
-            className="col-span-5 grid grid-cols-3"
-            onValueChange={(value) => {
-              try {
-                dispatch(getAffirmaCurrentQuotationRef(value)).unwrap();
-                toast.success(
-                  "Quotation Ref No Successfully Retrieved From Database"
-                );
-              } catch (error: any) {
-                toast.error(
-                  error?.message ||
-                    "Failed To Get Quotation Ref No From Database"
-                );
-              }
-            }}
-          >
+    <div className="grid gap-5 border p-5 rounded-md">
+      {/* QUOTATION SEQUAL */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label>Quotation Sequal</Label>
+        <RadioGroup
+          defaultValue="withDummy"
+          className="grid gap-5"
+          onValueChange={handleQuoteSequalChange}
+        >
+          <div className="grid grid-cols-3">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="single" id="single" />
+              <Label htmlFor="single">Single</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="withDummy" id="withDummy" />
+              <Label htmlFor="withDummy">With Dummy</Label>
+            </div>
+          </div>
+        </RadioGroup>
+      </div>
+
+      {/* SUPPORTING DOCS */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label>Supporting Docs for Every Quotation</Label>
+        <RadioGroup
+          defaultValue="true"
+          className="grid gap-5"
+          onValueChange={handleSupportingDocChange}
+        >
+          <div className="grid grid-cols-3">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="true" id="true" />
+              <Label htmlFor="true">Yes</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="false" id="false" />
+              <Label htmlFor="false">No</Label>
+            </div>
+          </div>
+        </RadioGroup>
+      </div>
+
+      {/* AGENT */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label>Agent</Label>
+        <RadioGroup
+          defaultValue="affirma"
+          className="grid gap-5"
+          onValueChange={handleAgentChange}
+        >
+          <div className="grid grid-cols-3">
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="affirma" id="affirma" />
               <Label htmlFor="affirma">Affirma</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="innosys" id="innosys" />
-              <Label htmlFor="innosys">Innosys</Label>
+              <Label htmlFor="innosys">Smart Innosys</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="biomech" id="biomech" />
-              <Label htmlFor="biomech">Biomech</Label>
+              <Label htmlFor="biomech">Bio Mech</Label>
             </div>
-          </RadioGroup>
-        </div>
-
-        <div className="grid grid-cols-3 gap-2">
-          <div className="grid grid-cols-2">
-            <Label>Ref Affirma</Label>
-            <Input
-              type="text"
-              name="quotationRefAffirma"
-              value={affirmaFormState.quotationHeader.quotationRef}
-              disabled
-              className="text-xs"
-            />
           </div>
-          {/* <div className="grid grid-cols-2">
-            <Label>Ref Innosys</Label>
-            <Input
-              type="text"
-              name="quotationRefInnosys"
-              onChange={handleChange}
-              value={quotationHeaderInnosys.quotationRef}
-              disabled
-            />
-          </div> */}
-        </div>
-        <div className="grid grid-cols-6">
-          <Label htmlFor="customer">Customer</Label>
-          <div className="col-span-5">
-            <Select name="customer" onValueChange={handleCustomerSelectChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Customer Name" />
-              </SelectTrigger>
-              <SelectContent>
-                {customers.map((customer, index) => (
-                  <SelectItem key={customer.id} value={customer.id as string}>
-                    {customer.title} {customer.fullname}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        <div className="grid grid-cols-6">
-          <Label htmlFor="customer">Organization Name</Label>
-          <div className="col-span-5">
-            <Select
-              name="organization"
-              onValueChange={handleOrganizationSelectChange}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Organization" />
-              </SelectTrigger>
-              <SelectContent>
-                {organizationsByCustomerId.map((organization, index) => (
-                  <SelectItem
-                    key={organization.id}
-                    value={organization.id as string}
-                  >
-                    {organization.organizationName}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        <div className="grid grid-cols-6">
-          <Label htmlFor="date">Date</Label>
-          <Input
-            type="date"
-            name="date"
-            value={affirmaFormState.quotationHeader.date}
-            onChange={handleChange}
-            className="col-span-5"
-          />
-        </div>
+        </RadioGroup>
       </div>
-    </CardContent>
+
+      {/* DATE */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label htmlFor="date">Date</Label>
+        <DatePicker />
+      </div>
+
+      {/* CUSTOMER NAME */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label htmlFor="customerName">Customer Name</Label>
+        <Combobox customerState={customerState} />
+      </div>
+
+      {/* CUSTOMER ORGANIZATION */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label htmlFor="customerName">Customer Organization</Label>
+        <Select
+          onValueChange={(value) => {
+            dispatch(changeSelectedOrganization(JSON.parse(value)));
+          }}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select Organization" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {customerState.organizationsByCustomerId.length > 0 ? (
+                customerState.organizationsByCustomerId.map((organization) => {
+                  return (
+                    <SelectItem
+                      key={organization.id}
+                      value={JSON.stringify(organization)}
+                    >
+                      {capitalizeFirstLetter(organization.organizationName)}
+                    </SelectItem>
+                  );
+                })
+              ) : (
+                <SelectItem disabled value="none">
+                  No Organization Available
+                </SelectItem>
+              )}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* CUSTOMER DEPARTMENT */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label htmlFor="customerDepartment">Customer Department</Label>
+        <Input
+          value={department}
+          onChange={(e) => {
+            setDepartment(e.target.value);
+            dispatch(changeDepartment(e.target.value));
+          }}
+        />
+      </div>
+
+      {/* MARKUP */}
+      <div className="grid gap-2 grid-cols-2">
+        <Label htmlFor="markup">Markup %</Label>
+        <Input
+          value={markUp}
+          onChange={(e) => {
+            setMarkUp(+e.target.value);
+            dispatch(changeMarkup(+e.target.value));
+            dispatch(reCalculatePrice());
+          }}
+        />
+      </div>
+    </div>
   );
 };
 

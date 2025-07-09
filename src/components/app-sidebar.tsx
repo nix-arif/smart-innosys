@@ -1,4 +1,5 @@
 "use client";
+
 import {
   HandCoinsIcon,
   ShoppingCartIcon,
@@ -30,16 +31,17 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { logout } from "@/actions/auth";
+import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
+import { logout, setUserFromStorage } from "@/redux/features/user/userSlice";
 
 // Menu items.
 const operations = [
@@ -125,7 +127,7 @@ const operations = [
       { title: "Product", url: "/dashboard/product" },
       { title: "Package", url: "#" },
       { title: "Inventory", url: "#" },
-      { title: "Price", url: "#" },
+      { title: "Price", url: "/dashboard/product/price" },
       { title: "Cost", url: "#" },
     ],
   },
@@ -208,11 +210,28 @@ const humanResources = [
 ];
 
 export function AppSidebar() {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.user);
+  const router = useRouter();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   const toggleMenu = (title: string) => {
     setOpenMenu((prev) => (prev === title ? null : title));
   };
+
+  const signout = async () => {
+    await dispatch(logout());
+    router.push("/");
+  };
+
+  useEffect(() => {
+    const username = localStorage.getItem("username") || "";
+    const email = localStorage.getItem("email") || "";
+
+    if (username && email) {
+      dispatch(setUserFromStorage({ username, email }));
+    }
+  }, []);
 
   return (
     <Sidebar>
@@ -341,13 +360,13 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <User2 /> {user.username}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 side="top"
-                className="w-[--radix-popper-anchor-width]"
+                className="w-[var(--radix-popper-anchor-width)]"
               >
                 <DropdownMenuItem>
                   <span>Account</span>
@@ -355,7 +374,7 @@ export function AppSidebar() {
                 <DropdownMenuItem>
                   <span>Billing</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={logout}>
+                <DropdownMenuItem onClick={signout}>
                   <span>Sign out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

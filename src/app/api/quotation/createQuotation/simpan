@@ -1,0 +1,223 @@
+if (quotationData.quotationSequal === "withDummy") {
+      if (quotationData.agent === "affirma") {
+        await prisma.quotation.create({
+          data: {
+            agent: "affirma",
+            quoteType: "ORIGINAL",
+            quoteId: quotationData.quotationHeaders.affirma.quotationRef,
+            date: quotationData.quotationHeaders.affirma.date,
+            title: quotationData.quotationHeaders.affirma.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.affirma.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.affirma.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+
+        await prisma.quotation.create({
+          data: {
+            agent: "innosys",
+            quoteType: "DUMMY",
+            quoteId: quotationData.quotationHeaders.innosys.quotationRef,
+            date: quotationData.quotationHeaders.innosys.date,
+            title: quotationData.quotationHeaders.innosys.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.innosys.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.innosys.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+
+        await prisma.quotation.create({
+          data: {
+            agent: "biomech",
+            quoteType: "DUMMY",
+            quoteId: quotationData.quotationHeaders.biomech.quotationRef,
+            date: quotationData.quotationHeaders.biomech.date,
+            title: quotationData.quotationHeaders.biomech.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.biomech.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.biomech.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+      }
+
+      if (quotationData.agent === "innosys") {
+        await prisma.quotation.create({
+          data: {
+            agent: "affirma",
+            quoteType: "DUMMY",
+            quoteId: quotationData.quotationHeaders.affirma.quotationRef,
+            date: quotationData.quotationHeaders.affirma.date,
+            title: quotationData.quotationHeaders.affirma.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.affirma.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.affirma.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+
+        await prisma.quotation.create({
+          data: {
+            agent: "innosys",
+            quoteType: "ORIGINAL",
+            quoteId: quotationData.quotationHeaders.innosys.quotationRef,
+            date: quotationData.quotationHeaders.innosys.date,
+            title: quotationData.quotationHeaders.innosys.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.innosys.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.innosys.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+
+        await prisma.quotation.create({
+          data: {
+            agent: "biomech",
+            quoteType: "DUMMY",
+            quoteId: quotationData.quotationHeaders.biomech.quotationRef,
+            date: quotationData.quotationHeaders.biomech.date,
+            title: quotationData.quotationHeaders.biomech.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.biomech.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.biomech.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+      }
+
+      if (quotationData.agent === "biomech") {
+        await prisma.quotation.create({
+          data: {
+            agent: "affirma",
+            quoteType: "DUMMY",
+            quoteId: quotationData.quotationHeaders.affirma.quotationRef,
+            date: quotationData.quotationHeaders.affirma.date,
+            title: quotationData.quotationHeaders.affirma.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.affirma.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.affirma.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+
+        await prisma.quotation.create({
+          data: {
+            agent: "innosys",
+            quoteType: "DUMMY",
+            quoteId: quotationData.quotationHeaders.innosys.quotationRef,
+            date: quotationData.quotationHeaders.innosys.date,
+            title: quotationData.quotationHeaders.innosys.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.innosys.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.innosys.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+
+        await prisma.quotation.create({
+          data: {
+            agent: "biomech",
+            quoteType: "ORIGINAL",
+            quoteId: quotationData.quotationHeaders.biomech.quotationRef,
+            date: quotationData.quotationHeaders.biomech.date,
+            title: quotationData.quotationHeaders.biomech.title,
+            customer: {
+              connect: {
+                id: quotationData.quotationHeaders.biomech.customer.id,
+              },
+            },
+            items: {
+              create: quotationData.quotationItems.biomech.map((item) => ({
+                productCode: item.productCode,
+                description: item.description,
+                qty: item.qty,
+                oum: item.oum,
+                unitPrice: item.unitPrice,
+              })),
+            },
+          },
+        });
+      }
+    }

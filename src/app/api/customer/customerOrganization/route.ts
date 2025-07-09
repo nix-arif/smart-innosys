@@ -29,14 +29,10 @@ export async function POST(request: NextRequest) {
       where: { organizationName: organizationData.organizationName },
       select: { department: true },
     });
-    const departments = existingOrganization
-      ? Array.from(
-          new Set([
-            ...existingOrganization.department,
-            organizationData.department,
-          ])
-        )
+    const departmentsRaw = existingOrganization
+      ? [...existingOrganization.department, organizationData.department]
       : [organizationData.department];
+    const departments: string[] = Array.from(new Set(departmentsRaw.flat()));
     const organization = await prisma.customerOrganization.upsert({
       where: {
         organizationName: organizationData.organizationName,
@@ -84,6 +80,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  console.log("Happening here");
   const customerOrganizations = await prisma.customerOrganization.findMany({});
   return NextResponse.json({ customerOrganizations });
 }

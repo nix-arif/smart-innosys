@@ -1,6 +1,5 @@
 "use client";
 
-import { signin } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,18 +8,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import React, { ChangeEvent, useActionState, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
+import { getLoginUser } from "@/redux/features/user/userSlice";
+import { useRouter } from "next/navigation";
+
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 const SignInForm = () => {
-  const [state, action, pending] = useActionState(signin, undefined);
-
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
+  const userState = useAppSelector((state) => state.user);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    await dispatch(getLoginUser(data)).unwrap();
+    router.push("/dashboard");
   };
 
   return (
@@ -30,7 +41,7 @@ const SignInForm = () => {
         <CardDescription>Smart Innosys Sdn Bhd</CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={action}>
+        <form onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-4">
             <div className="grid grid-cols-10">
               <label htmlFor="email" className="col-span-3 py-0.5">
@@ -61,7 +72,7 @@ const SignInForm = () => {
               />
             </div>
 
-            <Button type="submit" disabled={pending}>
+            <Button type="submit" disabled={userState.loading}>
               Sign In
             </Button>
           </div>

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { useAppDispatch } from "@/redux/app/hooks";
 import CreateQuotation from "./CreateQuotation";
+import SearchQuotation from "./SearchQuotation";
 
 const QuotationPage = () => {
   return (
@@ -22,7 +23,9 @@ const QuotationPage = () => {
         </AccordionItem>
         <AccordionItem value="searchQuotation">
           <AccordionTrigger>Search Quotation</AccordionTrigger>
-          <AccordionContent></AccordionContent>
+          <AccordionContent>
+            <SearchQuotation />
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>

@@ -27,10 +27,11 @@ export default async function middleware(req: NextRequest) {
     session?.userId &&
     !req.nextUrl.pathname.startsWith("/dashboard")
   ) {
+    console.warn("Im in middleware.ts line 30", session.userId);
     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
   }
 
-  console.warn("Im in middleware.ts line 33, session:", session);
+  console.warn("Im in middleware.ts line 34, session:", session);
 
   return NextResponse.next();
 }

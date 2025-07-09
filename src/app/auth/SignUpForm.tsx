@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ChangeEvent, useActionState, useState } from "react";
-import { signup } from "@/actions/auth";
 import {
   Card,
   CardContent,
@@ -12,8 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 
 const SignUpForm = () => {
-  const [state, action, pending] = useActionState(signup, undefined);
-
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -32,7 +29,7 @@ const SignUpForm = () => {
         <CardDescription>Smart Innosys Sdn Bhd</CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={action}>
+        <form>
           <div className="grid w-full items-center gap-4">
             <div className="grid grid-cols-10">
               <label htmlFor="username" className="col-span-3 py-0.5">
@@ -47,9 +44,9 @@ const SignUpForm = () => {
                 className="ml-2 col-span-7 px-3 py-0.5 border border-slate-200 rounded-md"
               />
               <div className="col-span-10 text-red-600 mt-2">
-                {state?.errors?.username && (
+                {/* {state?.errors?.username && (
                   <p className="text-sm">{state.errors.username}</p>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -66,9 +63,9 @@ const SignUpForm = () => {
                 className="ml-2 col-span-7 px-3 py-0.5 border border-slate-200 rounded-sm"
               />
               <div className="col-span-10 text-red-600 mt-2">
-                {state?.errors?.email && (
+                {/* {state?.errors?.email && (
                   <p className="text-sm">{state.errors.email}</p>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -86,9 +83,9 @@ const SignUpForm = () => {
                 className="ml-2 col-span-7 px-3 py-0.5 border border-slate-200 rounded-sm"
               />
               <div className="col-span-10 text-red-600 mt-2">
-                {state?.errors?.password && (
+                {/* {state?.errors?.password && (
                   <p className="text-sm">{state.errors.password}</p>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -106,14 +103,12 @@ const SignUpForm = () => {
                 className="ml-2 col-span-7 px-3 py-0.5 border border-slate-200 rounded-sm"
               />
               <div className="col-span-10 text-red-600 mt-2">
-                {state?.errors?.confirmPassword && (
+                {/* {state?.errors?.confirmPassword && (
                   <p className="text-sm">{state.errors.confirmPassword}</p>
-                )}
+                )} */}
               </div>
             </div>
-            <Button type="submit" disabled={pending}>
-              Sign Up
-            </Button>
+            <Button type="submit">Sign Up</Button>
           </div>
         </form>
       </CardContent>

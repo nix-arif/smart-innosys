@@ -3,7 +3,7 @@ import axios from "axios";
 
 export interface Organization {
   id?: string;
-  department: string;
+  department: string[];
   organizationName: string;
   organizationSSMNo?: string;
   organizationTINNo?: string;
@@ -22,7 +22,7 @@ export interface Customer {
   fullname: string;
 }
 
-interface CustomerState {
+export interface CustomerState {
   loading: boolean;
   customer: Customer;
   customers: Customer[];
