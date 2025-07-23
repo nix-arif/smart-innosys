@@ -68,6 +68,11 @@ export type Quotation = $Result.DefaultSelection<Prisma.$QuotationPayload>
  * 
  */
 export type QuotationItem = $Result.DefaultSelection<Prisma.$QuotationItemPayload>
+/**
+ * Model MDAProduct
+ * 
+ */
+export type MDAProduct = $Result.DefaultSelection<Prisma.$MDAProductPayload>
 
 /**
  * Enums
@@ -350,6 +355,16 @@ export class PrismaClient<
     * ```
     */
   get quotationItem(): Prisma.QuotationItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mDAProduct`: Exposes CRUD operations for the **MDAProduct** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MDAProducts
+    * const mDAProducts = await prisma.mDAProduct.findMany()
+    * ```
+    */
+  get mDAProduct(): Prisma.MDAProductDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -800,7 +815,8 @@ export namespace Prisma {
     Customer: 'Customer',
     CustomerOrganization: 'CustomerOrganization',
     Quotation: 'Quotation',
-    QuotationItem: 'QuotationItem'
+    QuotationItem: 'QuotationItem',
+    MDAProduct: 'MDAProduct'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -819,7 +835,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "supplier" | "product" | "store" | "stock" | "storeStock" | "customer" | "customerOrganization" | "quotation" | "quotationItem"
+      modelProps: "user" | "session" | "supplier" | "product" | "store" | "stock" | "storeStock" | "customer" | "customerOrganization" | "quotation" | "quotationItem" | "mDAProduct"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1637,6 +1653,80 @@ export namespace Prisma {
           }
         }
       }
+      MDAProduct: {
+        payload: Prisma.$MDAProductPayload<ExtArgs>
+        fields: Prisma.MDAProductFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MDAProductFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MDAProductFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>
+          }
+          findFirst: {
+            args: Prisma.MDAProductFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MDAProductFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>
+          }
+          findMany: {
+            args: Prisma.MDAProductFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>[]
+          }
+          create: {
+            args: Prisma.MDAProductCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>
+          }
+          createMany: {
+            args: Prisma.MDAProductCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MDAProductCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>[]
+          }
+          delete: {
+            args: Prisma.MDAProductDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>
+          }
+          update: {
+            args: Prisma.MDAProductUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>
+          }
+          deleteMany: {
+            args: Prisma.MDAProductDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MDAProductUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MDAProductUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>[]
+          }
+          upsert: {
+            args: Prisma.MDAProductUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MDAProductPayload>
+          }
+          aggregate: {
+            args: Prisma.MDAProductAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMDAProduct>
+          }
+          groupBy: {
+            args: Prisma.MDAProductGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MDAProductGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MDAProductCountArgs<ExtArgs>
+            result: $Utils.Optional<MDAProductCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1732,6 +1822,7 @@ export namespace Prisma {
     customerOrganization?: CustomerOrganizationOmit
     quotation?: QuotationOmit
     quotationItem?: QuotationItemOmit
+    mDAProduct?: MDAProductOmit
   }
 
   /* Types for Logging */
@@ -1858,10 +1949,12 @@ export namespace Prisma {
 
   export type SupplierCountOutputType = {
     products: number
+    mdaProduct: number
   }
 
   export type SupplierCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | SupplierCountOutputTypeCountProductsArgs
+    mdaProduct?: boolean | SupplierCountOutputTypeCountMdaProductArgs
   }
 
   // Custom InputTypes
@@ -1880,6 +1973,13 @@ export namespace Prisma {
    */
   export type SupplierCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
+  }
+
+  /**
+   * SupplierCountOutputType without action
+   */
+  export type SupplierCountOutputTypeCountMdaProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MDAProductWhereInput
   }
 
 
@@ -2075,6 +2175,46 @@ export namespace Prisma {
    */
   export type QuotationCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuotationItemWhereInput
+  }
+
+
+  /**
+   * Count Type MDAProductCountOutputType
+   */
+
+  export type MDAProductCountOutputType = {
+    owner: number
+    product: number
+  }
+
+  export type MDAProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | MDAProductCountOutputTypeCountOwnerArgs
+    product?: boolean | MDAProductCountOutputTypeCountProductArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MDAProductCountOutputType without action
+   */
+  export type MDAProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProductCountOutputType
+     */
+    select?: MDAProductCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MDAProductCountOutputType without action
+   */
+  export type MDAProductCountOutputTypeCountOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SupplierWhereInput
+  }
+
+  /**
+   * MDAProductCountOutputType without action
+   */
+  export type MDAProductCountOutputTypeCountProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductWhereInput
   }
 
 
@@ -4389,6 +4529,7 @@ export namespace Prisma {
   export type SupplierMinAggregateOutputType = {
     id: string | null
     supplierName: string | null
+    companyName: string | null
     phone: string | null
     email: string | null
     addressLine1: string | null
@@ -4403,6 +4544,7 @@ export namespace Prisma {
   export type SupplierMaxAggregateOutputType = {
     id: string | null
     supplierName: string | null
+    companyName: string | null
     phone: string | null
     email: string | null
     addressLine1: string | null
@@ -4417,6 +4559,7 @@ export namespace Prisma {
   export type SupplierCountAggregateOutputType = {
     id: number
     supplierName: number
+    companyName: number
     phone: number
     email: number
     addressLine1: number
@@ -4433,6 +4576,7 @@ export namespace Prisma {
   export type SupplierMinAggregateInputType = {
     id?: true
     supplierName?: true
+    companyName?: true
     phone?: true
     email?: true
     addressLine1?: true
@@ -4447,6 +4591,7 @@ export namespace Prisma {
   export type SupplierMaxAggregateInputType = {
     id?: true
     supplierName?: true
+    companyName?: true
     phone?: true
     email?: true
     addressLine1?: true
@@ -4461,6 +4606,7 @@ export namespace Prisma {
   export type SupplierCountAggregateInputType = {
     id?: true
     supplierName?: true
+    companyName?: true
     phone?: true
     email?: true
     addressLine1?: true
@@ -4548,15 +4694,16 @@ export namespace Prisma {
   export type SupplierGroupByOutputType = {
     id: string
     supplierName: string
+    companyName: string | null
     phone: string | null
     email: string | null
-    addressLine1: string
-    addressLine2: string
+    addressLine1: string | null
+    addressLine2: string | null
     addressLine3: string | null
-    postcode: string
-    city: string
-    province: string
-    country: string
+    postcode: string | null
+    city: string | null
+    province: string | null
+    country: string | null
     _count: SupplierCountAggregateOutputType | null
     _min: SupplierMinAggregateOutputType | null
     _max: SupplierMaxAggregateOutputType | null
@@ -4579,6 +4726,7 @@ export namespace Prisma {
   export type SupplierSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     supplierName?: boolean
+    companyName?: boolean
     phone?: boolean
     email?: boolean
     addressLine1?: boolean
@@ -4589,12 +4737,14 @@ export namespace Prisma {
     province?: boolean
     country?: boolean
     products?: boolean | Supplier$productsArgs<ExtArgs>
+    mdaProduct?: boolean | Supplier$mdaProductArgs<ExtArgs>
     _count?: boolean | SupplierCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["supplier"]>
 
   export type SupplierSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     supplierName?: boolean
+    companyName?: boolean
     phone?: boolean
     email?: boolean
     addressLine1?: boolean
@@ -4609,6 +4759,7 @@ export namespace Prisma {
   export type SupplierSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     supplierName?: boolean
+    companyName?: boolean
     phone?: boolean
     email?: boolean
     addressLine1?: boolean
@@ -4623,6 +4774,7 @@ export namespace Prisma {
   export type SupplierSelectScalar = {
     id?: boolean
     supplierName?: boolean
+    companyName?: boolean
     phone?: boolean
     email?: boolean
     addressLine1?: boolean
@@ -4634,9 +4786,10 @@ export namespace Prisma {
     country?: boolean
   }
 
-  export type SupplierOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "supplierName" | "phone" | "email" | "addressLine1" | "addressLine2" | "addressLine3" | "postcode" | "city" | "province" | "country", ExtArgs["result"]["supplier"]>
+  export type SupplierOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "supplierName" | "companyName" | "phone" | "email" | "addressLine1" | "addressLine2" | "addressLine3" | "postcode" | "city" | "province" | "country", ExtArgs["result"]["supplier"]>
   export type SupplierInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Supplier$productsArgs<ExtArgs>
+    mdaProduct?: boolean | Supplier$mdaProductArgs<ExtArgs>
     _count?: boolean | SupplierCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SupplierIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4646,19 +4799,21 @@ export namespace Prisma {
     name: "Supplier"
     objects: {
       products: Prisma.$ProductPayload<ExtArgs>[]
+      mdaProduct: Prisma.$MDAProductPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       supplierName: string
+      companyName: string | null
       phone: string | null
       email: string | null
-      addressLine1: string
-      addressLine2: string
+      addressLine1: string | null
+      addressLine2: string | null
       addressLine3: string | null
-      postcode: string
-      city: string
-      province: string
-      country: string
+      postcode: string | null
+      city: string | null
+      province: string | null
+      country: string | null
     }, ExtArgs["result"]["supplier"]>
     composites: {}
   }
@@ -5054,6 +5209,7 @@ export namespace Prisma {
   export interface Prisma__SupplierClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     products<T extends Supplier$productsArgs<ExtArgs> = {}>(args?: Subset<T, Supplier$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mdaProduct<T extends Supplier$mdaProductArgs<ExtArgs> = {}>(args?: Subset<T, Supplier$mdaProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5085,6 +5241,7 @@ export namespace Prisma {
   interface SupplierFieldRefs {
     readonly id: FieldRef<"Supplier", 'String'>
     readonly supplierName: FieldRef<"Supplier", 'String'>
+    readonly companyName: FieldRef<"Supplier", 'String'>
     readonly phone: FieldRef<"Supplier", 'String'>
     readonly email: FieldRef<"Supplier", 'String'>
     readonly addressLine1: FieldRef<"Supplier", 'String'>
@@ -5506,6 +5663,30 @@ export namespace Prisma {
   }
 
   /**
+   * Supplier.mdaProduct
+   */
+  export type Supplier$mdaProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    where?: MDAProductWhereInput
+    orderBy?: MDAProductOrderByWithRelationInput | MDAProductOrderByWithRelationInput[]
+    cursor?: MDAProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MDAProductScalarFieldEnum | MDAProductScalarFieldEnum[]
+  }
+
+  /**
    * Supplier without action
    */
   export type SupplierDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5554,6 +5735,7 @@ export namespace Prisma {
     supplierId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    mdaProductId: string | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -5566,6 +5748,7 @@ export namespace Prisma {
     supplierId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    mdaProductId: string | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -5578,6 +5761,7 @@ export namespace Prisma {
     supplierId: number
     createdAt: number
     updatedAt: number
+    mdaProductId: number
     _all: number
   }
 
@@ -5600,6 +5784,7 @@ export namespace Prisma {
     supplierId?: true
     createdAt?: true
     updatedAt?: true
+    mdaProductId?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -5612,6 +5797,7 @@ export namespace Prisma {
     supplierId?: true
     createdAt?: true
     updatedAt?: true
+    mdaProductId?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -5624,6 +5810,7 @@ export namespace Prisma {
     supplierId?: true
     createdAt?: true
     updatedAt?: true
+    mdaProductId?: true
     _all?: true
   }
 
@@ -5723,6 +5910,7 @@ export namespace Prisma {
     supplierId: string | null
     createdAt: Date
     updatedAt: Date
+    mdaProductId: string | null
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -5754,8 +5942,10 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    mdaProductId?: boolean
     supplier?: boolean | Product$supplierArgs<ExtArgs>
     stocks?: boolean | Product$stocksArgs<ExtArgs>
+    mdaProduct?: boolean | Product$mdaProductArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -5769,7 +5959,9 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    mdaProductId?: boolean
     supplier?: boolean | Product$supplierArgs<ExtArgs>
+    mdaProduct?: boolean | Product$mdaProductArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5782,7 +5974,9 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    mdaProductId?: boolean
     supplier?: boolean | Product$supplierArgs<ExtArgs>
+    mdaProduct?: boolean | Product$mdaProductArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
@@ -5795,19 +5989,23 @@ export namespace Prisma {
     supplierId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    mdaProductId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sku" | "productCode" | "description" | "unitPrice" | "oum" | "supplierId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sku" | "productCode" | "description" | "unitPrice" | "oum" | "supplierId" | "createdAt" | "updatedAt" | "mdaProductId", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     supplier?: boolean | Product$supplierArgs<ExtArgs>
     stocks?: boolean | Product$stocksArgs<ExtArgs>
+    mdaProduct?: boolean | Product$mdaProductArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     supplier?: boolean | Product$supplierArgs<ExtArgs>
+    mdaProduct?: boolean | Product$mdaProductArgs<ExtArgs>
   }
   export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     supplier?: boolean | Product$supplierArgs<ExtArgs>
+    mdaProduct?: boolean | Product$mdaProductArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5815,6 +6013,7 @@ export namespace Prisma {
     objects: {
       supplier: Prisma.$SupplierPayload<ExtArgs> | null
       stocks: Prisma.$StockPayload<ExtArgs>[]
+      mdaProduct: Prisma.$MDAProductPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5826,6 +6025,7 @@ export namespace Prisma {
       supplierId: string | null
       createdAt: Date
       updatedAt: Date
+      mdaProductId: string | null
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -6222,6 +6422,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     supplier<T extends Product$supplierArgs<ExtArgs> = {}>(args?: Subset<T, Product$supplierArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     stocks<T extends Product$stocksArgs<ExtArgs> = {}>(args?: Subset<T, Product$stocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mdaProduct<T extends Product$mdaProductArgs<ExtArgs> = {}>(args?: Subset<T, Product$mdaProductArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6260,6 +6461,7 @@ export namespace Prisma {
     readonly supplierId: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
+    readonly mdaProductId: FieldRef<"Product", 'String'>
   }
     
 
@@ -6696,6 +6898,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StockScalarFieldEnum | StockScalarFieldEnum[]
+  }
+
+  /**
+   * Product.mdaProduct
+   */
+  export type Product$mdaProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    where?: MDAProductWhereInput
   }
 
   /**
@@ -14680,6 +14901,1117 @@ export namespace Prisma {
 
 
   /**
+   * Model MDAProduct
+   */
+
+  export type AggregateMDAProduct = {
+    _count: MDAProductCountAggregateOutputType | null
+    _min: MDAProductMinAggregateOutputType | null
+    _max: MDAProductMaxAggregateOutputType | null
+  }
+
+  export type MDAProductMinAggregateOutputType = {
+    id: string | null
+    registrationNo: string | null
+    effectiveDate: Date | null
+    expiryDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MDAProductMaxAggregateOutputType = {
+    id: string | null
+    registrationNo: string | null
+    effectiveDate: Date | null
+    expiryDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MDAProductCountAggregateOutputType = {
+    id: number
+    registrationNo: number
+    effectiveDate: number
+    expiryDate: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MDAProductMinAggregateInputType = {
+    id?: true
+    registrationNo?: true
+    effectiveDate?: true
+    expiryDate?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MDAProductMaxAggregateInputType = {
+    id?: true
+    registrationNo?: true
+    effectiveDate?: true
+    expiryDate?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MDAProductCountAggregateInputType = {
+    id?: true
+    registrationNo?: true
+    effectiveDate?: true
+    expiryDate?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MDAProductAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MDAProduct to aggregate.
+     */
+    where?: MDAProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MDAProducts to fetch.
+     */
+    orderBy?: MDAProductOrderByWithRelationInput | MDAProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MDAProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MDAProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MDAProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MDAProducts
+    **/
+    _count?: true | MDAProductCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MDAProductMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MDAProductMaxAggregateInputType
+  }
+
+  export type GetMDAProductAggregateType<T extends MDAProductAggregateArgs> = {
+        [P in keyof T & keyof AggregateMDAProduct]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMDAProduct[P]>
+      : GetScalarType<T[P], AggregateMDAProduct[P]>
+  }
+
+
+
+
+  export type MDAProductGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MDAProductWhereInput
+    orderBy?: MDAProductOrderByWithAggregationInput | MDAProductOrderByWithAggregationInput[]
+    by: MDAProductScalarFieldEnum[] | MDAProductScalarFieldEnum
+    having?: MDAProductScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MDAProductCountAggregateInputType | true
+    _min?: MDAProductMinAggregateInputType
+    _max?: MDAProductMaxAggregateInputType
+  }
+
+  export type MDAProductGroupByOutputType = {
+    id: string
+    registrationNo: string
+    effectiveDate: Date
+    expiryDate: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: MDAProductCountAggregateOutputType | null
+    _min: MDAProductMinAggregateOutputType | null
+    _max: MDAProductMaxAggregateOutputType | null
+  }
+
+  type GetMDAProductGroupByPayload<T extends MDAProductGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MDAProductGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MDAProductGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MDAProductGroupByOutputType[P]>
+            : GetScalarType<T[P], MDAProductGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MDAProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    registrationNo?: boolean
+    effectiveDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    owner?: boolean | MDAProduct$ownerArgs<ExtArgs>
+    product?: boolean | MDAProduct$productArgs<ExtArgs>
+    _count?: boolean | MDAProductCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mDAProduct"]>
+
+  export type MDAProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    registrationNo?: boolean
+    effectiveDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["mDAProduct"]>
+
+  export type MDAProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    registrationNo?: boolean
+    effectiveDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["mDAProduct"]>
+
+  export type MDAProductSelectScalar = {
+    id?: boolean
+    registrationNo?: boolean
+    effectiveDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MDAProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "registrationNo" | "effectiveDate" | "expiryDate" | "createdAt" | "updatedAt", ExtArgs["result"]["mDAProduct"]>
+  export type MDAProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | MDAProduct$ownerArgs<ExtArgs>
+    product?: boolean | MDAProduct$productArgs<ExtArgs>
+    _count?: boolean | MDAProductCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MDAProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MDAProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $MDAProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MDAProduct"
+    objects: {
+      owner: Prisma.$SupplierPayload<ExtArgs>[]
+      product: Prisma.$ProductPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      registrationNo: string
+      effectiveDate: Date
+      expiryDate: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mDAProduct"]>
+    composites: {}
+  }
+
+  type MDAProductGetPayload<S extends boolean | null | undefined | MDAProductDefaultArgs> = $Result.GetResult<Prisma.$MDAProductPayload, S>
+
+  type MDAProductCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MDAProductFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MDAProductCountAggregateInputType | true
+    }
+
+  export interface MDAProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MDAProduct'], meta: { name: 'MDAProduct' } }
+    /**
+     * Find zero or one MDAProduct that matches the filter.
+     * @param {MDAProductFindUniqueArgs} args - Arguments to find a MDAProduct
+     * @example
+     * // Get one MDAProduct
+     * const mDAProduct = await prisma.mDAProduct.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MDAProductFindUniqueArgs>(args: SelectSubset<T, MDAProductFindUniqueArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MDAProduct that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MDAProductFindUniqueOrThrowArgs} args - Arguments to find a MDAProduct
+     * @example
+     * // Get one MDAProduct
+     * const mDAProduct = await prisma.mDAProduct.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MDAProductFindUniqueOrThrowArgs>(args: SelectSubset<T, MDAProductFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MDAProduct that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductFindFirstArgs} args - Arguments to find a MDAProduct
+     * @example
+     * // Get one MDAProduct
+     * const mDAProduct = await prisma.mDAProduct.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MDAProductFindFirstArgs>(args?: SelectSubset<T, MDAProductFindFirstArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MDAProduct that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductFindFirstOrThrowArgs} args - Arguments to find a MDAProduct
+     * @example
+     * // Get one MDAProduct
+     * const mDAProduct = await prisma.mDAProduct.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MDAProductFindFirstOrThrowArgs>(args?: SelectSubset<T, MDAProductFindFirstOrThrowArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MDAProducts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MDAProducts
+     * const mDAProducts = await prisma.mDAProduct.findMany()
+     * 
+     * // Get first 10 MDAProducts
+     * const mDAProducts = await prisma.mDAProduct.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mDAProductWithIdOnly = await prisma.mDAProduct.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MDAProductFindManyArgs>(args?: SelectSubset<T, MDAProductFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MDAProduct.
+     * @param {MDAProductCreateArgs} args - Arguments to create a MDAProduct.
+     * @example
+     * // Create one MDAProduct
+     * const MDAProduct = await prisma.mDAProduct.create({
+     *   data: {
+     *     // ... data to create a MDAProduct
+     *   }
+     * })
+     * 
+     */
+    create<T extends MDAProductCreateArgs>(args: SelectSubset<T, MDAProductCreateArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MDAProducts.
+     * @param {MDAProductCreateManyArgs} args - Arguments to create many MDAProducts.
+     * @example
+     * // Create many MDAProducts
+     * const mDAProduct = await prisma.mDAProduct.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MDAProductCreateManyArgs>(args?: SelectSubset<T, MDAProductCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MDAProducts and returns the data saved in the database.
+     * @param {MDAProductCreateManyAndReturnArgs} args - Arguments to create many MDAProducts.
+     * @example
+     * // Create many MDAProducts
+     * const mDAProduct = await prisma.mDAProduct.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MDAProducts and only return the `id`
+     * const mDAProductWithIdOnly = await prisma.mDAProduct.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MDAProductCreateManyAndReturnArgs>(args?: SelectSubset<T, MDAProductCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MDAProduct.
+     * @param {MDAProductDeleteArgs} args - Arguments to delete one MDAProduct.
+     * @example
+     * // Delete one MDAProduct
+     * const MDAProduct = await prisma.mDAProduct.delete({
+     *   where: {
+     *     // ... filter to delete one MDAProduct
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MDAProductDeleteArgs>(args: SelectSubset<T, MDAProductDeleteArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MDAProduct.
+     * @param {MDAProductUpdateArgs} args - Arguments to update one MDAProduct.
+     * @example
+     * // Update one MDAProduct
+     * const mDAProduct = await prisma.mDAProduct.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MDAProductUpdateArgs>(args: SelectSubset<T, MDAProductUpdateArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MDAProducts.
+     * @param {MDAProductDeleteManyArgs} args - Arguments to filter MDAProducts to delete.
+     * @example
+     * // Delete a few MDAProducts
+     * const { count } = await prisma.mDAProduct.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MDAProductDeleteManyArgs>(args?: SelectSubset<T, MDAProductDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MDAProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MDAProducts
+     * const mDAProduct = await prisma.mDAProduct.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MDAProductUpdateManyArgs>(args: SelectSubset<T, MDAProductUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MDAProducts and returns the data updated in the database.
+     * @param {MDAProductUpdateManyAndReturnArgs} args - Arguments to update many MDAProducts.
+     * @example
+     * // Update many MDAProducts
+     * const mDAProduct = await prisma.mDAProduct.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MDAProducts and only return the `id`
+     * const mDAProductWithIdOnly = await prisma.mDAProduct.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MDAProductUpdateManyAndReturnArgs>(args: SelectSubset<T, MDAProductUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MDAProduct.
+     * @param {MDAProductUpsertArgs} args - Arguments to update or create a MDAProduct.
+     * @example
+     * // Update or create a MDAProduct
+     * const mDAProduct = await prisma.mDAProduct.upsert({
+     *   create: {
+     *     // ... data to create a MDAProduct
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MDAProduct we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MDAProductUpsertArgs>(args: SelectSubset<T, MDAProductUpsertArgs<ExtArgs>>): Prisma__MDAProductClient<$Result.GetResult<Prisma.$MDAProductPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MDAProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductCountArgs} args - Arguments to filter MDAProducts to count.
+     * @example
+     * // Count the number of MDAProducts
+     * const count = await prisma.mDAProduct.count({
+     *   where: {
+     *     // ... the filter for the MDAProducts we want to count
+     *   }
+     * })
+    **/
+    count<T extends MDAProductCountArgs>(
+      args?: Subset<T, MDAProductCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MDAProductCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MDAProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MDAProductAggregateArgs>(args: Subset<T, MDAProductAggregateArgs>): Prisma.PrismaPromise<GetMDAProductAggregateType<T>>
+
+    /**
+     * Group by MDAProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MDAProductGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MDAProductGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MDAProductGroupByArgs['orderBy'] }
+        : { orderBy?: MDAProductGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MDAProductGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMDAProductGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MDAProduct model
+   */
+  readonly fields: MDAProductFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MDAProduct.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MDAProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    owner<T extends MDAProduct$ownerArgs<ExtArgs> = {}>(args?: Subset<T, MDAProduct$ownerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    product<T extends MDAProduct$productArgs<ExtArgs> = {}>(args?: Subset<T, MDAProduct$productArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MDAProduct model
+   */
+  interface MDAProductFieldRefs {
+    readonly id: FieldRef<"MDAProduct", 'String'>
+    readonly registrationNo: FieldRef<"MDAProduct", 'String'>
+    readonly effectiveDate: FieldRef<"MDAProduct", 'DateTime'>
+    readonly expiryDate: FieldRef<"MDAProduct", 'DateTime'>
+    readonly createdAt: FieldRef<"MDAProduct", 'DateTime'>
+    readonly updatedAt: FieldRef<"MDAProduct", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MDAProduct findUnique
+   */
+  export type MDAProductFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * Filter, which MDAProduct to fetch.
+     */
+    where: MDAProductWhereUniqueInput
+  }
+
+  /**
+   * MDAProduct findUniqueOrThrow
+   */
+  export type MDAProductFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * Filter, which MDAProduct to fetch.
+     */
+    where: MDAProductWhereUniqueInput
+  }
+
+  /**
+   * MDAProduct findFirst
+   */
+  export type MDAProductFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * Filter, which MDAProduct to fetch.
+     */
+    where?: MDAProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MDAProducts to fetch.
+     */
+    orderBy?: MDAProductOrderByWithRelationInput | MDAProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MDAProducts.
+     */
+    cursor?: MDAProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MDAProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MDAProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MDAProducts.
+     */
+    distinct?: MDAProductScalarFieldEnum | MDAProductScalarFieldEnum[]
+  }
+
+  /**
+   * MDAProduct findFirstOrThrow
+   */
+  export type MDAProductFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * Filter, which MDAProduct to fetch.
+     */
+    where?: MDAProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MDAProducts to fetch.
+     */
+    orderBy?: MDAProductOrderByWithRelationInput | MDAProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MDAProducts.
+     */
+    cursor?: MDAProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MDAProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MDAProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MDAProducts.
+     */
+    distinct?: MDAProductScalarFieldEnum | MDAProductScalarFieldEnum[]
+  }
+
+  /**
+   * MDAProduct findMany
+   */
+  export type MDAProductFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * Filter, which MDAProducts to fetch.
+     */
+    where?: MDAProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MDAProducts to fetch.
+     */
+    orderBy?: MDAProductOrderByWithRelationInput | MDAProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MDAProducts.
+     */
+    cursor?: MDAProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MDAProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MDAProducts.
+     */
+    skip?: number
+    distinct?: MDAProductScalarFieldEnum | MDAProductScalarFieldEnum[]
+  }
+
+  /**
+   * MDAProduct create
+   */
+  export type MDAProductCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MDAProduct.
+     */
+    data: XOR<MDAProductCreateInput, MDAProductUncheckedCreateInput>
+  }
+
+  /**
+   * MDAProduct createMany
+   */
+  export type MDAProductCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MDAProducts.
+     */
+    data: MDAProductCreateManyInput | MDAProductCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MDAProduct createManyAndReturn
+   */
+  export type MDAProductCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * The data used to create many MDAProducts.
+     */
+    data: MDAProductCreateManyInput | MDAProductCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MDAProduct update
+   */
+  export type MDAProductUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MDAProduct.
+     */
+    data: XOR<MDAProductUpdateInput, MDAProductUncheckedUpdateInput>
+    /**
+     * Choose, which MDAProduct to update.
+     */
+    where: MDAProductWhereUniqueInput
+  }
+
+  /**
+   * MDAProduct updateMany
+   */
+  export type MDAProductUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MDAProducts.
+     */
+    data: XOR<MDAProductUpdateManyMutationInput, MDAProductUncheckedUpdateManyInput>
+    /**
+     * Filter which MDAProducts to update
+     */
+    where?: MDAProductWhereInput
+    /**
+     * Limit how many MDAProducts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MDAProduct updateManyAndReturn
+   */
+  export type MDAProductUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * The data used to update MDAProducts.
+     */
+    data: XOR<MDAProductUpdateManyMutationInput, MDAProductUncheckedUpdateManyInput>
+    /**
+     * Filter which MDAProducts to update
+     */
+    where?: MDAProductWhereInput
+    /**
+     * Limit how many MDAProducts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MDAProduct upsert
+   */
+  export type MDAProductUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MDAProduct to update in case it exists.
+     */
+    where: MDAProductWhereUniqueInput
+    /**
+     * In case the MDAProduct found by the `where` argument doesn't exist, create a new MDAProduct with this data.
+     */
+    create: XOR<MDAProductCreateInput, MDAProductUncheckedCreateInput>
+    /**
+     * In case the MDAProduct was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MDAProductUpdateInput, MDAProductUncheckedUpdateInput>
+  }
+
+  /**
+   * MDAProduct delete
+   */
+  export type MDAProductDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+    /**
+     * Filter which MDAProduct to delete.
+     */
+    where: MDAProductWhereUniqueInput
+  }
+
+  /**
+   * MDAProduct deleteMany
+   */
+  export type MDAProductDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MDAProducts to delete
+     */
+    where?: MDAProductWhereInput
+    /**
+     * Limit how many MDAProducts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MDAProduct.owner
+   */
+  export type MDAProduct$ownerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Supplier
+     */
+    select?: SupplierSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Supplier
+     */
+    omit?: SupplierOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplierInclude<ExtArgs> | null
+    where?: SupplierWhereInput
+    orderBy?: SupplierOrderByWithRelationInput | SupplierOrderByWithRelationInput[]
+    cursor?: SupplierWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SupplierScalarFieldEnum | SupplierScalarFieldEnum[]
+  }
+
+  /**
+   * MDAProduct.product
+   */
+  export type MDAProduct$productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Product
+     */
+    omit?: ProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    cursor?: ProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+  }
+
+  /**
+   * MDAProduct without action
+   */
+  export type MDAProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MDAProduct
+     */
+    select?: MDAProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MDAProduct
+     */
+    omit?: MDAProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MDAProductInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14729,6 +16061,7 @@ export namespace Prisma {
   export const SupplierScalarFieldEnum: {
     id: 'id',
     supplierName: 'supplierName',
+    companyName: 'companyName',
     phone: 'phone',
     email: 'email',
     addressLine1: 'addressLine1',
@@ -14752,7 +16085,8 @@ export namespace Prisma {
     oum: 'oum',
     supplierId: 'supplierId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    mdaProductId: 'mdaProductId'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -14859,6 +16193,18 @@ export namespace Prisma {
   };
 
   export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
+  export const MDAProductScalarFieldEnum: {
+    id: 'id',
+    registrationNo: 'registrationNo',
+    effectiveDate: 'effectiveDate',
+    expiryDate: 'expiryDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MDAProductScalarFieldEnum = (typeof MDAProductScalarFieldEnum)[keyof typeof MDAProductScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -15165,63 +16511,70 @@ export namespace Prisma {
     NOT?: SupplierWhereInput | SupplierWhereInput[]
     id?: StringFilter<"Supplier"> | string
     supplierName?: StringFilter<"Supplier"> | string
+    companyName?: StringNullableFilter<"Supplier"> | string | null
     phone?: StringNullableFilter<"Supplier"> | string | null
     email?: StringNullableFilter<"Supplier"> | string | null
-    addressLine1?: StringFilter<"Supplier"> | string
-    addressLine2?: StringFilter<"Supplier"> | string
+    addressLine1?: StringNullableFilter<"Supplier"> | string | null
+    addressLine2?: StringNullableFilter<"Supplier"> | string | null
     addressLine3?: StringNullableFilter<"Supplier"> | string | null
-    postcode?: StringFilter<"Supplier"> | string
-    city?: StringFilter<"Supplier"> | string
-    province?: StringFilter<"Supplier"> | string
-    country?: StringFilter<"Supplier"> | string
+    postcode?: StringNullableFilter<"Supplier"> | string | null
+    city?: StringNullableFilter<"Supplier"> | string | null
+    province?: StringNullableFilter<"Supplier"> | string | null
+    country?: StringNullableFilter<"Supplier"> | string | null
     products?: ProductListRelationFilter
+    mdaProduct?: MDAProductListRelationFilter
   }
 
   export type SupplierOrderByWithRelationInput = {
     id?: SortOrder
     supplierName?: SortOrder
+    companyName?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
-    addressLine1?: SortOrder
-    addressLine2?: SortOrder
+    addressLine1?: SortOrderInput | SortOrder
+    addressLine2?: SortOrderInput | SortOrder
     addressLine3?: SortOrderInput | SortOrder
-    postcode?: SortOrder
-    city?: SortOrder
-    province?: SortOrder
-    country?: SortOrder
+    postcode?: SortOrderInput | SortOrder
+    city?: SortOrderInput | SortOrder
+    province?: SortOrderInput | SortOrder
+    country?: SortOrderInput | SortOrder
     products?: ProductOrderByRelationAggregateInput
+    mdaProduct?: MDAProductOrderByRelationAggregateInput
   }
 
   export type SupplierWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    supplierName?: string
     AND?: SupplierWhereInput | SupplierWhereInput[]
     OR?: SupplierWhereInput[]
     NOT?: SupplierWhereInput | SupplierWhereInput[]
-    supplierName?: StringFilter<"Supplier"> | string
+    companyName?: StringNullableFilter<"Supplier"> | string | null
     phone?: StringNullableFilter<"Supplier"> | string | null
     email?: StringNullableFilter<"Supplier"> | string | null
-    addressLine1?: StringFilter<"Supplier"> | string
-    addressLine2?: StringFilter<"Supplier"> | string
+    addressLine1?: StringNullableFilter<"Supplier"> | string | null
+    addressLine2?: StringNullableFilter<"Supplier"> | string | null
     addressLine3?: StringNullableFilter<"Supplier"> | string | null
-    postcode?: StringFilter<"Supplier"> | string
-    city?: StringFilter<"Supplier"> | string
-    province?: StringFilter<"Supplier"> | string
-    country?: StringFilter<"Supplier"> | string
+    postcode?: StringNullableFilter<"Supplier"> | string | null
+    city?: StringNullableFilter<"Supplier"> | string | null
+    province?: StringNullableFilter<"Supplier"> | string | null
+    country?: StringNullableFilter<"Supplier"> | string | null
     products?: ProductListRelationFilter
-  }, "id">
+    mdaProduct?: MDAProductListRelationFilter
+  }, "id" | "supplierName">
 
   export type SupplierOrderByWithAggregationInput = {
     id?: SortOrder
     supplierName?: SortOrder
+    companyName?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
-    addressLine1?: SortOrder
-    addressLine2?: SortOrder
+    addressLine1?: SortOrderInput | SortOrder
+    addressLine2?: SortOrderInput | SortOrder
     addressLine3?: SortOrderInput | SortOrder
-    postcode?: SortOrder
-    city?: SortOrder
-    province?: SortOrder
-    country?: SortOrder
+    postcode?: SortOrderInput | SortOrder
+    city?: SortOrderInput | SortOrder
+    province?: SortOrderInput | SortOrder
+    country?: SortOrderInput | SortOrder
     _count?: SupplierCountOrderByAggregateInput
     _max?: SupplierMaxOrderByAggregateInput
     _min?: SupplierMinOrderByAggregateInput
@@ -15233,15 +16586,16 @@ export namespace Prisma {
     NOT?: SupplierScalarWhereWithAggregatesInput | SupplierScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Supplier"> | string
     supplierName?: StringWithAggregatesFilter<"Supplier"> | string
+    companyName?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
     phone?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
     email?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
-    addressLine1?: StringWithAggregatesFilter<"Supplier"> | string
-    addressLine2?: StringWithAggregatesFilter<"Supplier"> | string
+    addressLine1?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
+    addressLine2?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
     addressLine3?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
-    postcode?: StringWithAggregatesFilter<"Supplier"> | string
-    city?: StringWithAggregatesFilter<"Supplier"> | string
-    province?: StringWithAggregatesFilter<"Supplier"> | string
-    country?: StringWithAggregatesFilter<"Supplier"> | string
+    postcode?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
+    city?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
+    province?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
+    country?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
   }
 
   export type ProductWhereInput = {
@@ -15257,8 +16611,10 @@ export namespace Prisma {
     supplierId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
+    mdaProductId?: StringNullableFilter<"Product"> | string | null
     supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
     stocks?: StockListRelationFilter
+    mdaProduct?: XOR<MDAProductNullableScalarRelationFilter, MDAProductWhereInput> | null
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -15271,8 +16627,10 @@ export namespace Prisma {
     supplierId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    mdaProductId?: SortOrderInput | SortOrder
     supplier?: SupplierOrderByWithRelationInput
     stocks?: StockOrderByRelationAggregateInput
+    mdaProduct?: MDAProductOrderByWithRelationInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -15288,8 +16646,10 @@ export namespace Prisma {
     supplierId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
+    mdaProductId?: StringNullableFilter<"Product"> | string | null
     supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
     stocks?: StockListRelationFilter
+    mdaProduct?: XOR<MDAProductNullableScalarRelationFilter, MDAProductWhereInput> | null
   }, "id" | "productCode">
 
   export type ProductOrderByWithAggregationInput = {
@@ -15302,6 +16662,7 @@ export namespace Prisma {
     supplierId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    mdaProductId?: SortOrderInput | SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -15322,6 +16683,7 @@ export namespace Prisma {
     supplierId?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
+    mdaProductId?: StringNullableWithAggregatesFilter<"Product"> | string | null
   }
 
   export type StoreWhereInput = {
@@ -15859,6 +17221,69 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"QuotationItem"> | Date | string
   }
 
+  export type MDAProductWhereInput = {
+    AND?: MDAProductWhereInput | MDAProductWhereInput[]
+    OR?: MDAProductWhereInput[]
+    NOT?: MDAProductWhereInput | MDAProductWhereInput[]
+    id?: StringFilter<"MDAProduct"> | string
+    registrationNo?: StringFilter<"MDAProduct"> | string
+    effectiveDate?: DateTimeFilter<"MDAProduct"> | Date | string
+    expiryDate?: DateTimeFilter<"MDAProduct"> | Date | string
+    createdAt?: DateTimeFilter<"MDAProduct"> | Date | string
+    updatedAt?: DateTimeFilter<"MDAProduct"> | Date | string
+    owner?: SupplierListRelationFilter
+    product?: ProductListRelationFilter
+  }
+
+  export type MDAProductOrderByWithRelationInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    effectiveDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    owner?: SupplierOrderByRelationAggregateInput
+    product?: ProductOrderByRelationAggregateInput
+  }
+
+  export type MDAProductWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MDAProductWhereInput | MDAProductWhereInput[]
+    OR?: MDAProductWhereInput[]
+    NOT?: MDAProductWhereInput | MDAProductWhereInput[]
+    registrationNo?: StringFilter<"MDAProduct"> | string
+    effectiveDate?: DateTimeFilter<"MDAProduct"> | Date | string
+    expiryDate?: DateTimeFilter<"MDAProduct"> | Date | string
+    createdAt?: DateTimeFilter<"MDAProduct"> | Date | string
+    updatedAt?: DateTimeFilter<"MDAProduct"> | Date | string
+    owner?: SupplierListRelationFilter
+    product?: ProductListRelationFilter
+  }, "id">
+
+  export type MDAProductOrderByWithAggregationInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    effectiveDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MDAProductCountOrderByAggregateInput
+    _max?: MDAProductMaxOrderByAggregateInput
+    _min?: MDAProductMinOrderByAggregateInput
+  }
+
+  export type MDAProductScalarWhereWithAggregatesInput = {
+    AND?: MDAProductScalarWhereWithAggregatesInput | MDAProductScalarWhereWithAggregatesInput[]
+    OR?: MDAProductScalarWhereWithAggregatesInput[]
+    NOT?: MDAProductScalarWhereWithAggregatesInput | MDAProductScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MDAProduct"> | string
+    registrationNo?: StringWithAggregatesFilter<"MDAProduct"> | string
+    effectiveDate?: DateTimeWithAggregatesFilter<"MDAProduct"> | Date | string
+    expiryDate?: DateTimeWithAggregatesFilter<"MDAProduct"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"MDAProduct"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MDAProduct"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     username: string
@@ -16058,103 +17483,114 @@ export namespace Prisma {
   export type SupplierCreateInput = {
     id?: string
     supplierName: string
+    companyName?: string | null
     phone?: string | null
     email?: string | null
-    addressLine1: string
-    addressLine2: string
+    addressLine1?: string | null
+    addressLine2?: string | null
     addressLine3?: string | null
-    postcode: string
-    city: string
-    province: string
-    country: string
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
     products?: ProductCreateNestedManyWithoutSupplierInput
+    mdaProduct?: MDAProductCreateNestedManyWithoutOwnerInput
   }
 
   export type SupplierUncheckedCreateInput = {
     id?: string
     supplierName: string
+    companyName?: string | null
     phone?: string | null
     email?: string | null
-    addressLine1: string
-    addressLine2: string
+    addressLine1?: string | null
+    addressLine2?: string | null
     addressLine3?: string | null
-    postcode: string
-    city: string
-    province: string
-    country: string
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
     products?: ProductUncheckedCreateNestedManyWithoutSupplierInput
+    mdaProduct?: MDAProductUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type SupplierUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    postcode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    province?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     products?: ProductUpdateManyWithoutSupplierNestedInput
+    mdaProduct?: MDAProductUpdateManyWithoutOwnerNestedInput
   }
 
   export type SupplierUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    postcode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    province?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     products?: ProductUncheckedUpdateManyWithoutSupplierNestedInput
+    mdaProduct?: MDAProductUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type SupplierCreateManyInput = {
     id?: string
     supplierName: string
+    companyName?: string | null
     phone?: string | null
     email?: string | null
-    addressLine1: string
-    addressLine2: string
+    addressLine1?: string | null
+    addressLine2?: string | null
     addressLine3?: string | null
-    postcode: string
-    city: string
-    province: string
-    country: string
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
   }
 
   export type SupplierUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    postcode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    province?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SupplierUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    postcode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    province?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductCreateInput = {
@@ -16168,6 +17604,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     supplier?: SupplierCreateNestedOneWithoutProductsInput
     stocks?: StockCreateNestedManyWithoutProductsInput
+    mdaProduct?: MDAProductCreateNestedOneWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -16180,6 +17617,7 @@ export namespace Prisma {
     supplierId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    mdaProductId?: string | null
     stocks?: StockUncheckedCreateNestedManyWithoutProductsInput
   }
 
@@ -16194,6 +17632,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     supplier?: SupplierUpdateOneWithoutProductsNestedInput
     stocks?: StockUpdateManyWithoutProductsNestedInput
+    mdaProduct?: MDAProductUpdateOneWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -16206,6 +17645,7 @@ export namespace Prisma {
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mdaProductId?: NullableStringFieldUpdateOperationsInput | string | null
     stocks?: StockUncheckedUpdateManyWithoutProductsNestedInput
   }
 
@@ -16219,6 +17659,7 @@ export namespace Prisma {
     supplierId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    mdaProductId?: string | null
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -16242,6 +17683,7 @@ export namespace Prisma {
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mdaProductId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreCreateInput = {
@@ -16836,6 +18278,77 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MDAProductCreateInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner?: SupplierCreateNestedManyWithoutMdaProductInput
+    product?: ProductCreateNestedManyWithoutMdaProductInput
+  }
+
+  export type MDAProductUncheckedCreateInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner?: SupplierUncheckedCreateNestedManyWithoutMdaProductInput
+    product?: ProductUncheckedCreateNestedManyWithoutMdaProductInput
+  }
+
+  export type MDAProductUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: SupplierUpdateManyWithoutMdaProductNestedInput
+    product?: ProductUpdateManyWithoutMdaProductNestedInput
+  }
+
+  export type MDAProductUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: SupplierUncheckedUpdateManyWithoutMdaProductNestedInput
+    product?: ProductUncheckedUpdateManyWithoutMdaProductNestedInput
+  }
+
+  export type MDAProductCreateManyInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MDAProductUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MDAProductUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -17073,13 +18586,24 @@ export namespace Prisma {
     none?: ProductWhereInput
   }
 
+  export type MDAProductListRelationFilter = {
+    every?: MDAProductWhereInput
+    some?: MDAProductWhereInput
+    none?: MDAProductWhereInput
+  }
+
   export type ProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MDAProductOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type SupplierCountOrderByAggregateInput = {
     id?: SortOrder
     supplierName?: SortOrder
+    companyName?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     addressLine1?: SortOrder
@@ -17094,6 +18618,7 @@ export namespace Prisma {
   export type SupplierMaxOrderByAggregateInput = {
     id?: SortOrder
     supplierName?: SortOrder
+    companyName?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     addressLine1?: SortOrder
@@ -17108,6 +18633,7 @@ export namespace Prisma {
   export type SupplierMinOrderByAggregateInput = {
     id?: SortOrder
     supplierName?: SortOrder
+    companyName?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     addressLine1?: SortOrder
@@ -17141,6 +18667,11 @@ export namespace Prisma {
     none?: StockWhereInput
   }
 
+  export type MDAProductNullableScalarRelationFilter = {
+    is?: MDAProductWhereInput | null
+    isNot?: MDAProductWhereInput | null
+  }
+
   export type StockOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -17155,6 +18686,7 @@ export namespace Prisma {
     supplierId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    mdaProductId?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -17171,6 +18703,7 @@ export namespace Prisma {
     supplierId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    mdaProductId?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -17183,6 +18716,7 @@ export namespace Prisma {
     supplierId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    mdaProductId?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -17624,6 +19158,43 @@ export namespace Prisma {
     qty?: SortOrder
   }
 
+  export type SupplierListRelationFilter = {
+    every?: SupplierWhereInput
+    some?: SupplierWhereInput
+    none?: SupplierWhereInput
+  }
+
+  export type SupplierOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MDAProductCountOrderByAggregateInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    effectiveDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MDAProductMaxOrderByAggregateInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    effectiveDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MDAProductMinOrderByAggregateInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    effectiveDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -17739,11 +19310,23 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
+  export type MDAProductCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<MDAProductCreateWithoutOwnerInput, MDAProductUncheckedCreateWithoutOwnerInput> | MDAProductCreateWithoutOwnerInput[] | MDAProductUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: MDAProductCreateOrConnectWithoutOwnerInput | MDAProductCreateOrConnectWithoutOwnerInput[]
+    connect?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedManyWithoutSupplierInput = {
     create?: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput> | ProductCreateWithoutSupplierInput[] | ProductUncheckedCreateWithoutSupplierInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutSupplierInput | ProductCreateOrConnectWithoutSupplierInput[]
     createMany?: ProductCreateManySupplierInputEnvelope
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type MDAProductUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<MDAProductCreateWithoutOwnerInput, MDAProductUncheckedCreateWithoutOwnerInput> | MDAProductCreateWithoutOwnerInput[] | MDAProductUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: MDAProductCreateOrConnectWithoutOwnerInput | MDAProductCreateOrConnectWithoutOwnerInput[]
+    connect?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
   }
 
   export type ProductUpdateManyWithoutSupplierNestedInput = {
@@ -17760,6 +19343,19 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type MDAProductUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<MDAProductCreateWithoutOwnerInput, MDAProductUncheckedCreateWithoutOwnerInput> | MDAProductCreateWithoutOwnerInput[] | MDAProductUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: MDAProductCreateOrConnectWithoutOwnerInput | MDAProductCreateOrConnectWithoutOwnerInput[]
+    upsert?: MDAProductUpsertWithWhereUniqueWithoutOwnerInput | MDAProductUpsertWithWhereUniqueWithoutOwnerInput[]
+    set?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    disconnect?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    delete?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    connect?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    update?: MDAProductUpdateWithWhereUniqueWithoutOwnerInput | MDAProductUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: MDAProductUpdateManyWithWhereWithoutOwnerInput | MDAProductUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: MDAProductScalarWhereInput | MDAProductScalarWhereInput[]
+  }
+
   export type ProductUncheckedUpdateManyWithoutSupplierNestedInput = {
     create?: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput> | ProductCreateWithoutSupplierInput[] | ProductUncheckedCreateWithoutSupplierInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutSupplierInput | ProductCreateOrConnectWithoutSupplierInput[]
@@ -17774,6 +19370,19 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type MDAProductUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<MDAProductCreateWithoutOwnerInput, MDAProductUncheckedCreateWithoutOwnerInput> | MDAProductCreateWithoutOwnerInput[] | MDAProductUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: MDAProductCreateOrConnectWithoutOwnerInput | MDAProductCreateOrConnectWithoutOwnerInput[]
+    upsert?: MDAProductUpsertWithWhereUniqueWithoutOwnerInput | MDAProductUpsertWithWhereUniqueWithoutOwnerInput[]
+    set?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    disconnect?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    delete?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    connect?: MDAProductWhereUniqueInput | MDAProductWhereUniqueInput[]
+    update?: MDAProductUpdateWithWhereUniqueWithoutOwnerInput | MDAProductUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: MDAProductUpdateManyWithWhereWithoutOwnerInput | MDAProductUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: MDAProductScalarWhereInput | MDAProductScalarWhereInput[]
+  }
+
   export type SupplierCreateNestedOneWithoutProductsInput = {
     create?: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
     connectOrCreate?: SupplierCreateOrConnectWithoutProductsInput
@@ -17785,6 +19394,12 @@ export namespace Prisma {
     connectOrCreate?: StockCreateOrConnectWithoutProductsInput | StockCreateOrConnectWithoutProductsInput[]
     createMany?: StockCreateManyProductsInputEnvelope
     connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type MDAProductCreateNestedOneWithoutProductInput = {
+    create?: XOR<MDAProductCreateWithoutProductInput, MDAProductUncheckedCreateWithoutProductInput>
+    connectOrCreate?: MDAProductCreateOrConnectWithoutProductInput
+    connect?: MDAProductWhereUniqueInput
   }
 
   export type StockUncheckedCreateNestedManyWithoutProductsInput = {
@@ -17824,6 +19439,16 @@ export namespace Prisma {
     update?: StockUpdateWithWhereUniqueWithoutProductsInput | StockUpdateWithWhereUniqueWithoutProductsInput[]
     updateMany?: StockUpdateManyWithWhereWithoutProductsInput | StockUpdateManyWithWhereWithoutProductsInput[]
     deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type MDAProductUpdateOneWithoutProductNestedInput = {
+    create?: XOR<MDAProductCreateWithoutProductInput, MDAProductUncheckedCreateWithoutProductInput>
+    connectOrCreate?: MDAProductCreateOrConnectWithoutProductInput
+    upsert?: MDAProductUpsertWithoutProductInput
+    disconnect?: MDAProductWhereInput | boolean
+    delete?: MDAProductWhereInput | boolean
+    connect?: MDAProductWhereUniqueInput
+    update?: XOR<XOR<MDAProductUpdateToOneWithWhereWithoutProductInput, MDAProductUpdateWithoutProductInput>, MDAProductUncheckedUpdateWithoutProductInput>
   }
 
   export type StockUncheckedUpdateManyWithoutProductsNestedInput = {
@@ -18191,6 +19816,86 @@ export namespace Prisma {
     upsert?: QuotationUpsertWithoutItemsInput
     connect?: QuotationWhereUniqueInput
     update?: XOR<XOR<QuotationUpdateToOneWithWhereWithoutItemsInput, QuotationUpdateWithoutItemsInput>, QuotationUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type SupplierCreateNestedManyWithoutMdaProductInput = {
+    create?: XOR<SupplierCreateWithoutMdaProductInput, SupplierUncheckedCreateWithoutMdaProductInput> | SupplierCreateWithoutMdaProductInput[] | SupplierUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: SupplierCreateOrConnectWithoutMdaProductInput | SupplierCreateOrConnectWithoutMdaProductInput[]
+    connect?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+  }
+
+  export type ProductCreateNestedManyWithoutMdaProductInput = {
+    create?: XOR<ProductCreateWithoutMdaProductInput, ProductUncheckedCreateWithoutMdaProductInput> | ProductCreateWithoutMdaProductInput[] | ProductUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutMdaProductInput | ProductCreateOrConnectWithoutMdaProductInput[]
+    createMany?: ProductCreateManyMdaProductInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type SupplierUncheckedCreateNestedManyWithoutMdaProductInput = {
+    create?: XOR<SupplierCreateWithoutMdaProductInput, SupplierUncheckedCreateWithoutMdaProductInput> | SupplierCreateWithoutMdaProductInput[] | SupplierUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: SupplierCreateOrConnectWithoutMdaProductInput | SupplierCreateOrConnectWithoutMdaProductInput[]
+    connect?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+  }
+
+  export type ProductUncheckedCreateNestedManyWithoutMdaProductInput = {
+    create?: XOR<ProductCreateWithoutMdaProductInput, ProductUncheckedCreateWithoutMdaProductInput> | ProductCreateWithoutMdaProductInput[] | ProductUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutMdaProductInput | ProductCreateOrConnectWithoutMdaProductInput[]
+    createMany?: ProductCreateManyMdaProductInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type SupplierUpdateManyWithoutMdaProductNestedInput = {
+    create?: XOR<SupplierCreateWithoutMdaProductInput, SupplierUncheckedCreateWithoutMdaProductInput> | SupplierCreateWithoutMdaProductInput[] | SupplierUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: SupplierCreateOrConnectWithoutMdaProductInput | SupplierCreateOrConnectWithoutMdaProductInput[]
+    upsert?: SupplierUpsertWithWhereUniqueWithoutMdaProductInput | SupplierUpsertWithWhereUniqueWithoutMdaProductInput[]
+    set?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    disconnect?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    delete?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    connect?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    update?: SupplierUpdateWithWhereUniqueWithoutMdaProductInput | SupplierUpdateWithWhereUniqueWithoutMdaProductInput[]
+    updateMany?: SupplierUpdateManyWithWhereWithoutMdaProductInput | SupplierUpdateManyWithWhereWithoutMdaProductInput[]
+    deleteMany?: SupplierScalarWhereInput | SupplierScalarWhereInput[]
+  }
+
+  export type ProductUpdateManyWithoutMdaProductNestedInput = {
+    create?: XOR<ProductCreateWithoutMdaProductInput, ProductUncheckedCreateWithoutMdaProductInput> | ProductCreateWithoutMdaProductInput[] | ProductUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutMdaProductInput | ProductCreateOrConnectWithoutMdaProductInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutMdaProductInput | ProductUpsertWithWhereUniqueWithoutMdaProductInput[]
+    createMany?: ProductCreateManyMdaProductInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutMdaProductInput | ProductUpdateWithWhereUniqueWithoutMdaProductInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutMdaProductInput | ProductUpdateManyWithWhereWithoutMdaProductInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type SupplierUncheckedUpdateManyWithoutMdaProductNestedInput = {
+    create?: XOR<SupplierCreateWithoutMdaProductInput, SupplierUncheckedCreateWithoutMdaProductInput> | SupplierCreateWithoutMdaProductInput[] | SupplierUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: SupplierCreateOrConnectWithoutMdaProductInput | SupplierCreateOrConnectWithoutMdaProductInput[]
+    upsert?: SupplierUpsertWithWhereUniqueWithoutMdaProductInput | SupplierUpsertWithWhereUniqueWithoutMdaProductInput[]
+    set?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    disconnect?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    delete?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    connect?: SupplierWhereUniqueInput | SupplierWhereUniqueInput[]
+    update?: SupplierUpdateWithWhereUniqueWithoutMdaProductInput | SupplierUpdateWithWhereUniqueWithoutMdaProductInput[]
+    updateMany?: SupplierUpdateManyWithWhereWithoutMdaProductInput | SupplierUpdateManyWithWhereWithoutMdaProductInput[]
+    deleteMany?: SupplierScalarWhereInput | SupplierScalarWhereInput[]
+  }
+
+  export type ProductUncheckedUpdateManyWithoutMdaProductNestedInput = {
+    create?: XOR<ProductCreateWithoutMdaProductInput, ProductUncheckedCreateWithoutMdaProductInput> | ProductCreateWithoutMdaProductInput[] | ProductUncheckedCreateWithoutMdaProductInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutMdaProductInput | ProductCreateOrConnectWithoutMdaProductInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutMdaProductInput | ProductUpsertWithWhereUniqueWithoutMdaProductInput[]
+    createMany?: ProductCreateManyMdaProductInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutMdaProductInput | ProductUpdateWithWhereUniqueWithoutMdaProductInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutMdaProductInput | ProductUpdateManyWithWhereWithoutMdaProductInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18656,6 +20361,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     stocks?: StockCreateNestedManyWithoutProductsInput
+    mdaProduct?: MDAProductCreateNestedOneWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSupplierInput = {
@@ -18667,6 +20373,7 @@ export namespace Prisma {
     oum: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mdaProductId?: string | null
     stocks?: StockUncheckedCreateNestedManyWithoutProductsInput
   }
 
@@ -18678,6 +20385,31 @@ export namespace Prisma {
   export type ProductCreateManySupplierInputEnvelope = {
     data: ProductCreateManySupplierInput | ProductCreateManySupplierInput[]
     skipDuplicates?: boolean
+  }
+
+  export type MDAProductCreateWithoutOwnerInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product?: ProductCreateNestedManyWithoutMdaProductInput
+  }
+
+  export type MDAProductUncheckedCreateWithoutOwnerInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product?: ProductUncheckedCreateNestedManyWithoutMdaProductInput
+  }
+
+  export type MDAProductCreateOrConnectWithoutOwnerInput = {
+    where: MDAProductWhereUniqueInput
+    create: XOR<MDAProductCreateWithoutOwnerInput, MDAProductUncheckedCreateWithoutOwnerInput>
   }
 
   export type ProductUpsertWithWhereUniqueWithoutSupplierInput = {
@@ -18709,34 +20441,67 @@ export namespace Prisma {
     supplierId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
+    mdaProductId?: StringNullableFilter<"Product"> | string | null
+  }
+
+  export type MDAProductUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: MDAProductWhereUniqueInput
+    update: XOR<MDAProductUpdateWithoutOwnerInput, MDAProductUncheckedUpdateWithoutOwnerInput>
+    create: XOR<MDAProductCreateWithoutOwnerInput, MDAProductUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type MDAProductUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: MDAProductWhereUniqueInput
+    data: XOR<MDAProductUpdateWithoutOwnerInput, MDAProductUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type MDAProductUpdateManyWithWhereWithoutOwnerInput = {
+    where: MDAProductScalarWhereInput
+    data: XOR<MDAProductUpdateManyMutationInput, MDAProductUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type MDAProductScalarWhereInput = {
+    AND?: MDAProductScalarWhereInput | MDAProductScalarWhereInput[]
+    OR?: MDAProductScalarWhereInput[]
+    NOT?: MDAProductScalarWhereInput | MDAProductScalarWhereInput[]
+    id?: StringFilter<"MDAProduct"> | string
+    registrationNo?: StringFilter<"MDAProduct"> | string
+    effectiveDate?: DateTimeFilter<"MDAProduct"> | Date | string
+    expiryDate?: DateTimeFilter<"MDAProduct"> | Date | string
+    createdAt?: DateTimeFilter<"MDAProduct"> | Date | string
+    updatedAt?: DateTimeFilter<"MDAProduct"> | Date | string
   }
 
   export type SupplierCreateWithoutProductsInput = {
     id?: string
     supplierName: string
+    companyName?: string | null
     phone?: string | null
     email?: string | null
-    addressLine1: string
-    addressLine2: string
+    addressLine1?: string | null
+    addressLine2?: string | null
     addressLine3?: string | null
-    postcode: string
-    city: string
-    province: string
-    country: string
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
+    mdaProduct?: MDAProductCreateNestedManyWithoutOwnerInput
   }
 
   export type SupplierUncheckedCreateWithoutProductsInput = {
     id?: string
     supplierName: string
+    companyName?: string | null
     phone?: string | null
     email?: string | null
-    addressLine1: string
-    addressLine2: string
+    addressLine1?: string | null
+    addressLine2?: string | null
     addressLine3?: string | null
-    postcode: string
-    city: string
-    province: string
-    country: string
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
+    mdaProduct?: MDAProductUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type SupplierCreateOrConnectWithoutProductsInput = {
@@ -18776,6 +20541,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MDAProductCreateWithoutProductInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner?: SupplierCreateNestedManyWithoutMdaProductInput
+  }
+
+  export type MDAProductUncheckedCreateWithoutProductInput = {
+    id?: string
+    registrationNo: string
+    effectiveDate: Date | string
+    expiryDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner?: SupplierUncheckedCreateNestedManyWithoutMdaProductInput
+  }
+
+  export type MDAProductCreateOrConnectWithoutProductInput = {
+    where: MDAProductWhereUniqueInput
+    create: XOR<MDAProductCreateWithoutProductInput, MDAProductUncheckedCreateWithoutProductInput>
+  }
+
   export type SupplierUpsertWithoutProductsInput = {
     update: XOR<SupplierUpdateWithoutProductsInput, SupplierUncheckedUpdateWithoutProductsInput>
     create: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
@@ -18790,29 +20580,33 @@ export namespace Prisma {
   export type SupplierUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    postcode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    province?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    mdaProduct?: MDAProductUpdateManyWithoutOwnerNestedInput
   }
 
   export type SupplierUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine1?: StringFieldUpdateOperationsInput | string
-    addressLine2?: StringFieldUpdateOperationsInput | string
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
-    postcode?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    province?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    mdaProduct?: MDAProductUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutProductsInput = {
@@ -18843,6 +20637,37 @@ export namespace Prisma {
     productId?: StringFilter<"Stock"> | string
     createdAt?: DateTimeFilter<"Stock"> | Date | string
     updatedAt?: DateTimeFilter<"Stock"> | Date | string
+  }
+
+  export type MDAProductUpsertWithoutProductInput = {
+    update: XOR<MDAProductUpdateWithoutProductInput, MDAProductUncheckedUpdateWithoutProductInput>
+    create: XOR<MDAProductCreateWithoutProductInput, MDAProductUncheckedCreateWithoutProductInput>
+    where?: MDAProductWhereInput
+  }
+
+  export type MDAProductUpdateToOneWithWhereWithoutProductInput = {
+    where?: MDAProductWhereInput
+    data: XOR<MDAProductUpdateWithoutProductInput, MDAProductUncheckedUpdateWithoutProductInput>
+  }
+
+  export type MDAProductUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: SupplierUpdateManyWithoutMdaProductNestedInput
+  }
+
+  export type MDAProductUncheckedUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: SupplierUncheckedUpdateManyWithoutMdaProductNestedInput
   }
 
   export type UserCreateWithoutStoreInput = {
@@ -19004,6 +20829,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     supplier?: SupplierCreateNestedOneWithoutProductsInput
+    mdaProduct?: MDAProductCreateNestedOneWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutStocksInput = {
@@ -19016,6 +20842,7 @@ export namespace Prisma {
     supplierId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    mdaProductId?: string | null
   }
 
   export type ProductCreateOrConnectWithoutStocksInput = {
@@ -19064,6 +20891,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     supplier?: SupplierUpdateOneWithoutProductsNestedInput
+    mdaProduct?: MDAProductUpdateOneWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutStocksInput = {
@@ -19076,6 +20904,7 @@ export namespace Prisma {
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mdaProductId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreStockUpsertWithWhereUniqueWithoutStockInput = {
@@ -19602,6 +21431,129 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
   }
 
+  export type SupplierCreateWithoutMdaProductInput = {
+    id?: string
+    supplierName: string
+    companyName?: string | null
+    phone?: string | null
+    email?: string | null
+    addressLine1?: string | null
+    addressLine2?: string | null
+    addressLine3?: string | null
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
+    products?: ProductCreateNestedManyWithoutSupplierInput
+  }
+
+  export type SupplierUncheckedCreateWithoutMdaProductInput = {
+    id?: string
+    supplierName: string
+    companyName?: string | null
+    phone?: string | null
+    email?: string | null
+    addressLine1?: string | null
+    addressLine2?: string | null
+    addressLine3?: string | null
+    postcode?: string | null
+    city?: string | null
+    province?: string | null
+    country?: string | null
+    products?: ProductUncheckedCreateNestedManyWithoutSupplierInput
+  }
+
+  export type SupplierCreateOrConnectWithoutMdaProductInput = {
+    where: SupplierWhereUniqueInput
+    create: XOR<SupplierCreateWithoutMdaProductInput, SupplierUncheckedCreateWithoutMdaProductInput>
+  }
+
+  export type ProductCreateWithoutMdaProductInput = {
+    id?: string
+    sku?: string | null
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    supplier?: SupplierCreateNestedOneWithoutProductsInput
+    stocks?: StockCreateNestedManyWithoutProductsInput
+  }
+
+  export type ProductUncheckedCreateWithoutMdaProductInput = {
+    id?: string
+    sku?: string | null
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    supplierId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    stocks?: StockUncheckedCreateNestedManyWithoutProductsInput
+  }
+
+  export type ProductCreateOrConnectWithoutMdaProductInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutMdaProductInput, ProductUncheckedCreateWithoutMdaProductInput>
+  }
+
+  export type ProductCreateManyMdaProductInputEnvelope = {
+    data: ProductCreateManyMdaProductInput | ProductCreateManyMdaProductInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SupplierUpsertWithWhereUniqueWithoutMdaProductInput = {
+    where: SupplierWhereUniqueInput
+    update: XOR<SupplierUpdateWithoutMdaProductInput, SupplierUncheckedUpdateWithoutMdaProductInput>
+    create: XOR<SupplierCreateWithoutMdaProductInput, SupplierUncheckedCreateWithoutMdaProductInput>
+  }
+
+  export type SupplierUpdateWithWhereUniqueWithoutMdaProductInput = {
+    where: SupplierWhereUniqueInput
+    data: XOR<SupplierUpdateWithoutMdaProductInput, SupplierUncheckedUpdateWithoutMdaProductInput>
+  }
+
+  export type SupplierUpdateManyWithWhereWithoutMdaProductInput = {
+    where: SupplierScalarWhereInput
+    data: XOR<SupplierUpdateManyMutationInput, SupplierUncheckedUpdateManyWithoutMdaProductInput>
+  }
+
+  export type SupplierScalarWhereInput = {
+    AND?: SupplierScalarWhereInput | SupplierScalarWhereInput[]
+    OR?: SupplierScalarWhereInput[]
+    NOT?: SupplierScalarWhereInput | SupplierScalarWhereInput[]
+    id?: StringFilter<"Supplier"> | string
+    supplierName?: StringFilter<"Supplier"> | string
+    companyName?: StringNullableFilter<"Supplier"> | string | null
+    phone?: StringNullableFilter<"Supplier"> | string | null
+    email?: StringNullableFilter<"Supplier"> | string | null
+    addressLine1?: StringNullableFilter<"Supplier"> | string | null
+    addressLine2?: StringNullableFilter<"Supplier"> | string | null
+    addressLine3?: StringNullableFilter<"Supplier"> | string | null
+    postcode?: StringNullableFilter<"Supplier"> | string | null
+    city?: StringNullableFilter<"Supplier"> | string | null
+    province?: StringNullableFilter<"Supplier"> | string | null
+    country?: StringNullableFilter<"Supplier"> | string | null
+  }
+
+  export type ProductUpsertWithWhereUniqueWithoutMdaProductInput = {
+    where: ProductWhereUniqueInput
+    update: XOR<ProductUpdateWithoutMdaProductInput, ProductUncheckedUpdateWithoutMdaProductInput>
+    create: XOR<ProductCreateWithoutMdaProductInput, ProductUncheckedCreateWithoutMdaProductInput>
+  }
+
+  export type ProductUpdateWithWhereUniqueWithoutMdaProductInput = {
+    where: ProductWhereUniqueInput
+    data: XOR<ProductUpdateWithoutMdaProductInput, ProductUncheckedUpdateWithoutMdaProductInput>
+  }
+
+  export type ProductUpdateManyWithWhereWithoutMdaProductInput = {
+    where: ProductScalarWhereInput
+    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutMdaProductInput>
+  }
+
   export type SessionCreateManyUserInput = {
     id: string
     expiresAt: Date | string
@@ -19631,6 +21583,7 @@ export namespace Prisma {
     oum: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mdaProductId?: string | null
   }
 
   export type ProductUpdateWithoutSupplierInput = {
@@ -19643,6 +21596,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     stocks?: StockUpdateManyWithoutProductsNestedInput
+    mdaProduct?: MDAProductUpdateOneWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSupplierInput = {
@@ -19654,6 +21608,7 @@ export namespace Prisma {
     oum?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mdaProductId?: NullableStringFieldUpdateOperationsInput | string | null
     stocks?: StockUncheckedUpdateManyWithoutProductsNestedInput
   }
 
@@ -19664,6 +21619,36 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mdaProductId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MDAProductUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateManyWithoutMdaProductNestedInput
+  }
+
+  export type MDAProductUncheckedUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUncheckedUpdateManyWithoutMdaProductNestedInput
+  }
+
+  export type MDAProductUncheckedUpdateManyWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiryDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19917,6 +21902,103 @@ export namespace Prisma {
     unitPrice?: FloatFieldUpdateOperationsInput | number
     oum?: StringFieldUpdateOperationsInput | string
     qty?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductCreateManyMdaProductInput = {
+    id?: string
+    sku?: string | null
+    productCode: string
+    description: string
+    unitPrice: number
+    oum: string
+    supplierId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SupplierUpdateWithoutMdaProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    products?: ProductUpdateManyWithoutSupplierNestedInput
+  }
+
+  export type SupplierUncheckedUpdateWithoutMdaProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    products?: ProductUncheckedUpdateManyWithoutSupplierNestedInput
+  }
+
+  export type SupplierUncheckedUpdateManyWithoutMdaProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    supplierName?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    addressLine3?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProductUpdateWithoutMdaProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: NullableStringFieldUpdateOperationsInput | string | null
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    supplier?: SupplierUpdateOneWithoutProductsNestedInput
+    stocks?: StockUpdateManyWithoutProductsNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutMdaProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: NullableStringFieldUpdateOperationsInput | string | null
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    supplierId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stocks?: StockUncheckedUpdateManyWithoutProductsNestedInput
+  }
+
+  export type ProductUncheckedUpdateManyWithoutMdaProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: NullableStringFieldUpdateOperationsInput | string | null
+    productCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    unitPrice?: FloatFieldUpdateOperationsInput | number
+    oum?: StringFieldUpdateOperationsInput | string
+    supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

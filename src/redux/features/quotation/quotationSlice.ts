@@ -191,7 +191,7 @@ export const createQuotation = createAsyncThunk(
         "/api/quotation/createQuotation",
         quotationData
       );
-      return response.data;
+      return response.data.quotationData;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const message = err.response?.data?.error || "Unexpected server error";
@@ -202,15 +202,28 @@ export const createQuotation = createAsyncThunk(
   }
 );
 
+// Helper to convert Blob to base64
+function blobToBase64(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
 export const getProductImage = createAsyncThunk(
   "quotation/getProductImage",
   async (productCode: string, thunkAPI) => {
     try {
       const response = await axios.post(
         `/api/cloudflare-r2/product-images/single-image`,
-        { productCode }
+        { key: `${productCode}.jpeg` },
+        { responseType: "blob" }
       );
-      return response.data.imageUrl;
+      const blob = response.data;
+      const base64 = await blobToBase64(blob);
+      return base64;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || "Failed to fetch image"
@@ -221,12 +234,11 @@ export const getProductImage = createAsyncThunk(
 
 export const getProductImages = createAsyncThunk(
   "api/quotation/getProductImages",
-  async (quotationData: Quotation, thunkAPI) => {
-    console.log(quotationData);
+  async (quotationItems: ProductQuotation[], thunkAPI) => {
     try {
       const response = await axios.post(
-        "/api/quotation/createQuotation",
-        quotationData
+        "/api/cloudflare-r2/product-images/multiple-images",
+        quotationItems
       );
       return response.data;
     } catch (err) {
@@ -384,7 +396,6 @@ const quotationSlice = createSlice({
       state.quoteNo = action.payload;
     });
     builder.addCase(quotationItemsDetail.fulfilled, (state, action) => {
-      console.log(action.payload);
       const agents = ["affirma", "innosys", "biomech"] as const;
       agents.forEach((ag) => {
         state.quotationItems[ag] = action.payload;
@@ -393,8 +404,17 @@ const quotationSlice = createSlice({
     builder.addCase(createQuotation.pending, (state, action) => {
       state.loading = true;
     });
+    builder.addCase(createQuotation.fulfilled, (state, action) => {
+      return {
+        ...action.payload,
+        loading: false,
+      };
+    });
     builder.addCase(createQuotation.rejected, (state, action) => {});
     builder.addCase(getProductImage.fulfilled, (state, action) => {});
+    builder.addCase(getProductImages.fulfilled, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 

@@ -3,6 +3,10 @@
 import { Quotation } from "@/redux/features/quotation/quotationSlice";
 import React, { FormEvent, useState } from "react";
 import { affirmaPDF } from "../quotation/affirmaPDFHelper";
+import PdfPreviewPage from "@/lib/catalogPDFHelper/PdfPreview";
+import { pdf } from "@react-pdf/renderer";
+import { ProductPdf } from "@/lib/catalogPDFHelper/generateAffirmaCatalog";
+import { useAppSelector } from "@/redux/app/hooks";
 
 const CreateProductPage = () => {
   const [quotationState, setQuotationState] = useState<Quotation>({
@@ -1090,11 +1094,13 @@ const CreateProductPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="submit" className="bg-amber-600 rounded-md px-5 py-2">
-        Create Quotation
-      </button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <button type="submit" className="bg-amber-600 rounded-md px-5 py-2">
+          Create Quotation
+        </button>
+      </form>
+    </div>
   );
 };
 

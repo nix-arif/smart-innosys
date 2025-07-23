@@ -55,6 +55,25 @@ const initialState: UserState = {
   error: "",
 };
 
+export const register = createAsyncThunk(
+  "user/register",
+  async (userData: any, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/user/register", userData);
+      const user = response.data.createdUser;
+
+      if (user.id) {
+        await axios.post("/api/session/createSession", {
+          userId: user.id,
+        });
+      }
+      return user;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data?.message || "Login failed");
+    }
+  }
+);
+
 export const getLoginUser = createAsyncThunk(
   "user/getLoginUser",
   async (
@@ -116,6 +135,10 @@ const userSlice = createSlice({
       localStorage.removeItem("username");
       localStorage.removeItem("email");
       state.user = initialState.user;
+    });
+    builder.addCase(register.pending, () => {});
+    builder.addCase(register.fulfilled, (state, action) => {
+      console.log(action.payload);
     });
   },
 });

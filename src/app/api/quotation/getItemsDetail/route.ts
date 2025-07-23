@@ -7,23 +7,37 @@ export async function POST(request: NextRequest) {
   const productCodes = items.map((item) => item.productCode);
 
   try {
-    const result = await prisma.product.findMany({
+    const dbProducts = await prisma.product.findMany({
       where: { productCode: { in: productCodes } },
     });
 
-    const products: ProductQuotation[] = result.map((item, index) => ({
-      no: items[index].no,
-      id: item.id,
-      sku: item.sku || "",
-      productCode: item.productCode,
-      description: item.description,
-      qty: items[index].qty,
-      unitPrice: item.unitPrice,
-      oum: item.oum,
-      totalPrice: item.unitPrice * items[index].qty,
-    }));
-    return NextResponse.json({
-      products,
+    // Create a map for fast lookup by productCode
+    const productMap = new Map(
+      dbProducts.map((product) => [product.productCode, product])
+    );
+
+    // Map the original items (to preserve order)
+    const products: ProductQuotation[] = items.map((item) => {
+      const product = productMap.get(item.productCode);
+      return {
+        no: item.no,
+        id: product?.id || "", // fallback to empty string if not found
+        sku: product?.sku || "",
+        productCode: item.productCode,
+        description: product?.description || "",
+        qty: item.qty,
+        unitPrice: product?.unitPrice || 0,
+        oum: product?.oum || "",
+        totalPrice: (product?.unitPrice || 0) * item.qty,
+      };
     });
-  } catch (error: unknown) {}
+
+    return NextResponse.json({ products });
+  } catch (error) {
+    console.error("Failed to process product quotations:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch product data" },
+      { status: 500 }
+    );
+  }
 }

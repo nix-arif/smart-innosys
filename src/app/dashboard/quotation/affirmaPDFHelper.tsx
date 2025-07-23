@@ -33,18 +33,18 @@ export async function affirmaPDF(quotationData: Quotation) {
   const affirmaQuoteUrl = URL.createObjectURL(affirmaMergedPdfBlob);
 
   // Download Link is Below
-  // const affirmaQuoteLink = document.createElement("a");
-  // affirmaQuoteLink.href = affirmaQuoteUrl;
-  // affirmaQuoteLink.download = `${
-  //   quotationData.quotationHeaders.affirma.quotationRef
-  // }-${quotationData.quotationHeaders.affirma.selectedOrganization.organizationName.toUpperCase()}${
-  //   quotationData.quotationHeaders.affirma.title &&
-  //   `-${quotationData.quotationHeaders.affirma.title.toUpperCase()}`
-  // }.pdf`;
-  // document.body.appendChild(affirmaQuoteLink);
-  // affirmaQuoteLink.click();
-  // document.body.removeChild(affirmaQuoteLink);
+  const affirmaQuoteLink = document.createElement("a");
+  affirmaQuoteLink.href = affirmaQuoteUrl;
+  affirmaQuoteLink.download = `${
+    quotationData.quotationHeaders.affirma.quotationRef
+  }-${quotationData.quotationHeaders.affirma.selectedOrganization.organizationName.toUpperCase()}${
+    quotationData.quotationHeaders.affirma.title &&
+    `-${quotationData.quotationHeaders.affirma.title.toUpperCase()}`
+  }.pdf`;
+  document.body.appendChild(affirmaQuoteLink);
+  affirmaQuoteLink.click();
+  document.body.removeChild(affirmaQuoteLink);
 
   // Open in browser
-  window.open(affirmaQuoteUrl, "_blank");
+  // window.open(affirmaQuoteUrl, "_blank");
 }

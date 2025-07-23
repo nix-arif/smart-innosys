@@ -2,16 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/user/userSlice";
 import customerReducer from "../features/customer/customerSlice";
 import quotationReducer from "../features/quotation/quotationSlice";
-import quotationAffirmaReducer from "../features/quotation/quotationAffirmaSlice";
-import quotationInnosysReducer from "../features/quotation/quotationInnosysSlice";
+import productReducer from "../features/product/productSlice";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
     customer: customerReducer,
     quotation: quotationReducer,
-    // quotationAffirma: quotationAffirmaReducer,
-    // quotationInnosys: quotationInnosysReducer,
+    product: productReducer,
   },
 });
 

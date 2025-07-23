@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useActionState, useState } from "react";
+import React, { ChangeEvent, FormEvent, useActionState, useState } from "react";
 import {
   Card,
   CardContent,
@@ -9,8 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useAppDispatch } from "@/redux/app/hooks";
+import { register } from "@/redux/features/user/userSlice";
 
 const SignUpForm = () => {
+  const dispatch = useAppDispatch();
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -22,6 +25,11 @@ const SignUpForm = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    await dispatch(register(data));
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -29,7 +37,7 @@ const SignUpForm = () => {
         <CardDescription>Smart Innosys Sdn Bhd</CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-4">
             <div className="grid grid-cols-10">
               <label htmlFor="username" className="col-span-3 py-0.5">

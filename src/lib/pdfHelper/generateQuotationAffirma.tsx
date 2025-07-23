@@ -161,7 +161,7 @@ const QuotationAffirmaPDF = ({ data }: QuotationAffirmaPDFProps) => {
               {capitalizeFirstLetter(customer.fullname)}
             </Text>
             <Text>
-              {capitalizeFirstLetter(selectedOrganization.department)}
+              {capitalizeFirstLetter(selectedOrganization.department[0])}
             </Text>
             <Text>
               {capitalizeFirstLetter(selectedOrganization.organizationName)}

@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "seed:r2": "tsx scripts/seed-r2.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

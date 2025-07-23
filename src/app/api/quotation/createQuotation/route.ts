@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const quotationData: Quotation = await request.json();
-  console.log(quotationData);
 
   try {
     if (quotationData.quotationSequal === "single") {
@@ -13,19 +12,19 @@ export async function POST(request: NextRequest) {
         case "affirma":
           await insertAffirmaOriginalQuotationToDB(quotationData);
           return NextResponse.json(
-            { message: "Quotation Affirma Created" },
+            { message: "Quotation Affirma Created", data: quotationData },
             { status: 200 }
           );
         case "innosys":
           await insertInnosysOriginalQuotationToDB(quotationData);
           return NextResponse.json(
-            { message: "Quotation Innosys Created" },
+            { message: "Quotation Innosys Created", data: quotationData },
             { status: 200 }
           );
         case "biomech":
           await insertBiomechOriginalQuotationToDB(quotationData);
           return NextResponse.json(
-            { message: "Quotation Biomech Created" },
+            { message: "Quotation Biomech Created", data: quotationData },
             { status: 200 }
           );
       }
@@ -37,7 +36,10 @@ export async function POST(request: NextRequest) {
           await insertInnosysDummyQuotationToDB(quotationData);
           await insertBiomechDummyQuotationToDB(quotationData);
           return NextResponse.json(
-            { message: "Quotation Affirma Original & 2 Dummy Created" },
+            {
+              message: "Quotation Affirma Original & 2 Dummy Created",
+              quotationData: quotationData,
+            },
             { status: 200 }
           );
         case "innosys":
@@ -45,7 +47,10 @@ export async function POST(request: NextRequest) {
           await insertInnosysOriginalQuotationToDB(quotationData);
           await insertBiomechDummyQuotationToDB(quotationData);
           return NextResponse.json(
-            { message: "Quotation Innosys Original & 2 Dummy Created" },
+            {
+              message: "Quotation Innosys Original & 2 Dummy Created",
+              data: quotationData,
+            },
             { status: 200 }
           );
         case "biomech":
@@ -53,7 +58,10 @@ export async function POST(request: NextRequest) {
           await insertInnosysDummyQuotationToDB(quotationData);
           await insertBiomechOriginalQuotationToDB(quotationData);
           return NextResponse.json(
-            { message: "Quotation Biomech Original & 2 Dummy Created" },
+            {
+              message: "Quotation Biomech Original & 2 Dummy Created",
+              data: quotationData,
+            },
             { status: 200 }
           );
       }
