@@ -1,3 +1,4 @@
+import { ProductCatalogPdf } from "@/lib/catalogPDFHelper/generateAffirmaCatalog";
 import QuotationAffirmaPDF from "@/lib/pdfHelper/generateQuotationAffirma";
 import { Quotation } from "@/redux/features/quotation/quotationSlice";
 import { pdf } from "@react-pdf/renderer";
@@ -7,17 +8,26 @@ export async function affirmaPDF(quotationData: Quotation) {
   const affirmaQuotePdfBlob = await pdf(
     <QuotationAffirmaPDF data={quotationData} />
   ).toBlob();
+  const productCatalogPdfBlob = await pdf(
+    <ProductCatalogPdf data={quotationData} />
+  ).toBlob();
   const affirmaQuotePdfBytes = await affirmaQuotePdfBlob.arrayBuffer();
+  const productCatalogPdfBytes = await productCatalogPdfBlob.arrayBuffer();
   const affirmaDocsPdfBytes = await fetch("/file/DocAffirma.pdf").then((res) =>
     res.arrayBuffer()
   );
   const affirmaMergedPdf = await PDFDocument.create();
   const affirmaDocsPDF = await PDFDocument.load(affirmaDocsPdfBytes);
+  const productCatalogPDF = await PDFDocument.load(productCatalogPdfBytes);
   const affirmaQuotePDF = await PDFDocument.load(affirmaQuotePdfBytes);
 
   const affirmaQuotePages = await affirmaMergedPdf.copyPages(
     affirmaQuotePDF,
     affirmaQuotePDF.getPageIndices()
+  );
+  const productCatalogPages = await affirmaMergedPdf.copyPages(
+    productCatalogPDF,
+    productCatalogPDF.getPageIndices()
   );
   const affirmaDocsPages = await affirmaMergedPdf.copyPages(
     affirmaDocsPDF,
@@ -25,6 +35,7 @@ export async function affirmaPDF(quotationData: Quotation) {
   );
 
   affirmaQuotePages.forEach((page) => affirmaMergedPdf.addPage(page));
+  productCatalogPages.forEach((page) => affirmaMergedPdf.addPage(page));
   affirmaDocsPages.forEach((page) => affirmaMergedPdf.addPage(page));
   const affirmaMergedPdfBytes = await affirmaMergedPdf.save();
   const affirmaMergedPdfBlob = new Blob([affirmaMergedPdfBytes], {

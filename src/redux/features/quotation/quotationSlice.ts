@@ -413,7 +413,10 @@ const quotationSlice = createSlice({
     builder.addCase(createQuotation.rejected, (state, action) => {});
     builder.addCase(getProductImage.fulfilled, (state, action) => {});
     builder.addCase(getProductImages.fulfilled, (state, action) => {
-      console.log(action.payload);
+      const agents = ["affirma", "innosys", "biomech"] as const;
+      agents.forEach((ag) => {
+        state.quotationItems[ag] = action.payload;
+      });
     });
   },
 });
