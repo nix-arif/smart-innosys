@@ -7,11 +7,6 @@ import { PDFDocument, rgb } from "pdf-lib";
 import axios from "axios";
 import React, { FormEvent, useState } from "react";
 
-// import DOMMatrix from "@thednp/dommatrix";
-
-// now import legacy pdfjs:
-// import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
-
 pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 
 const MdaInput = () => {
@@ -22,6 +17,8 @@ const MdaInput = () => {
     e.preventDefault();
     await dispatch(mdaProducts(productCode));
   };
+
+  //   const handleSubmit = () => {};
 
   const handleDownload = async () => {
     try {
@@ -124,6 +121,8 @@ const MdaInput = () => {
       }
     }
   };
+
+  //   const handleDownload = () => {};
 
   return (
     <div className="">

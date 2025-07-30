@@ -1,10 +1,11 @@
 import React from "react";
-import MdaInput from "./MdaInput";
+import PDFHightligter from "./PDFHightligter";
+// import MdaInput from "./MdaInput";
 
 const MdaPage = () => {
   return (
     <div className="">
-      <MdaInput />
+      <PDFHightligter />
     </div>
   );
 };
