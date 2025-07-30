@@ -4,20 +4,18 @@ export function groupPagesByFile(
   const grouped = items
     .filter((i) => i.mdaFile && Number.isInteger(i.mdaPageNo))
     .reduce<Record<string, Set<number>>>((acc, { mdaFile, mdaPageNo }) => {
-      acc[mdaFile!] = acc[mdaFile!] || new Set();
-      acc[mdaFile!]!.add(mdaPageNo!);
+      const file = mdaFile!;
+      const page = mdaPageNo!;
+      if (!acc[file]) acc[file] = new Set();
+      acc[file].add(page);
       return acc;
     }, {});
-  const resultingFile = Object.entries(grouped).map(([mdaFile, pages]) => ({
-    mdaFile,
-    pages: Array.from(pages).sort((a, b) => a - b),
-  }));
 
-  const newResultingFile = resultingFile.map((item) => {
+  return Object.entries(grouped).map(([mdaFile, pages]) => {
+    const allPages = new Set([1, 2, ...pages]); // Ensure 1 and 2 are always included
     return {
-      ...item,
-      pages: [1, 2, ...item.pages],
+      mdaFile,
+      pages: Array.from(allPages).sort((a, b) => a - b),
     };
   });
-  return newResultingFile;
 }
