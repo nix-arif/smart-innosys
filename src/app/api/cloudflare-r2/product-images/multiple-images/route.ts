@@ -13,49 +13,7 @@ const s3 = new S3Client({
 });
 
 export async function POST(request: NextRequest) {
-  //   const { keys } = await request.json();
-  //   if (!Array.isArray(keys) || keys.length === 0)
-  //     return new NextResponse("Missing keys", { status: 400 });
-  //   try {
-  // const urls: { key: string; url: string | null }[] = await Promise.all(
-  //   keys.map(async (key: string) => {
-  //     try {
-  //       const command = new GetObjectCommand({
-  //         Bucket: process.env.R2_BUCKET!,
-  //         Key: key,
-  //       });
-  //       const { Body, ContentType } = await s3.send(command);
-  //       const stream = Body as ReadableStream<Uint8Array>;
-  //       return new NextResponse(stream, {
-  //         status: 200,
-  //         headers: {
-  //           "Content-Type": ContentType ?? "image/jpeg",
-  //           "Cache-Control": "public, max-age=3600",
-  //         },
-  //       });
-  //     } catch (err) {
-  //       console.error(`Error fetching ${key}:`, err);
-  //       return { key, url: null };
-  //     }
-  //   })
-  // );
-  // return NextResponse.json({ images: urls });
-  //   keys.map(async (key) => {
-  //     try {
-  //       const command = new GetObjectCommand({
-  //         Bucket: process.env.R2_BUCKET!,
-  //         Key: key,
-  //       });
-  //       const { Body, ContentType } = await s3.send(command);
-  //       const stream = Body as ReadableStream<Uint8Array>;
-  //     } catch (err) {
-  //       console.error(err);
-  //       return new NextResponse("Error fetching images", { status: 500 });
-  //     }
-  //   });
-
   const items: ProductQuotation[] = await request.json();
-  console.log(items);
 
   const enrichedItems = await Promise.all(
     items.map(async (item) => {

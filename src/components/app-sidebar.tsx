@@ -127,6 +127,7 @@ const operations = [
       { title: "Product", url: "/dashboard/product" },
       { title: "Package", url: "#" },
       { title: "Inventory", url: "#" },
+      { title: "Products Mda", url: "/dashboard/product/mda" },
       { title: "Price", url: "/dashboard/product/price" },
       { title: "Cost", url: "#" },
     ],

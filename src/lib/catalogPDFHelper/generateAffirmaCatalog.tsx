@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   colDetails: {
     flex: 1,
     paddingRight: 12,
+    marginBottom: 3,
   },
   colImage: {
     width: IMAGE_WIDTH,
@@ -70,8 +71,8 @@ const styles = StyleSheet.create({
     height: "auto",
   },
   textItem: {
-    lineHeight: 1.4,
-    marginBottom: 3,
+    // lineHeight: 1.4,
+    // marginBottom: 3,
   },
   label: {
     fontWeight: "bold",

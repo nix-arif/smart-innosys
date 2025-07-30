@@ -169,7 +169,11 @@ exports.Prisma.ProductScalarFieldEnum = {
   supplierId: 'supplierId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  mdaProductId: 'mdaProductId'
+  brandName: 'brandName',
+  mdaRegistrationNo: 'mdaRegistrationNo',
+  mdaPageNo: 'mdaPageNo',
+  mdaEffectiveDate: 'mdaEffectiveDate',
+  mdaExpiryDate: 'mdaExpiryDate'
 };
 
 exports.Prisma.StoreScalarFieldEnum = {
@@ -254,15 +258,6 @@ exports.Prisma.QuotationItemScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.MDAProductScalarFieldEnum = {
-  id: 'id',
-  registrationNo: 'registrationNo',
-  effectiveDate: 'effectiveDate',
-  expiryDate: 'expiryDate',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -309,8 +304,7 @@ exports.Prisma.ModelName = {
   Customer: 'Customer',
   CustomerOrganization: 'CustomerOrganization',
   Quotation: 'Quotation',
-  QuotationItem: 'QuotationItem',
-  MDAProduct: 'MDAProduct'
+  QuotationItem: 'QuotationItem'
 };
 
 /**

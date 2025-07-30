@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "MDAProduct" ALTER COLUMN "registrationNo" DROP NOT NULL,
+ALTER COLUMN "effectiveDate" DROP NOT NULL,
+ALTER COLUMN "expiryDate" DROP NOT NULL,
+ALTER COLUMN "pageNo" DROP NOT NULL;

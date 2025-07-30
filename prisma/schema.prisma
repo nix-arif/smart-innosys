@@ -42,8 +42,8 @@ model Session {
 }
 
 model Supplier {
-  id           String       @id @default(cuid())
-  supplierName String       @unique
+  id           String    @id @default(cuid())
+  supplierName String    @unique
   companyName  String?
   phone        String?
   email        String?
@@ -55,23 +55,25 @@ model Supplier {
   province     String?
   country      String?
   products     Product[]
-  mdaProduct   MDAProduct[]
 }
 
 model Product {
-  id           String      @id @default(cuid())
-  sku          String?
-  productCode  String      @unique
-  description  String
-  unitPrice    Float
-  oum          String
-  supplierId   String?
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  supplier     Supplier?   @relation(fields: [supplierId], references: [id])
-  stocks       Stock[]
-  mdaProduct   MDAProduct? @relation(fields: [mdaProductId], references: [id])
-  mdaProductId String?
+  id                String    @id @default(cuid())
+  sku               String?
+  productCode       String    @unique
+  description       String
+  unitPrice         Float
+  oum               String
+  supplierId        String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  supplier          Supplier? @relation(fields: [supplierId], references: [id])
+  stocks            Stock[]
+  brandName         String
+  mdaRegistrationNo String?
+  mdaPageNo         Int?
+  mdaEffectiveDate  DateTime?
+  mdaExpiryDate     DateTime?
 }
 
 model Store {
@@ -190,15 +192,4 @@ enum Department {
   SALES
   MARKETING
   LOGISTIC
-}
-
-model MDAProduct {
-  id             String     @id @default(cuid())
-  registrationNo String
-  owner          Supplier[]
-  product        Product[]
-  effectiveDate  DateTime
-  expiryDate     DateTime
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
 }

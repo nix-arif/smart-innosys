@@ -86,10 +86,15 @@ async function main() {
     const wb = XLSX.readFile(`${seedPath}/${file}`);
     const ws = wb.Sheets[wb.SheetNames[0]];
     const aoa = XLSX.utils.sheet_to_json<{
+      brandName: string;
       productCode: string;
       description: string;
       unitPrice: string;
       oum: string;
+      mdaRegistrationNo: string;
+      mdaPageNo: number;
+      mdaEffectiveDate: Date;
+      mdaExpiryDate: Date;
     }>(ws);
 
     // Deduplicate by productCode (within file)
@@ -100,10 +105,19 @@ async function main() {
     // Clean and validate
     const cleanedItems = uniqueItems
       .map((item) => ({
+        brandName: item.brandName.trim(),
         productCode: item.productCode?.trim(),
         description: item.description?.trim(),
         unitPrice: parseFloat(item.unitPrice),
         oum: item.oum?.trim(),
+        mdaRegistrationNo: item.mdaRegistrationNo?.trim(),
+        mdaPageNo: item.mdaPageNo,
+        mdaEffectiveDate: item.mdaEffectiveDate
+          ? excelDateToJSDate(item.mdaEffectiveDate)
+          : null,
+        mdaExpiryDate: item.mdaExpiryDate
+          ? excelDateToJSDate(item.mdaExpiryDate)
+          : null,
       }))
       .filter(
         (item) =>
@@ -144,10 +158,15 @@ async function main() {
 
       await prisma.product.create({
         data: {
+          brandName: item.brandName,
           productCode: item.productCode,
           description: item.description,
           unitPrice: item.unitPrice,
           oum: item.oum,
+          mdaRegistrationNo: item.mdaRegistrationNo,
+          mdaPageNo: item.mdaPageNo,
+          mdaEffectiveDate: item.mdaEffectiveDate,
+          mdaExpiryDate: item.mdaExpiryDate,
           supplier: {
             connect: { id: supplier.id },
           },
@@ -172,3 +191,14 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+function excelDateToJSDate(excelDate: any) {
+  // Excel's base date is January 0, 1900 (serial number 0)
+  // 25569 is the number of days between 1900-01-01 and 1970-01-01 (Unix epoch)
+  // 86400000 is the number of milliseconds in a day
+  return new Date(Math.round((excelDate - 25569) * 86400 * 1000));
+}
+
+const excelDate = 44385; // Example Excel date serial number (e.g., July 1, 2021)
+const jsDate = excelDateToJSDate(excelDate);
+console.log(jsDate);
