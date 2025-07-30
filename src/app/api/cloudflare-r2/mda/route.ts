@@ -33,6 +33,7 @@ export async function POST(request: Request) {
     }
 
     const bytes = await outputPdf.save();
+
     return new Response(bytes, {
       status: 200,
       headers: {
