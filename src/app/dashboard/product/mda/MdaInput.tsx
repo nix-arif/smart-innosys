@@ -12,13 +12,12 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 const MdaInput = () => {
   const dispatch = useAppDispatch();
   const { data } = useAppSelector((state) => state.mdaProduct);
+  console.log(data);
   const [productCode, setProductCode] = useState("");
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await dispatch(mdaProducts(productCode));
   };
-
-  //   const handleSubmit = () => {};
 
   const handleDownload = async () => {
     try {
